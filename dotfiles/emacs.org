@@ -1,0 +1,833 @@
+#+TITLE: default.el
+
+* Init
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (if (not (file-exists-p "~/.ebkp"))
+      (make-directory "~/.ebkp" t))
+
+  (setq inhibit-splash-screen t
+	inhibit-startup-screen t
+	tramp-default-method "ssh"
+	inhibit-startup-message t
+	ispell-program-name "aspell"
+	ispell-dictionary "french"
+	browse-url-browser-function 'browse-url-generic
+	browse-url-generic-program "xdg-open"
+	auto-save-interval 20
+	make-backup-files t				; backup of a file the first time it is saved.
+	backup-directory-alist '(("." . "~/.ebkp"))	; don't litter my fs tree
+	backup-by-copying t				; don't clobber symlinks
+	version-control t					; version numbers for backup files
+	delete-old-versions t				; delete excess backup files silently
+	delete-by-moving-to-trash t
+	kept-old-versions 6				; oldest versions to keep when a new numbered backup is made (default: 2)
+	kept-new-versions 9				; newest versions to keep when a new numbered backup is made (default: 2)
+	auto-save-default t				; auto-save every buffer that visits a file
+	auto-save-timeout 20				; number of seconds idle time before auto-save (default: 30)
+	auto-save-interval 20				; number of keystrokes between auto-saves (default: 300)
+	vc-make-backup-files t ; backup version controlled files
+	delete-old-versions t
+	kept-new-versions 6
+	kept-old-versions 10
+	version-control t
+	tab-width 2
+	vc-follow-symlinks 1 ;; pas de prompte yes/no lors d'un lien symbo
+	fill-column 80)
+
+  (put 'erase-buffer 'disabled nil) ;; pas de message lors erase buff
+  (add-to-list 'auto-mode-alist '("\\.log\\'" . auto-revert-mode)) ;; tail -f sur les .log
+
+  ;; (set-default-font "-fsdf-PragmataPro-normal-normal-normal-*-18-*-*-*-*-0-iso10646-1")
+
+  (package-initialize)
+  ;; (setq visible-bell 1)
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (savehist-mode 1)
+  (fset 'yes-or-no-p 'y-or-n-p)
+
+  ;; (all-the-icons-ibuffer-mode 1)
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+  (add-hook 'after-init-hook 'all-the-icons-ivy-setup)
+
+  (defadvice split-window (after move-point-to-new-window activate)
+    "Moves the point to the newly created window after splitting."
+    (other-window 1))
+#+END_SRC
+
+* Addons
+** Yasnippet
+#+begin_src emacs-lisp :tangle yes
+(require 'yasnippet)
+(setq yas-snippet-dirs
+'("~/src/emacs-snippets"))
+(yas-global-mode 1)
+(yasnippet-snippets-initialize)
+#+end_src
+** Edit Server
+
+[[https://www.emacswiki.org/emacs/Edit_with_Emacs][Plugin]] Chrome qui permet d'utiliser emacs pour éditer les formulaires HTML.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+;; (require 'edit-server)
+;; (edit-server-start)
+#+END_SRC
+** Google Translate
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+;; fix google translate
+;; https://github.com/atykhonov/google-translate/issues/52
+(defun google-translate--get-b-d1 ()
+  (list 427110 1469889687))
+#+END_SRC
+** Bash completion
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  ;; (require 'bash-completion)
+  ;; (bash-completion-setup)
+#+END_SRC
+** Zoom Window
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  ;; (require 'zoom-window)
+  ;;   (global-set-key (kbd "C-x C-z") 'zoom-window-zoom)
+  ;;   (custom-set-variables
+  ;;   '(zoom-window-mode-line-color "DarkGreen"))
+#+END_SRC
+** Zael
+
+[[https://zealdocs.org/][Zeal]] is an offline documentation browser for software developers.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+(global-set-key "\C-cd" 'zeal-at-point)
+#+END_SRC
+** Emanux
+
+[[https://github.com/syohex/emacs-emamux][tmux manipulation from Emacs]]
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  ;; (require 'emamux)
+#+END_SRC
+** Multiple cursors
+
+[[https://github.com/magnars/multiple-cursors.el][Multiple cursors for emacs.]]
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (require 'multiple-cursors)
+  (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+#+END_SRC
+** PCAP
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (require 'pcap-mode)
+#+END_SRC
+** pinentry
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  ;;
+  ;; pinentry-emacs
+  ;;
+  ;; (defun pinentry-emacs (desc prompt ok error)
+  ;;   (let ((str (read-passwd (concat (replace-regexp-in-string "%22" "\"" (replace-regexp-in-string "%0A" "\n" desc)) prompt ": "))))
+  ;;     str))
+#+END_SRC
+** Grammalecte
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  ;;
+  ;; (require 'flycheck-grammalecte)
+  ;;
+  ;; (require 'flycheck-grammalecte
+  ;; (setq flycheck-grammalecte-enabled-modes
+  ;;       '(org-mode text-mode mail-mode latex-mode markdown-mode mu4e-compose-mode))
+#+END_SRC
+** iBuffer
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (global-set-key (kbd "C-x C-b") 'ibuffer)
+  (autoload 'ibuffer "ibuffer" "List buffers." t)
+#+END_SRC
+** XClip
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (xclip-mode 1)
+#+END_SRC
+** ACE
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (global-set-key (kbd "C-x o") 'ace-window)
+  ;; ace-window
+  ;; (global-set-key (kbd "M-p") 'ace-window)
+#+END_SRC
+** Markdown
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+  (autoload 'gfm-mode "markdown-mode"
+    "Major mode for editing GitHub Flavored Markdown files" t)
+  (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
+#+END_SRC
+** Projectile
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (projectile-mode +1)
+  (add-hook 'after-init-hook 'projectile-global-mode)
+  (setq projectile-project-search-path '("~/src"))
+  (setq projectile-switch-project-action 'projectile-dired)
+  (setq projectile-completion-system 'ivy)
+  (setq projectile-sort-order 'recentf)
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+#+END_SRC
+** ZTree
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  ;; (require 'ztree)
+#+END_SRC
+** direnv
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (require 'direnv)
+  (direnv-mode)
+#+END_SRC
+** Which key
+
+#+BEGIN_SRC emacs-lisp :tangle no
+(which-key-mode)
+#+END_SRC
+** swiper
+*** ivy
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  ;; ivy
+  ;; (ivy-mode 1)
+  ;; (setq ivy-use-selectable-prompt t)
+  (ivy-mode)
+  (require 'ivy-explorer)
+  (ivy-explorer-mode 1)
+  (counsel-mode 1)
+  ;; (setq ivy-use-virtual-buffers t)
+#+END_SRC
+
+*** avy
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (global-set-key (kbd "M-g f") 'avy-goto-line)
+  (global-set-key (kbd "M-g w") 'avy-goto-word-1)
+  (global-set-key (kbd "M-g e") 'avy-goto-word-0)
+#+END_SRC
+
+*** counsel
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  ;; counsel
+  ;; (setq enable-recursive-minibuffers t)
+  ;; (global-set-key "\C-s" 'swiper)
+  ;; (setq counsel-grep-base-command
+  ;;       "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
+  ;; (global-set-key (kbd "C-s") 'counsel-grep-or-swiper)
+  (require 'counsel)
+
+  (global-set-key (kbd "C-c C-r") 'ivy-resume)
+  (global-set-key (kbd "<f6>") 'ivy-resume)
+  (global-set-key (kbd "M-x") 'counsel-M-x)
+  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+  (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+  (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+  (global-set-key (kbd "<f1> l") 'counsel-find-library)
+  (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+  (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+  (global-set-key (kbd "C-c g") 'counsel-git)
+  (global-set-key (kbd "C-c j") 'counsel-git-grep)
+  (global-set-key (kbd "C-c k") 'counsel-ag)
+  ;; (global-set-key (kbd "C-s") 'counsel-grep-or-swiper)
+  (global-set-key (kbd "C-s") 'swiper)
+  ;; (setq counsel-grep-base-command
+  ;;       "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
+  (global-set-key (kbd "C-x l") 'counsel-locate)
+  ;; (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+  ;; (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+#+END_SRC
+** undo tree
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (global-undo-tree-mode)
+#+END_SRC
+** company
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (require 'company)
+  (add-hook 'after-init-hook 'global-company-mode)
+  ;; (company-quickhelp-mode 1)
+
+  ;; (require 'company-box)
+  ;; (add-hook 'company-mode-hook 'company-box-mode)
+  (setq company-show-numbers t)
+
+  (setq company-tooltip-align-annotations t)
+#+END_SRC
+** Docker
+*** Dockerfile
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (require 'dockerfile-mode)
+  (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+#+END_SRC
+* Server
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+(server-start)
+#+END_SRC
+* Multiterm
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (autoload 'multi-term "multi-term" nil t)
+  (autoload 'multi-term-next "multi-term" nil t)
+
+  ;; (setq multi-term-program "/bin/bash")   ;; use bash
+  ;; (setq multi-term-program "/bin/zsh") ;; or use zsh...
+
+  ;; only needed if you use autopair
+  (add-hook 'term-mode-hook
+    '(lambda () (setq autopair-dont-activate t)))
+
+
+  ;; (global-set-key (kbd "C-c t") 'multi-term-next)
+  ;; (global-set-key (kbd "C-c T") 'multi-term) ;; create a new one
+#+END_SRC
+* Code
+** Python
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  ;; (elpy-enable)
+  ;; (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+  (add-hook 'python-mode-hook 'importmagic-mode)
+  (setq python-shell-interpreter "ipython"
+	python-shell-interpreter-args "--simple-prompt -i")
+  (require 'pyvenv)
+  ;; (elpy-enable)
+
+  ;; epa
+  (require 'epa-file)
+  (require 'epa-mail)
+  (setq epa-pinentry-mode 'loopback)
+#+END_SRC
+
+** JavaScript
+#+BEGIN_SRC emacs-lisp :tangle yes
+#+END_SRC
+** ReactJS
+#+BEGIN_SRC emacs-lisp :tangle yes
+(add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode))
+#+END_SRC
+** PHP
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (add-hook 'php-mode-hook
+            '(lambda ()
+               (require 'company-php)
+               (company-mode t)
+               (ac-php-core-eldoc-setup) ;; enable eldoc
+               (make-local-variable 'company-backends)
+               (add-to-list 'company-backends 'company-ac-php-backend)))
+#+END_SRC
+** WebMode
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (require 'web-mode)
+  (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+
+  (setq web-mode-style-padding 1)
+  (setq web-mode-script-padding 1)
+  (setq web-mode-block-padding 0)
+  (setq web-mode-comment-style 2)
+#+END_SRC
+
+** Golang
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (require 'company-go)
+  (add-hook 'go-mode-hook (lambda ()
+                            (set (make-local-variable 'company-backends) '(company-go))
+                            (company-mode)))
+#+END_SRC
+
+** Rust
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (setenv "RUST_SRC_PATH" "/home/alex/src/rust/src")
+
+  (add-hook 'rust-mode-hook #'racer-mode)
+  (add-hook 'rust-mode-hook #'cargo-minor-mode)
+  (add-hook 'racer-mode-hook #'eldoc-mode)
+  (add-hook 'racer-mode-hook #'company-mode)
+  (with-eval-after-load 'rust-mode
+    (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+  (require 'rust-mode)
+  (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+#+END_SRC
+
+** erlang
+
+#+begin_src emacs-lisp :tangle yes
+
+#+end_src
+
+** Haskell
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (require 'haskell-interactive-mode)
+  (require 'haskell-process)
+
+  ;; (require 'lsp)
+  ;; (require 'lsp-haskell)
+  ;; (add-hook 'haskell-mode-hook #'lsp)
+
+  ;; (add-to-list 'company-backends 'company-ghci)
+
+  (add-hook 'haskell-mode-hook
+            '(lambda ()
+               (require 'dante-mode)
+               (company-mode t)
+               (make-local-variable 'company-backends)
+               (add-to-list 'company-backends 'dante-company)
+               (add-to-list 'company-backends 'etags-company)
+               (add-to-list 'company-backends 'company-cabal)))
+
+  (setq-default flycheck-disabled-checkers '(haskell-stack-ghc))
+  (setq flycheck-haskell-ghc-executable "nix-ghc")
+  (setq haskell-process-wrapper-function
+        (lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))
+
+  (custom-set-variables
+   '(haskell-tags-on-save t))
+
+  ;; (add-hook 'haskell-mode-hook 'dante-mode)
+  (add-hook 'haskell-mode-hook 'flycheck-mode)
+  (add-hook 'haskell-mode-hook 'dante-mode)
+  (add-hook 'haskell-mode-hook 'flyspell-prog-mode)
+  (add-hook 'haskell-mode-hook 'rainbow-delimiters-mode)
+  ;; (add-hook 'haskell-mode-hook
+  ;;           (lambda ()
+  ;;             (set (make-local-variable 'company-backends)
+  ;;                  (append '((company-capf company-dabbrev-code))
+  ;;                          company-backends))))
+  (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+
+  (custom-set-variables
+   '(haskell-process-suggest-remove-import-lines t)
+   '(haskell-process-auto-import-loaded-modules t)
+   '(haskell-process-log t))
+
+  ;; dante
+  ;; (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+  (setq flymake-no-changes-timeout nil)
+  (setq flymake-start-syntax-check-on-newline nil)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (auto-save-visited-mode 1)
+  (setq auto-save-visited-interval 1)
+
+  ;; (flycheck-add-next-checker 'haskell-dante '(warning . haskell-hlint))
+#+END_SRC
+** TypeScript
+
+#+begin_src  emacs-lisp :tangle yes
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  ;; `M-x package-install [ret] company`
+  (company-mode +1))
+
+;; aligns annotation to the right hand side
+(setq company-tooltip-align-annotations t)
+
+;; formats the buffer before saving
+(add-hook 'before-save-hook 'tide-format-before-save)
+
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
+#+end_src
+
+** Nix
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  ;; (add-to-list 'company-backends 'company-nixos-options)
+
+  (eval-after-load 'nix-mode                                                                                                                                                   
+    (add-hook 'nix-mode-hook
+              (lambda ()                        
+                (setq-local indent-line-function #'indent-relative))))
+
+  ;; (require 'nix-sandbox)
+  (require 'nixos-options)
+
+  (setq flycheck-command-wrapper-function
+        (lambda (command) (apply 'nix-shell-command (nix-current-sandbox) command))
+        flycheck-executable-find
+        (lambda (cmd) (nix-executable-find (nix-current-sandbox) cmd)))
+#+END_SRC
+** DAP (debug)
+
+https://github.com/emacs-lsp/dap-mode (vscode debug)
+
+#+begin_src emacs-lisp :tangle yes
+  (dap-mode 1)
+  (dap-ui-mode 1)
+  ;; enables mouse hover support
+  (dap-tooltip-mode 1)
+  ;; use tooltips for mouse hover
+  ;; if it is not enabled `dap-mode' will use the minibuffer.
+  (tooltip-mode 1)
+
+  (require 'dap-python)
+
+(custom-set-variables
+ '(dap-python-executable "~/.nix-profile/bin/python3.7"))
+
+  (dap-register-debug-template "AIOmda"
+    (list :type "python"
+          :args "~/src/aiomda/src/cyrus01.conf"
+          :target-module "~/src/aiomda/src/aiomda.py"
+          :request "launch"
+          :name "AIOmda"))
+#+end_src
+
+* Hook
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (add-hook 'git-commit-mode-hook 'turn-on-flyspell)
+  (add-hook 'mail-mode-hook 'turn-on-flyspell)
+  ;; (add-hook 'text-mode-hook 'turn-on-flyspell)
+  (add-hook 'erc-mode-hook 'turn-on-flyspell)
+  ;; (add-hook 'edit-server-edit-mode-hook 'turn-on-flyspell)
+  (add-hook 'org-mode-hook 'turn-on-flyspell)
+  ;; (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+#+END_SRC
+
+* Org
+** org-tempo
+#+begin_src  emacs-lisp :tangle yes
+;; https://orgmode.org/org.html#Easy-templates
+;; <s tab
+(require 'org-tempo)
+#+end_src
+
+** org-rich-yank
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  ;; (require 'org-rich-yank)
+  ;; (define-key org-mode-map (kbd "C-M-y") #'org-rich-yank)
+#+END_SRC
+
+** org-mime
+
+[[https://emacs.readthedocs.io/en/latest/mu4e__email_client.html][mu4e - Email Client]]
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (require 'org-mime)
+  (setq org-mime-library 'mml)
+  (add-hook 'message-mode-hook
+            (lambda ()
+              (local-set-key "\C-c\M-o" 'org-mime-htmlize)))
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (local-set-key "\C-c\M-o" 'org-mime-org-buffer-htmlize)))
+
+  ;; (add-hook 'org-mime-html-hook
+  ;;             (lambda ()
+  ;;               (insert-file-contents "~/.css/mail.css")
+  ;;               ;; (goto-char 5)
+  ;;               )
+  ;;             t)
+
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (local-set-key (kbd "C-c M-o") 'org-mime-subtree))
+            'append)
+#+END_SRC
+** Basic config
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (setq org-directory "~/notes")
+  (setq org-log-done t)
+  (setq org-default-notes-file (concat org-directory "/inbox.org"))
+  (setq org-agenda-files (append
+                          '("~/notes")
+                          (file-expand-wildcards "~/notes/travail/projects/*")
+                          (file-expand-wildcards"~/notes/agenda/*")))
+  (add-hook 'org-mode-hook 'org-indent-mode)
+
+  (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")
+  (sequence "REUNION(r)")
+  (sequence "RIL(l)" "|" "DONE(d)")
+  (sequence "ITOP(i)" "|" "DONE(d)")
+  (sequence "MANTIS(m)" "|" "DONE(d)")
+  (sequence "APPEL(a)")
+  (sequence "IDEE(e)")))
+
+  (setq org-todo-keyword-faces
+  '(("TODO" . (:foreground "#ff39a3" :weight bold))
+  ("DONE" . (:foreground "#C7FF09" :weight bold))
+  ("RIL" . (:foreground "#9300FF" :weight bold))
+  ("ITOP" . (:foreground "#1795FF" :weight bold))
+  ("MANTIS" . (:foreground "#C7FF17" :weight bold))
+  ("WAITING" . (:foreground "#ffffff" :background "#FF09B4" :weight bold))
+  ("STARTED" . "#E35DBF")
+  ("IDEE" . (:foreground "#CDFF00" :weight bold))
+  ("REUNION" . (:foreground "#FFA600" :weight bold))
+  ("APPEL" . (:foreground "#FFD100" :weight bold))
+  ("CANCELLED" . (:foreground "white" :background "#FF4509" :weight bold))
+  ("DELEGATED" . "pink")
+  ("POSTPONED" . "#008080")))
+
+  (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
+  (add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
+  (add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_EXAMPLE" . "#\\+END_EXAMPLE"))
+#+END_SRC
+** Francisation
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (setq calendar-week-start-day 1
+        calendar-day-name-array ["Dimanche" "Lundi" "Mardi" "Mercredi"
+                                 "Jeudi" "Vendredi" "Samedi"]
+        calendar-month-name-array ["Janvier" "Février" "Mars" "Avril" "Mai"
+                                   "Juin" "Juillet" "Août" "Septembre"
+                                   "Octobre" "Novembre" "Décembre"])
+
+  (eval-when-compile
+    (require 'calendar)
+    (require 'holidays))
+
+  (defvar holiday-french-holidays nil
+    "French holidays")
+
+  (setq holiday-french-holidays
+        `((holiday-fixed 1 1 "Jour de l'an")
+          (holiday-fixed 1 6 "Épiphanie")
+          (holiday-fixed 2 2 "Chandeleur")
+          (holiday-fixed 2 14 "Saint Valentin")
+          (holiday-fixed 5 1 "Fête du travail")
+          (holiday-fixed 5 8 "Commémoration de la capitulation de l'Allemagne en 1945")
+          (holiday-fixed 6 21 "Fête de la musique")
+          (holiday-fixed 7 14 "Fête nationale - Prise de la Bastille")
+          (holiday-fixed 8 15 "Assomption (Religieux)")
+          (holiday-fixed 11 11 "Armistice de 1918")
+          (holiday-fixed 11 1 "Toussaint")
+          (holiday-fixed 11 2 "Commémoration des fidèles défunts")
+          (holiday-fixed 12 25 "Noël")
+          ;; fetes a date variable
+          (holiday-easter-etc 0 "Pâques")
+          (holiday-easter-etc 1 "Lundi de Pâques")
+          (holiday-easter-etc 39 "Ascension")
+          (holiday-easter-etc 49 "Pentecôte")
+          (holiday-easter-etc -47 "Mardi gras")
+          (holiday-float 5 0 4 "Fête des mères")
+          ;; dernier dimanche de mai ou premier dimanche de juin si c'est le
+          ;; même jour que la pentecôte TODO
+          (holiday-float 6 0 3 "Fête des pères"))) ;; troisième dimanche de juin
+
+  (provide 'french-holidays)
+  (setq calendar-holidays holiday-french-holidays)
+#+END_SRC
+
+** org-crypt
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (require 'org-crypt)
+  (org-crypt-use-before-save-magic)
+  (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+  (setq org-crypt-key "E29E9DCBB3FD297DCCF9D574A4BD77DD1421E5CF")
+  (setq auto-save-default nil)
+#+END_SRC
+
+** org capture
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (setq org-capture-templates
+        '(
+          ("r" "Réunion" entry (file+headline "inbox.org" "Réunions")
+           "* REUNION avec %? %^G\nSCHEDULED: %^T\n" :clock-in t :clock-resume t)
+          ("a" "Appel" entry (file+headline "inbox.org" "Appels")
+           "* APPEL avec %? %^G\nSCHEDULED: %^T\n" :clock-in t :clock-resume t)
+          ("t" "Todo" entry (file+headline "inbox.org" "Tasks")
+           "* TODO %? %^G\nSCHEDULED: %^T\n")
+          ("l" "Lien" entry (file+headline "inbox.org" "A lire")
+           "* RIL %? :ril:%^G\n")
+          ("i" "Idée" entry (file+headline "inbox.org" "Idée")
+           "* IDEE %?\n%t")
+          ))
+  (global-set-key "\C-cl" 'org-store-link)
+  (global-set-key "\C-ca" 'org-agenda)
+  (global-set-key "\C-cc" 'org-capture)
+#+END_SRC
+
+** org protocol
+
+[[https://orgmode.org/worg/org-contrib/org-protocol.html][Intercept calls from emacsclient to trigger custom actions]]
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+(require 'org-protocol)
+#+END_SRC
+
+** org bullets
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (require 'org-bullets)
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+#+END_SRC
+* Theme
+#+BEGIN_SRC emacs-lisp :tangle yes
+    ;; (package-install 'spaceline-all-the-icons)
+    ;; (require 'spaceline-all-the-icons)
+    ;; (require 'spaceline-config)
+    ;; (setq inhibit-compacting-font-caches t)
+
+    ;; (spaceline-all-the-icons-theme)
+    ;; (setq spaceline-all-the-icons-separator-type 'none)
+    ;; (spaceline-all-the-icons--setup-git-ahead)
+
+    (require 'all-the-icons)
+
+    ;; (load-theme 'zenburn t)
+    ;; (load-theme 'dracula t)
+    ;; (load-theme 'solarized-light)
+    ;; (load-theme 'atom-dark t)
+    ;; (load-theme 'leuven)
+    ;; (require 'color-theme-sanityinc-tomorrow)
+
+    ;; (setq org-fontify-whole-heading-line t)
+    ;; (load-theme 'spacemacs-dark t)
+    ;; (load-theme ${theme} t)
+    (load-theme 'zerodark t)
+    (zerodark-setup-modeline-format)
+
+    (defun load-zerodark-theme (frame)
+    (select-frame frame)
+    (load-theme 'zerodark t))
+
+    (if (daemonp)
+    (add-hook 'after-make-frame-functions #'load-zerodark-theme)
+    (load-theme 'zerodark t))
+
+    ;; (custom-theme-set-faces
+    ;;  'zerodark
+    ;;  '(font-lock-comment-face ((t (:foreground "color-250" :slant italic))))) ;; compat cli
+#+END_SRC
+* Fonts
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+;; (require 'unicode-fonts)
+;; (unicode-fonts-setup)
+#+END_SRC
+
+* Key
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (global-set-key (kbd "C-x <up>") 'windmove-up)
+  (global-set-key (kbd "C-x <down>") 'windmove-down)
+  (global-set-key (kbd "C-x <right>") 'windmove-right)
+  (global-set-key (kbd "C-x <left>") 'windmove-left)
+  (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
+  (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+  (global-set-key (kbd "S-C-<down>") 'shrink-window)
+  (global-set-key (kbd "S-C-<up>") 'enlarge-window)
+#+END_SRC
+
+* Proxy
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (cond ((string= "taf" system-name)
+         (message "init du http_proxy")
+         ;; (require 'url-http)
+         ;; (defun url-http-user-agent-string ()
+         ;; 	 "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36"
+         ;; 	 )
+         (setq package-check-signature nil)
+         (setq url-proxy-services
+               '(("no_proxy" . "^\\(localhost\\|10.*\\|*\\.@ORG@\\.fr\\)")
+                 ("https" . "127.0.0.1:3128")
+                 ("http" . "127.0.0.1:3128")
+                 ))
+         (setenv "http_proxy" (concat "127.0.0.1:3128"))
+         (setenv "https_proxy" (concat "127.0.0.1:3128"))
+         ))
+#+END_SRC
+
+* Babel
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (python . t)))
+#+END_SRC
+
+* Alias
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (defalias 'open 'find-file)
+  (defalias 'ff 'find-file)
+  (defalias 'ms 'magit-status)
+#+END_SRC
+* eshell
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  ;; (eshell-git-prompt-use-theme 'powerline)
+  ;; (require 'esh-autosuggest)
+  ;; (add-hook 'eshell-mode-hook #'esh-autosuggest-mode)
+  (setq ivy-do-completion-in-region t) ; this is the default
+
+  (defun setup-eshell-ivy-completion ()
+    (define-key eshell-mode-map [remap eshell-pcomplete] 'completion-at-point)
+    ;; only if you want to use the minibuffer for completions instead of the
+    ;; in-buffer interface
+    (setq-local ivy-display-functions-alist
+                (remq (assoc 'ivy-completion-in-region ivy-display-functions-alist)
+                      ivy-display-functions-alist)))
+
+  (add-hook 'eshell-mode-hook #'setup-eshell-ivy-completion)
+
+  (add-hook 'eshell-mode-hook
+            (lambda ()
+              (add-to-list 'eshell-visual-commands "docker-compose")
+              (add-to-list 'eshell-visual-commands "ssh")
+              (add-to-list 'eshell-visual-commands "tail")
+              (add-to-list 'eshell-visual-commands "htop")))
+#+END_SRC
+
+* Git
+** git gutter
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (global-git-gutter-mode +1)
+  (set-face-background 'git-gutter:modified "#ffcc00")
+  (set-face-background 'git-gutter:added "#ccff33")
+  (set-face-background 'git-gutter:deleted "#ff5050")
+#+END_SRC
+
+** Magit
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (require 'magit)
+  (global-set-key (kbd "C-x g") 'magit-status)
+  ;; (require 'magithub)
+  ;; (magithub-feature-autoinject t)
+  ;; (setq magithub-clone-default-directory "~/src")
+#+END_SRC
+* Mail
+#+BEGIN_SRC elisp
+(load-file "~/.mail.el")
+#+END_SRC

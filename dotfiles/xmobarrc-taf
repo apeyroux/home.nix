@@ -1,0 +1,33 @@
+--
+-- https://fontawesome.com/cheatsheet
+-- echo -ne "\uf1eb" | xclip -selection clipboard
+--
+Config { font = "xft:Noto Sans:pixelsize=13,M+ 1c:pixelsize=13"
+        , additionalFonts = [ "xft:FontAwesome:pixelsize=13" ]
+        , bgColor = "#282a36"
+        , fgColor = "#f8f8f2"
+	, allDesktops = True
+	-- , overrideRedirect = True
+        , position = Bottom L 100
+        , commands = [ Run Weather "CYVR" ["-t","<tempC>C","-L","18","-H","25","-h","#50fa7b","-l","#ff5555","-m","#ffb86c","-n","#8be9fd"] 36000
+                     , Run Cpu ["-t"," <ipat> <total>%","-L","3","-H","50", "-h","#ff5555","-l","#50fa7b","-n","#ffb86c"] 10
+                     , Run Memory ["-t","m <usedratio>% <used>Mo"
+			  , "-h","#ff5555","-l","#50fa7b","-n","#ffb86c"
+			  , "-H", "10000"
+			  , "-L", "5000"] 10
+		     , Run Network "eth1"
+                          [ "-t", "r:<rx> t:<tx>",
+			    "-S", "True",
+			    "-h", "#50fa7b",
+			    "-l", "#ff5555",
+			    "-n", "#ffb86c"
+                          ] 10
+                     , Run Date "<fn=1> </fn><fc=#d7bde2>%d/%m/%Y</fc> <fc=#af7ac5>%H:%M:%S</fc>" "date" 10
+		     , Run Mail [("<fn=1></fn> ", "~/.mail/gn/Inbox") ] "mail"
+                     , Run StdinReader
+                 ]
+        , sepChar = "%"
+        , alignSep = "}{"
+        , template = " %StdinReader%} { %mail% <fn=1></fn> %eth1% <fn=1></fn> %date% "
+        -- , template = " %StdinReader%} { %date% "
+}
