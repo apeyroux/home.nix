@@ -7,33 +7,33 @@
       (make-directory "~/.ebkp" t))
 
   (setq inhibit-splash-screen t
-	inhibit-startup-screen t
-	tramp-default-method "ssh"
-	inhibit-startup-message t
-	ispell-program-name "aspell"
-	ispell-dictionary "french"
-	browse-url-browser-function 'browse-url-generic
-	browse-url-generic-program "xdg-open"
-	auto-save-interval 20
-	make-backup-files t				; backup of a file the first time it is saved.
-	backup-directory-alist '(("." . "~/.ebkp"))	; don't litter my fs tree
-	backup-by-copying t				; don't clobber symlinks
-	version-control t					; version numbers for backup files
-	delete-old-versions t				; delete excess backup files silently
-	delete-by-moving-to-trash t
-	kept-old-versions 6				; oldest versions to keep when a new numbered backup is made (default: 2)
-	kept-new-versions 9				; newest versions to keep when a new numbered backup is made (default: 2)
-	auto-save-default t				; auto-save every buffer that visits a file
-	auto-save-timeout 20				; number of seconds idle time before auto-save (default: 30)
-	auto-save-interval 20				; number of keystrokes between auto-saves (default: 300)
-	vc-make-backup-files t ; backup version controlled files
-	delete-old-versions t
-	kept-new-versions 6
-	kept-old-versions 10
-	version-control t
-	tab-width 2
-	vc-follow-symlinks 1 ;; pas de prompte yes/no lors d'un lien symbo
-	fill-column 80)
+        inhibit-startup-screen t
+        tramp-default-method "ssh"
+        inhibit-startup-message t
+        ispell-program-name "aspell"
+        ispell-dictionary "french"
+        browse-url-browser-function 'browse-url-generic
+        browse-url-generic-program "xdg-open"
+        auto-save-interval 20
+        make-backup-files t				; backup of a file the first time it is saved.
+        backup-directory-alist '(("." . "~/.ebkp"))	; don't litter my fs tree
+        backup-by-copying t				; don't clobber symlinks
+        version-control t					; version numbers for backup files
+        delete-old-versions t				; delete excess backup files silently
+        delete-by-moving-to-trash t
+        kept-old-versions 6				; oldest versions to keep when a new numbered backup is made (default: 2)
+        kept-new-versions 9				; newest versions to keep when a new numbered backup is made (default: 2)
+        auto-save-default t				; auto-save every buffer that visits a file
+        auto-save-timeout 20				; number of seconds idle time before auto-save (default: 30)
+        auto-save-interval 20				; number of keystrokes between auto-saves (default: 300)
+        vc-make-backup-files t ; backup version controlled files
+        delete-old-versions t
+        kept-new-versions 6
+        kept-old-versions 10
+        version-control t
+        tab-width 2
+        vc-follow-symlinks 1 ;; pas de prompte yes/no lors d'un lien symbo
+        fill-column 80)
 
   (put 'erase-buffer 'disabled nil) ;; pas de message lors erase buff
   (add-to-list 'auto-mode-alist '("\\.log\\'" . auto-revert-mode)) ;; tail -f sur les .log

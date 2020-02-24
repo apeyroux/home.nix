@@ -2,7 +2,7 @@ import           Control.Monad
 import qualified Data.Map                            as M
 import           Graphics.X11.ExtraTypes.XF86
 import           System.IO
-import           System.Taffybar.Support.PagerHints  (pagerHints)
+-- import           System.Taffybar.Support.PagerHints  (pagerHints)
 import           XMonad
 import           XMonad.Actions.Search               as S
 import           XMonad.Actions.Submap               as SM

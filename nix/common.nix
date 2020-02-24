@@ -12,6 +12,7 @@ in {
     (pass.withExtensions(ex: with ex;[pass-import pass-otp pass-audit pass-update]))
     bind
     git-crypt
+    # git-bug
     libressl
     mailutils
     mosh
@@ -43,6 +44,15 @@ in {
 
   programs = {
 
+    zsh = {
+      enable = true;
+      defaultKeymap = "emacs";
+      oh-my-zsh = {
+        enable = true;
+        plugins = [ "git" "sudo" ];
+      };
+    };
+    
     tmux = {
       enable = true;
       baseIndex = 0;
@@ -110,7 +120,7 @@ in {
         vimPlugins.coc-tslint
         vimPlugins.haskell-vim
         vimPlugins.rust-vim
-        vimPlugins.stylishHaskell
+        # vimPlugins.stylishHaskell
         vimPlugins.vim-addon-nix
         vimPlugins.vim-javascript
       ];

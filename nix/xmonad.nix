@@ -140,7 +140,7 @@ color15 = #e6e6e6
     enableContribAndExtras = true;
     extraPackages = p: [
       p.xmonad
-      p.taffybar
+      # p.taffybar
       p.xmobar
       p.xmonad-extras
       p.xmonad-contrib

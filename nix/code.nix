@@ -56,15 +56,16 @@ in {
   home.packages = [
     ansible
     cabal-install
+    docker-compose
     gdb
     ghc
     gnumake
     godef
-    google-chrome 
+    google-chrome
     gotools
     gsasl
-    nix-prefetch-scripts
     ngrok
+    nix-prefetch-scripts
     nmap
     # (python3.withPackages(p: [p.django p.ipython p.xhtml2pdf p.weasyprint ]))
     (import ./emacs-requirements/requirements.nix { inherit (import <nixpkgs> {}); }).interpreter

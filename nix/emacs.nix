@@ -63,7 +63,7 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
     haskellPackages.hoogle
     haskellPackages.hpack
     haskellPackages.structured-haskell-mode
-    haskellPackages.stylish-haskell
+    # haskellPackages.stylish-haskell
     htmlTidy
     imagemagick
     isync
@@ -317,6 +317,7 @@ in {
       all-the-icons-dired
       all-the-icons-ivy
       # all-the-icons-ibuffer-el
+      # all-the-icons-ibuffer
       company-ghc
       company-ghci
       company-lsp
