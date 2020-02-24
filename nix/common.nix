@@ -49,7 +49,8 @@ in {
       defaultKeymap = "emacs";
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" "sudo" ];
+        theme = "agnoster";
+        plugins = [ "git" "sudo" "docker" ];
       };
     };
     
