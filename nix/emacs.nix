@@ -80,6 +80,7 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
     nodejs
     php
     poppler # confusion avec poppler haskell
+    poppler_utils
     # python27Packages.rope
     python.interpreter
     # python37Packages.epc

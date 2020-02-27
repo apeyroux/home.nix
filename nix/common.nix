@@ -13,7 +13,7 @@ in {
     bind
     git-crypt
     # git-bug
-    libressl
+    # libressl
     mailutils
     mosh
     mtr
