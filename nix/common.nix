@@ -49,7 +49,7 @@ in {
       defaultKeymap = "emacs";
       oh-my-zsh = {
         enable = true;
-        theme = "agnoster";
+        theme = "simple";
         plugins = [ "git" "sudo" "docker" ];
       };
     };
