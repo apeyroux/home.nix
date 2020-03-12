@@ -50,7 +50,12 @@ in {
       oh-my-zsh = {
         enable = true;
         theme = "simple";
-        plugins = [ "git" "sudo" "docker" ];
+        plugins = [ "git"
+                    "sudo"
+                    "docker"
+                    "docker-compose"
+                    "tmux"
+                    "web-search"];
       };
     };
     
@@ -74,17 +79,17 @@ in {
           set -g @batt_low_charge_icon " "
           '';
         }
-        tmuxPlugins.cpu
-        {
-          plugin = tmuxPlugins.resurrect;
-        }
-        {
-          plugin = tmuxPlugins.continuum;
-          extraConfig = ''
-          set -g @continuum-restore 'on'
-          set -g @continuum-save-interval '60' # minutes
-          '';
-        }
+        # tmuxPlugins.cpu
+        # {
+        #   plugin = tmuxPlugins.resurrect;
+        # }
+        # {
+        #   plugin = tmuxPlugins.continuum;
+        #   extraConfig = ''
+        #   set -g @continuum-restore 'on'
+        #   set -g @continuum-save-interval '60' # minutes
+        #   '';
+        # }
       ];
       aggressiveResize = true;
     };
