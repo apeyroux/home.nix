@@ -41,7 +41,7 @@ Config { font = "xft:Noto Sans:pixelsize=13,M+ 1c:pixelsize=13"
                      , Run Date "<fn=1> </fn><fc=#d7bde2>%d/%m/%Y</fc> <fc=#af7ac5>%H:%M:%S</fc>" "date" 10
 		     , Run Mail [("<fn=1></fn> ", "~/.mail/gmail/Inbox") ] "mail"
       		     , Run Battery [
-        	       	   "--template"			, "<acstatus>",
+        	       	   "--template"			, "<acstatus> <timeleft>",
         	       	   "--Low"			, "10",       -- units: %
         	       	   "--High"			, "50",       -- units: %
 			   "-l"				, "#ec7063",
