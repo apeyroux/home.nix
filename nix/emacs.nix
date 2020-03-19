@@ -276,6 +276,7 @@ in {
       ivy-erlang-complete
       js2-mode
       magit
+      magit-todos
       markdown-mode
       # multi-term
       elm-mode

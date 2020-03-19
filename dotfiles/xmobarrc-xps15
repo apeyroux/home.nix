@@ -13,7 +13,7 @@ Config { font = "xft:Noto Sans:pixelsize=13,M+ 1c:pixelsize=13"
 	-- , overrideRedirect = True
         , position = Bottom L 100
         , commands = [ Run Weather "CYVR" ["-t","<tempC>C","-L","18","-H","25","-h","#50fa7b","-l","#ff5555","-m","#ffb86c","-n","#8be9fd"] 36000
-	  	     , Run Com "xmobar-sync-status" [] "sync_status" 5
+	  	     , Run Com "xmobar-sync-status" [] "sync_status" 360 
                      , Run Cpu ["-t"," <ipat> <total>%","-L","3","-H","50", "-h","#ff5555","-l","#50fa7b","-n","#ffb86c"] 10
                      , Run Memory ["-t","m <usedratio>% <used>Mo"
 			  , "-h","#ff5555","-l","#50fa7b","-n","#ffb86c"
