@@ -829,7 +829,7 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
   ;; (magithub-feature-autoinject t)
   ;; (setq magithub-clone-default-directory "~/src")
 
-  (setq vc-display-status nil)
+  ;; (setq vc-display-status nil)
 
   ;; full screen magit-status
   (defadvice magit-status (around magit-fullscreen activate)
