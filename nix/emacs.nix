@@ -229,6 +229,7 @@ in {
     extraPackages = (epkgs: (with epkgs.melpaStablePackages; [
       # ac-php
       # git-timemachine
+      # multi-term
       # notmuch
       # smex
       ace-window
@@ -257,6 +258,7 @@ in {
       edit-server
       editorconfig
       eglot
+      elm-mode
       emamux
       erlang
       esh-autosuggest
@@ -276,10 +278,7 @@ in {
       ivy-erlang-complete
       js2-mode
       magit
-      magit-todos
       markdown-mode
-      # multi-term
-      elm-mode
       mu4e-alert
       multiple-cursors
       nix-buffer
@@ -297,9 +296,9 @@ in {
       pyvenv
       racer
       rainbow-delimiters
+      realgud
       rjsx-mode
       rust-mode
-      realgud
       shx
       spaceline-all-the-icons
       swiper
@@ -308,24 +307,25 @@ in {
       virtualenvwrapper
       web-mode
       which-key
+      yaml-mode
       yasnippet
       yasnippet-snippets
-      yaml-mode
       zerodark-theme
       zoom-window
     ]) ++ (with epkgs.melpaPackages; [
+      # all-the-icons-ibuffer
+      # all-the-icons-ibuffer-el
       # company-box
+      # lsp-rust
       all-the-icons-dired
       all-the-icons-ivy
-      # all-the-icons-ibuffer-el
-      # all-the-icons-ibuffer
+      company-box
+      company-cabal
       company-ghc
       company-ghci
       company-lsp
-      company-box
-      company-cabal
-      smex
       dante
+      default-el
       docker-api
       flycheck-rust
       hasky-stack
@@ -336,17 +336,17 @@ in {
       lorem-ipsum
       lsp-haskell
       lsp-mode
-      # lsp-rust
       lsp-ui
+      magit-todos
       nix-mode
       nix-sandbox
       ox-reveal
       pcap-mode
       restclient
+      smex
       unicode-fonts
       zeal-at-point
       ztree
-      default-el
     ]) ++ (with epkgs.elpaPackages; [
       # company-box
       # ivy-explorer
