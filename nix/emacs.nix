@@ -236,6 +236,14 @@ in {
       # multi-term
       # notmuch
       # smex
+
+    ]) ++ (with epkgs.melpaPackages; [
+      magit
+      magit-todos
+
+      multi-term
+      company-box
+      # all-the-icons-ibuffer
       ace-window
       ag
       all-the-icons
@@ -351,9 +359,6 @@ in {
       zerodark-theme
       zoom-window
       ztree
-    ]) ++ (with epkgs.melpaPackages; [
-      magit
-      magit-todos
     ]) ++ (with epkgs.elpaPackages; [
       # company-box
       # ivy-explorer
