@@ -228,30 +228,46 @@ in {
     package = myemacs;
     extraPackages = (epkgs: (with epkgs.melpaStablePackages; [
       # ac-php
+      # all-the-icons-ibuffer
+      # all-the-icons-ibuffer-el
+      # company-box
       # git-timemachine
+      # lsp-rust
       # multi-term
       # notmuch
       # smex
       ace-window
       ag
       all-the-icons
+      all-the-icons-dired
+      all-the-icons-ivy
       ansible
+      async
       bash-completion
       calfw
       calfw-ical
       calfw-org
       cargo
       company
+      company-box
+      company-cabal
+      company-ghc
+      company-ghci
       company-go
+      company-lsp
       company-nixos-options
       company-php
       company-quickhelp
       counsel
       counsel-projectile
       counsel-tramp
+      dante
       dap-mode
+      dash
+      default-el
       direnv
       docker
+      docker-api
       docker-compose-mode
       docker-tramp
       dockerfile-mode
@@ -263,10 +279,13 @@ in {
       erlang
       esh-autosuggest
       eshell-git-prompt
+      f
       flycheck
       flycheck-haskell
       flycheck-pos-tip
+      flycheck-rust
       ghc
+      gist
       git-auto-commit-mode
       git-gutter
       git-gutter
@@ -274,20 +293,34 @@ in {
       gocode
       google-translate
       haskell-mode
+      hasky-stack
+      hl-todo
       impatient-mode
+      importmagic
+      intero
       ivy-erlang-complete
+      ivy-explorer
+      ivy-yasnippet
       js2-mode
-      magit
+      lorem-ipsum
+      lsp-haskell
+      lsp-mode
+      lsp-ui
       markdown-mode
       mu4e-alert
       multiple-cursors
       nix-buffer
+      nix-mode
+      nix-sandbox
       nixos-options
       ob-http
       org-bullets
       org-gcal
       org-mime
       org-rich-yank
+      ox-reveal
+      pcap-mode
+      pcre2el
       pdf-tools
       php-mode
       powerline
@@ -297,56 +330,30 @@ in {
       racer
       rainbow-delimiters
       realgud
+      restclient
       rjsx-mode
       rust-mode
+      s
       shx
+      smex
       spaceline-all-the-icons
       swiper
       terraform-mode
       tide
+      unicode-fonts
       virtualenvwrapper
       web-mode
       which-key
       yaml-mode
       yasnippet
       yasnippet-snippets
+      zeal-at-point
       zerodark-theme
       zoom-window
-    ]) ++ (with epkgs.melpaPackages; [
-      # all-the-icons-ibuffer
-      # all-the-icons-ibuffer-el
-      # company-box
-      # lsp-rust
-      all-the-icons-dired
-      all-the-icons-ivy
-      company-box
-      company-cabal
-      company-ghc
-      company-ghci
-      company-lsp
-      dante
-      default-el
-      docker-api
-      flycheck-rust
-      hasky-stack
-      importmagic
-      intero
-      ivy-explorer
-      ivy-yasnippet
-      lorem-ipsum
-      lsp-haskell
-      lsp-mode
-      lsp-ui
-      magit-todos
-      nix-mode
-      nix-sandbox
-      ox-reveal
-      pcap-mode
-      restclient
-      smex
-      unicode-fonts
-      zeal-at-point
       ztree
+    ]) ++ (with epkgs.melpaPackages; [
+      magit
+      magit-todos
     ]) ++ (with epkgs.elpaPackages; [
       # company-box
       # ivy-explorer
