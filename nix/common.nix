@@ -16,6 +16,7 @@ in {
     # libressl
     mailutils
     mosh
+    # icons-in-terminal
     mtr
     pigz
     restic
