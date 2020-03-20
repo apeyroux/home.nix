@@ -229,43 +229,72 @@ in {
     package = myemacs;
     extraPackages = (epkgs: (with epkgs.melpaStablePackages; [
       # ac-php
+      # all-the-icons-ibuffer
+      # all-the-icons-ibuffer-el
+      # company-box
       # git-timemachine
+      # lsp-rust
+      # multi-term
       # notmuch
       # smex
+
+    ]) ++ (with epkgs.melpaPackages; [
+      magit
+      magit-todos
+
+      multi-term
+      company-box
+      # all-the-icons-ibuffer
       ace-window
       ag
       all-the-icons
+      all-the-icons-dired
+      all-the-icons-ivy
       ansible
+      async
       bash-completion
       calfw
       calfw-ical
       calfw-org
       cargo
       company
+      company-box
+      company-cabal
+      company-ghc
+      company-ghci
       company-go
+      company-lsp
       company-nixos-options
       company-php
       company-quickhelp
       counsel
       counsel-projectile
       counsel-tramp
+      dante
       dap-mode
+      dash
+      default-el
       direnv
       docker
+      docker-api
       docker-compose-mode
       docker-tramp
       dockerfile-mode
       edit-server
       editorconfig
       eglot
+      elm-mode
       emamux
       erlang
       esh-autosuggest
       eshell-git-prompt
+      f
       flycheck
       flycheck-haskell
       flycheck-pos-tip
+      flycheck-rust
       ghc
+      gist
       git-auto-commit-mode
       git-gutter
       git-gutter
@@ -273,22 +302,34 @@ in {
       gocode
       google-translate
       haskell-mode
+      hasky-stack
+      hl-todo
       impatient-mode
+      importmagic
+      intero
       ivy-erlang-complete
+      ivy-explorer
+      ivy-yasnippet
       js2-mode
-      magit
+      lorem-ipsum
+      lsp-haskell
+      lsp-mode
+      lsp-ui
       markdown-mode
-      # multi-term
-      elm-mode
       mu4e-alert
       multiple-cursors
       nix-buffer
+      nix-mode
+      nix-sandbox
       nixos-options
       ob-http
       org-bullets
       org-gcal
       org-mime
       org-rich-yank
+      ox-reveal
+      pcap-mode
+      pcre2el
       pdf-tools
       php-mode
       powerline
@@ -297,56 +338,28 @@ in {
       pyvenv
       racer
       rainbow-delimiters
+      realgud
+      restclient
       rjsx-mode
       rust-mode
-      realgud
+      s
       shx
+      smex
       spaceline-all-the-icons
       swiper
       terraform-mode
       tide
+      unicode-fonts
       virtualenvwrapper
       web-mode
       which-key
+      yaml-mode
       yasnippet
       yasnippet-snippets
-      yaml-mode
+      zeal-at-point
       zerodark-theme
       zoom-window
-    ]) ++ (with epkgs.melpaPackages; [
-      # company-box
-      all-the-icons-dired
-      all-the-icons-ivy
-      # all-the-icons-ibuffer-el
-      # all-the-icons-ibuffer
-      company-ghc
-      company-ghci
-      company-lsp
-      company-box
-      company-cabal
-      smex
-      dante
-      docker-api
-      flycheck-rust
-      hasky-stack
-      importmagic
-      intero
-      ivy-explorer
-      ivy-yasnippet
-      lorem-ipsum
-      lsp-haskell
-      lsp-mode
-      # lsp-rust
-      lsp-ui
-      nix-mode
-      nix-sandbox
-      ox-reveal
-      pcap-mode
-      restclient
-      unicode-fonts
-      zeal-at-point
       ztree
-      default-el
     ]) ++ (with epkgs.elpaPackages; [
       # company-box
       # ivy-explorer

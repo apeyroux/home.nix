@@ -246,7 +246,7 @@
   (global-set-key (kbd "C-c j") 'counsel-git-grep)
   (global-set-key (kbd "C-c k") 'counsel-ag)
   ;; (global-set-key (kbd "C-s") 'counsel-grep-or-swiper)
-  (global-set-key (kbd "C-s") 'swiper)
+  (global-set-key (kbd "C-s") 'swiper-isearch)
   ;; (setq counsel-grep-base-command
   ;;       "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
   (global-set-key (kbd "C-x l") 'counsel-locate)
@@ -823,9 +823,27 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
 #+BEGIN_SRC emacs-lisp :tangle yes
   (require 'magit)
   (global-set-key (kbd "C-x g") 'magit-status)
+  (require 'magit-todos)
+  (magit-todos-mode)
   ;; (require 'magithub)
   ;; (magithub-feature-autoinject t)
   ;; (setq magithub-clone-default-directory "~/src")
+
+  ;; (setq vc-display-status nil)
+
+  ;; full screen magit-status
+  ;; (defadvice magit-status (around magit-fullscreen activate)
+  ;; (window-configuration-to-register :magit-fullscreen)
+  ;; ad-do-it
+  ;; (delete-other-windows))
+
+  ;; (defun magit-quit-session ()
+  ;; "Restores the previous window configuration and kills the magit buffer"
+  ;; (interactive)
+  ;; (kill-buffer)
+  ;; (jump-to-register :magit-fullscreen))
+
+  ;; (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
 #+END_SRC
 * Mail
 #+BEGIN_SRC elisp
