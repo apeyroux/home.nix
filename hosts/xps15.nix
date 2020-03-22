@@ -10,6 +10,14 @@ let
     url = "https://github.com/apeyroux/molotov.nix.git";
   });
 
+  tresorit-impure = import (builtins.fetchGit {
+    url = "https://github.com/apeyroux/tresorit.nix";
+  });
+  
+  uplink-tardigrade = import (builtins.fetchGit {
+    url = "https://github.com/apeyroux/uplink-tardigrade.nix";
+  });
+  
   criptext = import (builtins.fetchGit {
     url = "https://github.com/apeyroux/criptext.nix.git";
   });
@@ -31,11 +39,11 @@ in {
   home.packages = [
     # criptext
     # docker-compose
+    # insync
     evince
     firefox
     git-crypt
     google-chrome
-    insync
     libreoffice
     lsof
     mitmproxy
@@ -44,7 +52,9 @@ in {
     mutt 
     pcmanfm
     scrot
-    spotify
+    # spotify
+    # tresorit-impure
+    uplink-tardigrade
     wireshark
     xmobar-sync-status
     yubioath-desktop
