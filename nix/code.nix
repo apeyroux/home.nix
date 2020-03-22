@@ -54,6 +54,7 @@ in {
   nixpkgs.overlays = [ (import ../overlays/vscode.nix) ];
 
   home.packages = [
+    ag
     ansible
     cabal-install
     docker-compose
