@@ -62,7 +62,7 @@ in {
 
   services = {
     hound = {
-      enable = true;
+      enable = false;
       repositories = {
         aiomda = {
           url = "https://code.minsi.fr/mce/aiomda.git";
