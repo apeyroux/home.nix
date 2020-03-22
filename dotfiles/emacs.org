@@ -844,6 +844,8 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
   ;; (jump-to-register :magit-fullscreen))
 
   ;; (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
+
+  (require 'magit-lfs)
 #+END_SRC
 * Mail
 #+BEGIN_SRC elisp

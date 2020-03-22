@@ -13,7 +13,7 @@ with import <nixpkgs> {};
     flavor = "gmail.com";
     passwordCommand = "${gnupg}/bin/gpg2 -q --for-your-eyes-only --no-tty -d ~/.mailpass-gmail.gpg";
     imapnotify = {
-      enable = true;
+      enable = false;
       boxes = ["Inbox" "Famille"];
       onNotifyPost = {
         mail = "${libnotify}/bin/notify-send 'Nouveau mail!'";

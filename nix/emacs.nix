@@ -241,6 +241,7 @@ in {
     ]) ++ (with epkgs.melpaPackages; [
       magit
       magit-todos
+      magit-lfs
 
       multi-term
       company-box
