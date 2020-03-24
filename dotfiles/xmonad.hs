@@ -235,7 +235,7 @@ main = do
     logHook = myLogHook xbar,
     borderWidth = 1,
     normalBorderColor  = "#44475a",
-    focusedBorderColor = "#ff1493",
+    focusedBorderColor = "#33ACFF",
     -- workspaces = ["<fn=1><fc=#5dade2>\xf108</fc></fn>",
     --               "<fn=1><fc=#f5b041>\xf269</fc></fn>",
     --               "<fn=1><fc=#27ae60>\xf1bc</fc></fn>",
