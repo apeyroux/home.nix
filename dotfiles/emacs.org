@@ -52,6 +52,13 @@
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
   (add-hook 'after-init-hook 'all-the-icons-ivy-setup)
 
+  ;; epa
+  (require 'epa-file)
+  ;; (epa-file-enable)
+  (require 'epa-mail)
+  (setq epa-pinentry-mode 'loopback)
+  (setq epa-file-select-keys nil)
+
   (defadvice split-window (after move-point-to-new-window activate)
     "Moves the point to the newly created window after splitting."
     (other-window 1))
@@ -300,22 +307,15 @@
 #+END_SRC
 * Code
 ** Python
-
 #+BEGIN_SRC emacs-lisp :tangle yes
   ;; (elpy-enable)
   ;; (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
   (add-hook 'python-mode-hook 'importmagic-mode)
   (setq python-shell-interpreter "ipython"
-	python-shell-interpreter-args "--simple-prompt -i")
+        python-shell-interpreter-args "--simple-prompt -i")
   (require 'pyvenv)
   ;; (elpy-enable)
-
-  ;; epa
-  (require 'epa-file)
-  (require 'epa-mail)
-  (setq epa-pinentry-mode 'loopback)
 #+END_SRC
-
 ** JavaScript
 #+BEGIN_SRC emacs-lisp :tangle yes
 #+END_SRC

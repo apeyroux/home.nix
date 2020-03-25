@@ -167,6 +167,7 @@ initx = do
   -- spawn "dunst"
   -- spawn "insync start"
   spawn "tresorit-cli-impure start"
+  spawn "protonmail-bridge -c --no-window -l info"
   -- spawn "udiskie --appindicator -t  -f nautilus"
   -- spawn "nm-applet --sm-disable --indicator"
   spawn "xsetroot -solid '#282a36'"

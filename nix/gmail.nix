@@ -8,12 +8,12 @@ with import <nixpkgs> {};
   services.imapnotify.enable = true;
 
   accounts.email.accounts.gmail = {
-    primary = true;
+    primary = false;
     address = "peyroux@gmail.com";
     flavor = "gmail.com";
     passwordCommand = "${gnupg}/bin/gpg2 -q --for-your-eyes-only --no-tty -d ~/.mailpass-gmail.gpg";
     imapnotify = {
-      enable = false;
+      enable = true;
       boxes = ["Inbox" "Famille"];
       onNotifyPost = {
         mail = "${libnotify}/bin/notify-send 'Nouveau mail!'";
