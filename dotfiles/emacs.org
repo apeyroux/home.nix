@@ -160,9 +160,9 @@
 ** ACE
 
 #+BEGIN_SRC emacs-lisp :tangle no
-  (global-set-key (kbd "C-x o") 'ace-window)
-  ;; ace-window
-  ;; (global-set-key (kbd "M-p") 'ace-window)
+(global-set-key (kbd "C-x o") 'ace-window)
+;; ace-window
+;; (global-set-key (kbd "M-p") 'ace-window)
 #+END_SRC
 ** Markdown
 
