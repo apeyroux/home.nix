@@ -14,6 +14,8 @@ with import <nixpkgs> {};
     xmobar
   ];
 
+  home.file.".config/alacritty/alacritty.yml".source = ../dotfiles/alacritty.yml;
+  
   programs.termite = {
     enable = true;
     backgroundColor = "#282c34";

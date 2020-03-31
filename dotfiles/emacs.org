@@ -697,41 +697,66 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
 #+END_SRC
 * Theme
 #+BEGIN_SRC emacs-lisp :tangle yes
-    ;; (package-install 'spaceline-all-the-icons)
-    ;; (require 'spaceline-all-the-icons)
-    ;; (require 'spaceline-config)
-    ;; (setq inhibit-compacting-font-caches t)
+  ;; (package-install 'spaceline-all-the-icons)
+  ;; (require 'spaceline-all-the-icons)
+  ;; (require 'spaceline-config)
+  ;; (setq inhibit-compacting-font-caches t)
 
-    ;; (spaceline-all-the-icons-theme)
-    ;; (setq spaceline-all-the-icons-separator-type 'none)
-    ;; (spaceline-all-the-icons--setup-git-ahead)
+  ;; (spaceline-all-the-icons-theme)
+  ;; (setq spaceline-all-the-icons-separator-type 'none)
+  ;; (spaceline-all-the-icons--setup-git-ahead)
 
-    (require 'all-the-icons)
+  ;; DOOM
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-gruvbox t)
 
-    ;; (load-theme 'zenburn t)
-    ;; (load-theme 'dracula t)
-    ;; (load-theme 'solarized-light)
-    ;; (load-theme 'atom-dark t)
-    ;; (load-theme 'leuven)
-    ;; (require 'color-theme-sanityinc-tomorrow)
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
 
-    ;; (setq org-fontify-whole-heading-line t)
-    ;; (load-theme 'spacemacs-dark t)
-    ;; (load-theme ${theme} t)
-    (load-theme 'zerodark t)
-    (zerodark-setup-modeline-format)
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
+  (doom-themes-treemacs-config)
 
-    (defun load-zerodark-theme (frame)
-    (select-frame frame)
-    (load-theme 'zerodark t))
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config)
 
-    (if (daemonp)
-    (add-hook 'after-make-frame-functions #'load-zerodark-theme)
-    (load-theme 'zerodark t))
+  (require 'doom-modeline)
+  (doom-modeline-mode 1)
+  (setq doom-modeline-github t)
+  (setq doom-modeline-mu4e t)
 
-    ;; (custom-theme-set-faces
-    ;;  'zerodark
-    ;;  '(font-lock-comment-face ((t (:foreground "color-250" :slant italic))))) ;; compat cli
+  ;; END DOOM
+
+  ;; (require 'all-the-icons)
+
+  ;; (load-theme 'zenburn t)
+  ;; (load-theme 'dracula t)
+  ;; (load-theme 'solarized-light)
+  ;; (load-theme 'atom-dark t)
+  ;; (load-theme 'leuven)
+  ;; (require 'color-theme-sanityinc-tomorrow)
+
+  ;; (setq org-fontify-whole-heading-line t)
+  ;; (load-theme 'spacemacs-dark t)
+  ;; (load-theme ${theme} t)
+  ;; (load-theme 'zerodark t)
+  ;; (zerodark-setup-modeline-format)
+
+  ;; (defun load-zerodark-theme (frame)
+  ;; (select-frame frame)
+  ;; (load-theme 'zerodark t))
+
+  ;; (if (daemonp)
+  ;; (add-hook 'after-make-frame-functions #'load-zerodark-theme)
+  ;; (load-theme 'zerodark t))
+
+  ;; (custom-theme-set-faces
+  ;;  'zerodark
+  ;;  '(font-lock-comment-face ((t (:foreground "color-250" :slant italic))))) ;; compat cli
 #+END_SRC
 * Fonts
 

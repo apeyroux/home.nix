@@ -237,7 +237,6 @@ in {
       # multi-term
       # notmuch
       # smex
-
     ]) ++ (with epkgs.melpaPackages; [
       magit
       magit-todos
@@ -273,6 +272,8 @@ in {
       counsel-projectile
       counsel-tramp
       dante
+      doom-modeline
+      doom-themes
       dap-mode
       dash
       default-el
