@@ -882,7 +882,7 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
 * ACE
 #+begin_src emacs-lisp :tangle yes
 (global-set-key (kbd "C-x o") 'ace-window)
-(display-batterie-mode)
+(display-battery-mode)
 #+end_src
 * Mail
 #+BEGIN_SRC elisp
