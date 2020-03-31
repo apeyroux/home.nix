@@ -65,6 +65,13 @@
 #+END_SRC
 
 * Addons
+** clipetty
+#+begin_src emacs-lisp :tangle yes
+(require 'clipetty)
+(global-clipetty-mode)
+(setq clipetty-assume-nested-mux nil)
+(setq clipetty-tmux-ssh-tty "tmux show-environment SSH_TTY")
+#+end_src
 ** Yasnippet
 #+begin_src emacs-lisp :tangle yes
 (require 'yasnippet)

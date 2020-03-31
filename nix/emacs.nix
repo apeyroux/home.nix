@@ -254,6 +254,7 @@ in {
       ansible
       async
       bash-completion
+      clipetty
       calfw
       calfw-ical
       calfw-org
