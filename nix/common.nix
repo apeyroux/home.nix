@@ -65,48 +65,48 @@ in {
       clock24 = true;
       terminal = "tmux-256color";
       plugins = with pkgs; [
-        tmuxPlugins.battery
-        {
-          plugin = tmuxPlugins.battery;
-          extraConfig = ''
+        # tmuxPlugins.battery
+        # {
+        #   plugin = tmuxPlugins.battery;
+        #   extraConfig = ''
 
-          # https://github.com/spudlyo/clipetty
-          set -ag update-environment "SSH_TTY"
+        #   # https://github.com/spudlyo/clipetty
+        #   set -ag update-environment "SSH_TTY"
 
-          # tmux-256color instead of screen-256color enables italics
-          set -g default-terminal "tmux-256color"
+        #   # tmux-256color instead of screen-256color enables italics
+        #   set -g default-terminal "tmux-256color"
 
-          # Tc enables true color
-          set -ag terminal-overrides ",*256col*:colors=256:Tc"
+        #   # Tc enables true color
+        #   set -ag terminal-overrides ",*256col*:colors=256:Tc"
 
-          # Ms modifies OSC 52 clipboard handling to work with mosh, see
-          # https://gist.github.com/yudai/95b20e3da66df1b066531997f982b57b
-          # set -ag terminal-overrides "vte*:XT:Ms=\\E]52;c;%p2%s\\7,xterm*:XT:Ms=\\E]52;c;%p2%s\\7"
-          set -ga terminal-overrides "screen*:Ms=\\E]52;%p1%s;%p2%s\\007,tmux*:Ms=\\E]52;%p1%s;%p2%s\\007"
+        #   # Ms modifies OSC 52 clipboard handling to work with mosh, see
+        #   # https://gist.github.com/yudai/95b20e3da66df1b066531997f982b57b
+        #   # set -ag terminal-overrides "vte*:XT:Ms=\\E]52;c;%p2%s\\7,xterm*:XT:Ms=\\E]52;c;%p2%s\\7"
+        #   set -ga terminal-overrides "screen*:Ms=\\E]52;%p1%s;%p2%s\\007,tmux*:Ms=\\E]52;%p1%s;%p2%s\\007"
 
-          # enable OSC 52 clipboard
-          # https://medium.freecodecamp.org/tmux-in-practice-integration-with-system-clipboard-bcd72c62ff7b
-          set -g set-clipboard on
+        #   # enable OSC 52 clipboard
+        #   # https://medium.freecodecamp.org/tmux-in-practice-integration-with-system-clipboard-bcd72c62ff7b
+        #   set -g set-clipboard on
 
-          # use bracketed paste, if the running application (vim/emacs/weechat) has
-          # sent the terminal code to enable it.
-          bind-key ] paste-buffer -p
+        #   # use bracketed paste, if the running application (vim/emacs/weechat) has
+        #   # sent the terminal code to enable it.
+        #   bind-key ] paste-buffer -p
 
-          setw -g aggressive-resize on
+        #   setw -g aggressive-resize on
 
-          # http://comments.gmane.org/gmane.emacs.vim-emulation/1557
-          set -s escape-time 0
+        #   # http://comments.gmane.org/gmane.emacs.vim-emulation/1557
+        #   set -s escape-time 0
 
-          set -g status-right ' #{battery_status_bg} #{battery_icon} #{battery_percentage} #{battery_remain} #[bg=default] %a %d %h %H:%M '
-          set -g @batt_charged_icon ""
-          set -g @batt_charging_icon ""
-          set -g @batt_attached_icon ""
-          set -g @batt_full_charge_icon " "
-          set -g @batt_high_charge_icon " "
-          set -g @batt_medium_charge_icon " "
-          set -g @batt_low_charge_icon " "
-          '';
-        }
+        #   set -g status-right ' #{battery_status_bg} #{battery_icon} #{battery_percentage} #{battery_remain} #[bg=default] %a %d %h %H:%M '
+        #   set -g @batt_charged_icon ""
+        #   set -g @batt_charging_icon ""
+        #   set -g @batt_attached_icon ""
+        #   set -g @batt_full_charge_icon " "
+        #   set -g @batt_high_charge_icon " "
+        #   set -g @batt_medium_charge_icon " "
+        #   set -g @batt_low_charge_icon " "
+        #   '';
+        # }
         # tmuxPlugins.cpu
         # {
         #   plugin = tmuxPlugins.resurrect;
