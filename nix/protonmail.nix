@@ -1,12 +1,13 @@
 with import <nixpkgs> {};
 
 {
+
+  home.file.".proton.crt".source = ../files/proton.crt;
   programs.mbsync = {
     enable = true;
   };
 
   services.imapnotify.enable = true;
-
   accounts.email.accounts.proton = {
     userName = "alex@px.io";
     primary = true;
