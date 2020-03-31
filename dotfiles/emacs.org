@@ -879,6 +879,11 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
 
   (require 'magit-lfs)
 #+END_SRC
+* ACE
+#+begin_src emacs-lisp :tangle yes
+(global-set-key (kbd "C-x o") 'ace-window)
+(display-batterie-mode)
+#+end_src
 * Mail
 #+BEGIN_SRC elisp
 (load-file "~/.mail.el")
