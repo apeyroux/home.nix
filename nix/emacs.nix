@@ -111,6 +111,7 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
     tshark
     tetex
     w3m
+    ripgrep
     xclip
     xz
     zip
@@ -242,8 +243,6 @@ in {
       magit-todos
       magit-lfs
 
-      multi-term
-      company-box
       # all-the-icons-ibuffer
       ace-window
       ag
@@ -253,12 +252,14 @@ in {
       ansible
       async
       bash-completion
-      clipetty
       calfw
       calfw-ical
       calfw-org
       cargo
+      centaur-tabs
+      clipetty
       company
+      company-box
       company-box
       company-cabal
       company-ghc
@@ -272,8 +273,6 @@ in {
       counsel-projectile
       counsel-tramp
       dante
-      doom-modeline
-      doom-themes
       dap-mode
       dash
       default-el
@@ -283,6 +282,8 @@ in {
       docker-compose-mode
       docker-tramp
       dockerfile-mode
+      doom-modeline
+      doom-themes
       edit-server
       editorconfig
       eglot
@@ -312,6 +313,7 @@ in {
       intero
       ivy-erlang-complete
       ivy-explorer
+      ivy-posframe
       ivy-yasnippet
       js2-mode
       lorem-ipsum
@@ -320,6 +322,7 @@ in {
       lsp-ui
       markdown-mode
       mu4e-alert
+      multi-term
       multiple-cursors
       nix-buffer
       nix-mode
@@ -351,6 +354,12 @@ in {
       spaceline-all-the-icons
       swiper
       terraform-mode
+      treemacs-magit
+      treemacs
+      treemacs-icons-dired
+      treemacs-persp
+      treemacs-projectile
+      perspective
       tide
       unicode-fonts
       virtualenvwrapper

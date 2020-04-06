@@ -158,8 +158,8 @@ draw_bold_text_with_bright_colors: true
 colors:
   # Default colors
   primary:
-    background: '0x282828'
-    foreground: '0xD4CCA6'
+    background: '0x23272E'
+    foreground: '0xC7C7C7'
 
     # Bright and dim foreground colors
     #
@@ -178,7 +178,7 @@ colors:
   #  cursor: '0xffffff'
   cursor:
     text: '0xD87DAE'
-    cursor: '0xD87DAE'
+    cursor: '0xFF41FF'
 
   # # Normal colors
   # normal:

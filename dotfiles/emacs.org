@@ -6,6 +6,14 @@
   (if (not (file-exists-p "~/.ebkp"))
       (make-directory "~/.ebkp" t))
 
+  (when (fboundp 'winner-mode)
+      (winner-mode 1))
+
+      ;; (global-set-key (kbd "C-c u") 'winner-undo)
+      ;; (global-set-key (kbd "C-c r") 'winner-redo)
+
+      (recentf-mode 1)
+
   (setq inhibit-splash-screen t
         inhibit-startup-screen t
         tramp-default-method "ssh"
@@ -62,9 +70,108 @@
   (defadvice split-window (after move-point-to-new-window activate)
     "Moves the point to the newly created window after splitting."
     (other-window 1))
+
+    (global-set-key (kbd "M-p") 'treemacs-select-window)
 #+END_SRC
 
 * Addons
+** Perspective (perspective)
+#+begin_src emacs-lisp :tangle no
+(persp-mode)
+#+end_src
+** treemacs
+#+begin_src emacs-lisp :tangle yes
+  (require ' treemacs-projectile)
+  (require 'treemacs-icons-dired)
+  (require 'treemacs-magit)
+  ;; (require 'treemacs-persp)
+  ;; (treemacs-set-scope-type 'Perspectives)
+#+end_src
+** ivy-postframe
+#+begin_src emacs-lisp :tangle yes
+(require 'ivy-posframe)
+(setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center))
+ivy-posframe-height-alist '((t . 20))
+ivy-posframe-parameters '((internal-border-width . 10)))
+(setq ivy-posframe-width 70)
+(ivy-posframe-mode +1)
+#+end_src
+** centaur-tabs
+#+begin_src emacs-lisp :tangle no
+   (require 'centaur-tabs)
+   ;; (centaur-tabs-mode t)
+   ;; (global-set-key (kbd "C-<prior>")  'centaur-tabs-backward)
+   ;; (global-set-key (kbd "C-<next>") 'centaur-tabs-forward)
+   ;; (centaur-tabs-group-by-projectile-project)
+   ;; (global-set-key (kbd "C-c t") 'centaur-tabs-counsel-switch-group)
+   ;; (setq centaur-tabs-cycle-scope 'groups)
+
+
+   (setq centaur-tabs-style "bar"
+   centaur-tabs-height 32
+   centaur-tabs-set-icons t
+   centaur-tabs-set-modified-marker t
+   centaur-tabs-show-navigation-buttons nil
+   centaur-tabs-set-bar 'left
+   centaur-tabs-plain-icons t
+   tool-bar-position 'left
+   x-underline-at-descent-line t)
+   (centaur-tabs-headline-match)
+
+   (centaur-tabs-mode t)
+   (setq uniquify-separator "/")
+   (setq uniquify-buffer-name-style 'forward)
+   
+   (add-hook 'mu4e-headers-mode-hook 'centaur-tabs-local-mode)
+   (add-hook 'mu4e-compose-mode-hook 'centaur-tabs-local-mode)
+   (add-hook 'mu4e-view-mode-hook 'centaur-tabs-local-mode)
+
+  (defun centaur-tabs-buffer-groups ()
+       (list
+         (cond
+          ((or (string-equal "*" (substring (buffer-name) 0 1))
+               (memq major-mode '(magit-process-mode
+                                  magit-status-mode
+                                  magit-diff-mode
+                                  magit-log-mode
+                                  magit-file-mode
+                                  magit-blob-mode
+                                  magit-blame-mode
+                                  )))
+           "Emacs")
+          ((derived-mode-p 'prog-mode)
+           "Editing")
+          ((derived-mode-p 'dired-mode)
+           "Dired")
+          ((memq major-mode '(helpful-mode
+                              help-mode))
+           "Help")
+          ((memq major-mode '(org-mode
+                              org-agenda-clockreport-mode
+                              org-src-mode
+                              org-agenda-mode
+                              org-beamer-mode
+                              org-indent-mode
+                              org-bullets-mode
+                              org-cdlatex-mode
+                              org-agenda-log-mode
+                              diary-mode))
+           "OrgMode")
+          (t
+           (centaur-tabs-get-group-name (current-buffer))))))
+
+   (add-hook 'dashboard-mode 'centaur-tabs-local-mode)
+   (add-hook 'term-mode 'centaur-tabs-local-mode)
+   (add-hook 'calendar-mode 'centaur-tabs-local-mode)
+   (add-hook 'org-agenda-mode 'centaur-tabs-local-mode)
+   (add-hook 'helpful-mode 'centaur-tabs-local-mode)
+
+   (global-set-key (kbd "C-<prior>")  'centaur-tabs-backward)
+   (global-set-key (kbd "C-<next>") 'centaur-tabs-forward)
+   (global-set-key (kbd "C-c t s") 'centaur-tabs-counsel-switch-group)
+   (global-set-key (kbd "C-c t p") 'centaur-tabs-group-by-projectile-project)
+   (global-set-key (kbd "C-c t g") 'centaur-tabs-group-buffer-groups)
+#+end_src
 ** clipetty
 #+begin_src emacs-lisp :tangle yes
 (require 'clipetty)
@@ -172,11 +279,11 @@
   (xclip-mode 1)
 #+END_SRC
 ** ACE
-
 #+BEGIN_SRC emacs-lisp :tangle no
-(global-set-key (kbd "C-x o") 'ace-window)
-;; ace-window
-;; (global-set-key (kbd "M-p") 'ace-window)
+  (global-set-key (kbd "M-o") 'ace-window)
+  ;; (global-set-key (kbd "C-x o") 'ace-window)
+  ;; ace-window
+  ;; (global-set-key (kbd "M-p") 'ace-window)
 #+END_SRC
 ** Markdown
 
@@ -292,7 +399,6 @@
   (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 #+END_SRC
 * Server
-
 #+BEGIN_SRC emacs-lisp :tangle yes
 (server-start)
 #+END_SRC
@@ -710,7 +816,7 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-gruvbox t)
+  (load-theme 'doom-vibrant t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
@@ -728,7 +834,6 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
   (doom-modeline-mode 1)
   (setq doom-modeline-github t)
   (setq doom-modeline-mu4e t)
-
   ;; END DOOM
 
   ;; (require 'all-the-icons)
