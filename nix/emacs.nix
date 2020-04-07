@@ -251,6 +251,7 @@ in {
       all-the-icons-ivy
       ansible
       async
+      backup-walker
       bash-completion
       calfw
       calfw-ical
@@ -310,6 +311,7 @@ in {
       hl-todo
       impatient-mode
       importmagic
+      eshell-prompt-extras
       intero
       ivy-erlang-complete
       ivy-explorer
@@ -337,6 +339,7 @@ in {
       pcap-mode
       pcre2el
       pdf-tools
+      perspective
       php-mode
       powerline
       projectile
@@ -354,13 +357,12 @@ in {
       spaceline-all-the-icons
       swiper
       terraform-mode
-      treemacs-magit
+      tide
       treemacs
       treemacs-icons-dired
+      treemacs-magit
       treemacs-persp
       treemacs-projectile
-      perspective
-      tide
       unicode-fonts
       virtualenvwrapper
       web-mode

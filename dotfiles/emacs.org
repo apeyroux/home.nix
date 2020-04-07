@@ -6,6 +6,8 @@
   (if (not (file-exists-p "~/.ebkp"))
       (make-directory "~/.ebkp" t))
 
+  ;; (desktop-save-mode 1)
+
   (when (fboundp 'winner-mode)
       (winner-mode 1))
 
@@ -23,24 +25,24 @@
         browse-url-browser-function 'browse-url-generic
         browse-url-generic-program "xdg-open"
         auto-save-interval 20
-        make-backup-files t				; backup of a file the first time it is saved.
+        make-backup-files t                         ; backup of a file the first time it is saved.
         backup-directory-alist '(("." . "~/.ebkp"))	; don't litter my fs tree
-        backup-by-copying t				; don't clobber symlinks
-        version-control t					; version numbers for backup files
-        delete-old-versions t				; delete excess backup files silently
+        backup-by-copying t                         ; don't clobber symlinks
+        version-control t                           ; version numbers for backup files
+        delete-old-versions t                       ; delete excess backup files silently
         delete-by-moving-to-trash t
-        kept-old-versions 6				; oldest versions to keep when a new numbered backup is made (default: 2)
-        kept-new-versions 9				; newest versions to keep when a new numbered backup is made (default: 2)
-        auto-save-default t				; auto-save every buffer that visits a file
-        auto-save-timeout 20				; number of seconds idle time before auto-save (default: 30)
-        auto-save-interval 20				; number of keystrokes between auto-saves (default: 300)
-        vc-make-backup-files t ; backup version controlled files
+        kept-old-versions 20                        ; oldest versions to keep when a new numbered backup is made (default: 2)
+        kept-new-versions 20                        ; newest versions to keep when a new numbered backup is made (default: 2)
+        auto-save-default t                         ; auto-save every buffer that visits a file
+        auto-save-timeout 20                        ; number of seconds idle time before auto-save (default: 30)
+        auto-save-interval 20                       ; number of keystrokes between auto-saves (default: 300)
+        vc-make-backup-files t                      ; backup version controlled files
         delete-old-versions t
-        kept-new-versions 6
-        kept-old-versions 10
+        kept-new-versions 20
+        kept-old-versions 40
         version-control t
         tab-width 2
-        vc-follow-symlinks 1 ;; pas de prompte yes/no lors d'un lien symbo
+        vc-follow-symlinks 1                        ; pas de prompte yes/no lors d'un lien symbo
         fill-column 80)
 
   (put 'erase-buffer 'disabled nil) ;; pas de message lors erase buff
@@ -75,6 +77,7 @@
 #+END_SRC
 
 * Addons
+** backup-walker
 ** Perspective (perspective)
 #+begin_src emacs-lisp :tangle no
 (persp-mode)
@@ -208,6 +211,38 @@ ivy-posframe-parameters '((internal-border-width . 10)))
 #+BEGIN_SRC emacs-lisp :tangle yes
   ;; (require 'bash-completion)
   ;; (bash-completion-setup)
+
+ (require 'bash-completion)
+    (bash-completion-setup)
+
+
+  (progn
+    (defun my/esh-mode-completion-at-point ()
+      "Same as `completion-at-point' except for some commands."
+      (interactive)
+      ;; unbinding pcomplete/make gives a chance to `bash-completion'
+      ;; to complete make rules. Bash-completion is indeed more
+      ;; powerfull than `pcomplete-make'.
+      (cl-letf (((symbol-function 'pcomplete/make) nil))
+        (completion-at-point)))
+
+    ;; We can't use use-package's :bind here as eshell insists on
+    ;; recreating a fresh eshell-mode-map for each new eshell buffer.
+    (defun my/configure-esh-mode ()
+      (bind-key "M-p" #'counsel-esh-history eshell-mode-map)
+      (bind-key "<tab>" #'my/esh-mode-completion-at-point eshell-mode-map)))
+
+(progn
+    (defun my/eshell-bash-completion ()
+      (let ((bash-completion-nospace t))
+        (while (pcomplete-here
+                (nth 2 (bash-completion-dynamic-complete-nocomint
+                        (save-excursion (eshell-bol) (point))
+                        (point)))))))
+
+    (when (require 'bash-completion nil t)
+      (setq eshell-default-completion-function #'my/eshell-bash-completion)))
+
 #+END_SRC
 ** Zoom Window
 
@@ -547,7 +582,6 @@ ivy-posframe-parameters '((internal-border-width . 10)))
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
   (auto-save-visited-mode 1)
   (setq auto-save-visited-interval 1)
-
   ;; (flycheck-add-next-checker 'haskell-dante '(warning . haskell-hlint))
 #+END_SRC
 ** TypeScript
@@ -606,16 +640,28 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
   (tooltip-mode 1)
 
   (require 'dap-python)
+  (require 'dap-php)
 
 (custom-set-variables
  '(dap-python-executable "~/.nix-profile/bin/python3.7"))
-
   (dap-register-debug-template "AIOmda"
     (list :type "python"
           :args "~/src/aiomda/src/cyrus01.conf"
           :target-module "~/src/aiomda/src/aiomda.py"
           :request "launch"
           :name "AIOmda"))
+
+(dap-register-debug-template "MCE-WebMail"
+  (list :type "php"
+        :cwd nil
+        :request "launch"
+        :name "MCE-WebMail"
+        :port "9001"
+        :hostname "172.17.0.1"
+        :stopOnEntry t
+        :pathMappings (list ("/home/alex/src/MCE/mce-dev/webmail/src" "/usr/src/myapp"))
+        :sourceMaps t))
+
 #+end_src
 
 * Hook
@@ -922,27 +968,35 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
 * eshell
 
 #+BEGIN_SRC emacs-lisp :tangle yes
-  ;; (eshell-git-prompt-use-theme 'powerline)
-  ;; (require 'esh-autosuggest)
-  ;; (add-hook 'eshell-mode-hook #'esh-autosuggest-mode)
-  (setq ivy-do-completion-in-region t) ; this is the default
+    ;; (eshell-git-prompt-use-theme 'powerline)
+    (require 'esh-autosuggest)
+    (add-hook 'eshell-mode-hook #'esh-autosuggest-mode)
 
-  (defun setup-eshell-ivy-completion ()
-    (define-key eshell-mode-map [remap eshell-pcomplete] 'completion-at-point)
-    ;; only if you want to use the minibuffer for completions instead of the
-    ;; in-buffer interface
-    (setq-local ivy-display-functions-alist
-                (remq (assoc 'ivy-completion-in-region ivy-display-functions-alist)
-                      ivy-display-functions-alist)))
+    (setq ivy-do-completion-in-region t) ; this is the default
+    (defun setup-eshell-ivy-completion ()
+      (define-key eshell-mode-map [remap eshell-pcomplete] 'completion-at-point)
+      ;; only if you want to use the minibuffer for completions instead of the
+      ;; in-buffer interface
+      (setq-local ivy-display-functions-alist
+                  (remq (assoc 'ivy-completion-in-region ivy-display-functions-alist)
+                        ivy-display-functions-alist)))
 
-  (add-hook 'eshell-mode-hook #'setup-eshell-ivy-completion)
+    (add-hook 'eshell-mode-hook #'setup-eshell-ivy-completion)
 
-  (add-hook 'eshell-mode-hook
-            (lambda ()
-              (add-to-list 'eshell-visual-commands "docker-compose")
-              (add-to-list 'eshell-visual-commands "ssh")
-              (add-to-list 'eshell-visual-commands "tail")
-              (add-to-list 'eshell-visual-commands "htop")))
+    (add-hook 'eshell-mode-hook
+              (lambda ()
+                ;; (add-to-list 'eshell-visual-commands "docker-compose")
+                (add-to-list 'eshell-visual-commands "ssh")
+                (add-to-list 'eshell-visual-commands "tail")
+                (add-to-list 'eshell-visual-commands "htop")))
+
+    (with-eval-after-load 'eshell
+      (global-set-key (kbd "C-r") 'counsel-esh-history))
+
+  (with-eval-after-load "esh-opt"
+    (autoload 'epe-theme-lambda "eshell-prompt-extras")
+    (setq eshell-highlight-prompt nil
+          eshell-prompt-function 'epe-theme-lambda))
 #+END_SRC
 
 * Git
