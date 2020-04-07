@@ -97,6 +97,14 @@
 ivy-posframe-height-alist '((t . 20))
 ivy-posframe-parameters '((internal-border-width . 10)))
 (setq ivy-posframe-width 70)
+
+  (setq ivy-posframe-border-width 2)
+  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
+  (setq ivy-posframe-parameters '((left-fringe . 8)
+                             (right-fringe . 8)))
+  (setq ivy-posframe-height-alist '((swiper . 30)
+                               (counsel . 20)
+                               (t      . 20)))
 (ivy-posframe-mode +1)
 #+end_src
 ** centaur-tabs
@@ -659,7 +667,7 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
         :port "9001"
         :hostname "172.17.0.1"
         :stopOnEntry t
-        :pathMappings (list ("/home/alex/src/MCE/mce-dev/webmail/src" "/usr/src/myapp"))
+        :pathMappings '(("/home/alex/src/MCE/mce-dev/webmail/src" "/usr/src/myapp"))
         :sourceMaps t))
 
 #+end_src
@@ -969,8 +977,8 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
 
 #+BEGIN_SRC emacs-lisp :tangle yes
     ;; (eshell-git-prompt-use-theme 'powerline)
-    (require 'esh-autosuggest)
-    (add-hook 'eshell-mode-hook #'esh-autosuggest-mode)
+    ;; (require 'esh-autosuggest)
+    ;; (add-hook 'eshell-mode-hook #'esh-autosuggest-mode)
 
     (setq ivy-do-completion-in-region t) ; this is the default
     (defun setup-eshell-ivy-completion ()
