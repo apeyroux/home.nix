@@ -20,6 +20,15 @@ let
     };
   };
 
+  vscode-ext-php-debug = vscode-utils.buildVscodeMarketplaceExtension {
+    mktplcRef = {
+      name = "php-debug";
+      publisher = "felixfbecker";
+      version = "1.13.0";
+      sha256 = "0h0md2w1zjjf87313ydknld85i118r7lqghmi11hfgi2f496qxj6";
+    };
+  };
+  
   vscode-ext-docker = vscode-utils.buildVscodeMarketplaceExtension {
     mktplcRef = {
       name = "vscode-docker";
@@ -65,6 +74,7 @@ in {
     google-chrome
     gotools
     gsasl
+    nodejs
     ngrok
     nix-prefetch-scripts
     nmap
@@ -125,7 +135,7 @@ in {
         "python.linting.mypyPath" = "${python3Packages.mypy}/bin/mypy";
         "python.linting.pycodestylePath" = "${python3Packages.pycodestyle}/bin/pycodestyle";
         "python.linting.pylintPath" = "${python3Packages.pylint}/bin/pylint";
-
+        "php.validate.executablePath" = "${((import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {}).php.withExtensions (e: with e; [ xdebug ]))}/bin/php";
         # "hic.executablePath" = "${ghcide}/bin/ghcide";
       };
       extensions = [
@@ -134,6 +144,7 @@ in {
         vscode-ext-language-haskell
         vscode-ext-python
         vscode-ext-remote-containers
+        vscode-ext-php-debug
       ];
     };
   };

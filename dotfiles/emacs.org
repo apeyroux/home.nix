@@ -7,7 +7,9 @@
       (make-directory "~/.ebkp" t))
 
   ;; (desktop-save-mode 1)
+(require 'ht)
 
+  (display-battery-mode)
   (when (fboundp 'winner-mode)
       (winner-mode 1))
 
@@ -659,17 +661,17 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
           :request "launch"
           :name "AIOmda"))
 
+(require 'dap-php)
+(dap-php-setup)
+
 (dap-register-debug-template "MCE-WebMail"
   (list :type "php"
         :cwd nil
         :request "launch"
         :name "MCE-WebMail"
         :port "9001"
-        :hostname "172.17.0.1"
-        :stopOnEntry t
-        :pathMappings '(("/home/alex/src/MCE/mce-dev/webmail/src" "/usr/src/myapp"))
-        :sourceMaps t))
-
+	:sourceMaps t
+	:pathMappings (ht ("/usr/src/myapp" "/home/alex/src/MCE/mce-dev/webmail/src"))))
 #+end_src
 
 * Hook
@@ -1046,11 +1048,6 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
 
   (require 'magit-lfs)
 #+END_SRC
-* ACE
-#+begin_src emacs-lisp :tangle yes
-(global-set-key (kbd "C-x o") 'ace-window)
-(display-battery-mode)
-#+end_src
 * Mail
 #+BEGIN_SRC elisp
 (load-file "~/.mail.el")

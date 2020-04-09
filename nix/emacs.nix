@@ -78,7 +78,7 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
     nixghc
     # nodejs-11_x
     nodejs
-    php
+    ((import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {}).php73.withExtensions (e: with e; [ xdebug ]))
     poppler # confusion avec poppler haskell
     poppler_utils
     # python27Packages.rope
@@ -285,6 +285,7 @@ in {
       dockerfile-mode
       doom-modeline
       doom-themes
+      dracula-theme
       edit-server
       editorconfig
       eglot
@@ -309,6 +310,7 @@ in {
       haskell-mode
       hasky-stack
       hl-todo
+      ht
       impatient-mode
       importmagic
       eshell-prompt-extras
