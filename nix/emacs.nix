@@ -57,7 +57,7 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
     haskellPackages.ghcid
     haskellPackages.happy
     haskellPackages.hasktags
-    haskellPackages.hindent
+    # haskellPackages.hindent
     haskellPackages.hlint
     # haskellPackages.ghc-mod
     haskellPackages.hoogle

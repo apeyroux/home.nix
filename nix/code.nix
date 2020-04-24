@@ -77,6 +77,7 @@ in {
     ngrok
     nixpkgs-review
     nix-prefetch-scripts
+    emacs-all-the-icons-fonts
     nmap
     # (python3.withPackages(p: [p.django p.ipython p.xhtml2pdf p.weasyprint ]))
     (import ./emacs-requirements/requirements.nix { inherit (import <nixpkgs> {}); }).interpreter
