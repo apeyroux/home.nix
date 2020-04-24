@@ -76,9 +76,11 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
     multimarkdown
     ncurses
     nixghc
+    fzf
     # nodejs-11_x
     nodejs
-    ((import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {}).php73.withExtensions (e: with e; [ xdebug ]))
+    # ((import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {}).php73.withExtensions (e: with e; [ xdebug ]))
+    php
     poppler # confusion avec poppler haskell
     poppler_utils
     # python27Packages.rope
@@ -246,6 +248,7 @@ in {
       # all-the-icons-ibuffer
       ace-window
       ag
+      amx
       all-the-icons
       all-the-icons-dired
       all-the-icons-ivy
@@ -362,6 +365,7 @@ in {
       tide
       treemacs
       treemacs-icons-dired
+          wgrep
       treemacs-magit
       treemacs-persp
       treemacs-projectile

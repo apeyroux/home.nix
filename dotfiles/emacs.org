@@ -8,6 +8,7 @@
 
   ;; (desktop-save-mode 1)
 (require 'ht)
+(add-to-list 'auto-mode-alist '("\\.log\\'" . auto-revert-mode))
 
   (display-battery-mode)
   (when (fboundp 'winner-mode)
@@ -100,8 +101,8 @@ ivy-posframe-height-alist '((t . 20))
 ivy-posframe-parameters '((internal-border-width . 10)))
 (setq ivy-posframe-width 70)
 
-  (setq ivy-posframe-border-width 2)
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
+ (setq ivy-posframe-border-width 2)
+ (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
   (setq ivy-posframe-parameters '((left-fringe . 8)
                              (right-fringe . 8)))
   (setq ivy-posframe-height-alist '((swiper . 30)
@@ -398,6 +399,7 @@ ivy-posframe-parameters '((internal-border-width . 10)))
   ;;       "rg -i -M 120 --no-heading --line-number --color never '%s' %s")
   ;; (global-set-key (kbd "C-s") 'counsel-grep-or-swiper)
   (require 'counsel)
+  (setq counsel-search-engine (quote google))
 
   (global-set-key (kbd "C-c C-r") 'ivy-resume)
   (global-set-key (kbd "<f6>") 'ivy-resume)

@@ -40,11 +40,15 @@ in {
   home.packages = [
     # criptext
     # docker-compose
-    # insync
+    # spotify
+    # tresorit-impure
+    # uplink-tardigrade
     evince
     firefox
     git-crypt
     google-chrome
+    inkscape
+    insync
     libreoffice
     lsof
     mitmproxy
@@ -53,9 +57,6 @@ in {
     mutt 
     pcmanfm
     scrot
-    # spotify
-    # tresorit-impure
-    uplink-tardigrade
     wireshark
     xmobar-sync-status
     yubioath-desktop

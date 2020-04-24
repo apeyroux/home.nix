@@ -71,11 +71,11 @@ in {
     ghc
     gnumake
     godef
-    google-chrome
     gotools
     gsasl
     nodejs
     ngrok
+    nixpkgs-review
     nix-prefetch-scripts
     nmap
     # (python3.withPackages(p: [p.django p.ipython p.xhtml2pdf p.weasyprint ]))
