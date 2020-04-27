@@ -674,6 +674,13 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
         :port "9001"
 	:sourceMaps t
 	:pathMappings (ht ("/usr/src/myapp" "/home/alex/src/MCE/mce-dev/webmail/src"))))
+
+(dap-register-debug-template "AIOmda V2"
+  (list :type "python"
+        :args "~/src/MCE/mce-dev/aiomda/src/settings/aiomda.conf"
+        :target-module "~/src/MCE/mce-dev/aiomda/src/aiomda-multi.py"
+        :request "launch"
+        :name "AIOmda V2"))
 #+end_src
 
 * Hook
