@@ -10,7 +10,7 @@ with import <nixpkgs> {};
   services.imapnotify.enable = true;
   accounts.email.accounts.proton = {
     userName = "alex@px.io";
-    primary = true;
+    primary = false;
     passwordCommand = "${gnupg}/bin/gpg2 -q --for-your-eyes-only --no-tty -d ~/.mailpass-proton.gpg";
     imapnotify = {
       enable = true;
