@@ -136,7 +136,7 @@ in {
         "python.linting.mypyPath" = "${python3Packages.mypy}/bin/mypy";
         "python.linting.pycodestylePath" = "${python3Packages.pycodestyle}/bin/pycodestyle";
         "python.linting.pylintPath" = "${python3Packages.pylint}/bin/pylint";
-        "php.validate.executablePath" = "${((import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {}).php.withExtensions (e: with e; [ xdebug ]))}/bin/php";
+        # "php.validate.executablePath" = "${((import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {}).php.withExtensions (e: with e; [ xdebug ]))}/bin/php";
         # "hic.executablePath" = "${ghcide}/bin/ghcide";
       };
       extensions = [
