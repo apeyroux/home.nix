@@ -67,18 +67,20 @@ in {
     ansible
     cabal-install
     docker-compose
+    emacs-all-the-icons-fonts
     gdb
     ghc
     gnumake
     godef
     gotools
     gsasl
-    nodejs
     ngrok
-    nixpkgs-review
     nix-prefetch-scripts
-    emacs-all-the-icons-fonts
+    nixpkgs-review
     nmap
+    nodejs
+    openssl
+    swaks
     # (python3.withPackages(p: [p.django p.ipython p.xhtml2pdf p.weasyprint ]))
     (import ./emacs-requirements/requirements.nix { inherit (import <nixpkgs> {}); }).interpreter
     # ghcide
