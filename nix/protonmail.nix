@@ -2,6 +2,10 @@ with import <nixpkgs> {};
 
 {
 
+  home.packages = [
+    protonmail-bridge
+  ];
+
   home.file.".proton.crt".source = ../files/proton.crt;
   programs.mbsync = {
     enable = true;
