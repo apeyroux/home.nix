@@ -157,8 +157,8 @@ initx = do
   setWMName "LG3D"
   -- spawn "feh --bg-scale /home/alex/.bg/bg.jpg"
   -- https://hackage.haskell.org/package/xmonad-extras-0.15/docs/XMonad-Util-Brightness.html
-  -- spawn "sudo chgrp -R -H users /sys/class/backlight/intel_backlight"
-  -- spawn "sudo chmod g+w /sys/class/backlight/intel_backlight/brightness"
+  spawn "sudo chgrp -R -H users /sys/class/backlight/intel_backlight"
+  spawn "sudo chmod g+w /sys/class/backlight/intel_backlight/brightness"
   -- spawn "xembedsniproxy"
   -- spawn "status-notifier-item-static"
   -- spawn "status-notifier-watcher"

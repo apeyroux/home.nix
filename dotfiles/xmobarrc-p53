@@ -1,0 +1,76 @@
+--
+-- https://fontawesome.com/cheatsheet
+-- echo -ne "\uf1eb" | xclip -selection clipboard
+--
+-- install xmobar-sync-status:
+-- nix-env -if https://github.com/apeyroux/xmobar-sync-status/archive/master.tar.gz
+--
+Config { font = "xft:Noto Sans:pixelsize=13,M+ 1c:pixelsize=13"
+        , additionalFonts = [ "xft:FontAwesome:pixelsize=13" ]
+        , bgColor = "#282a36"
+        , fgColor = "#f8f8f2"
+	, allDesktops = True
+	-- , overrideRedirect = True
+        , position = Bottom L 100
+        , commands = [ Run Weather "CYVR" ["-t","<tempC>C","-L","18","-H","25","-h","#50fa7b","-l","#ff5555","-m","#ffb86c","-n","#8be9fd"] 36000
+	  	     -- , Run Com "xmobar-sync-status" [] "sync_status" 360 
+                     , Run Cpu ["-t"," <ipat> <total>%","-L","3","-H","50", "-h","#ff5555","-l","#50fa7b","-n","#ffb86c"] 10
+                     , Run Memory ["-t","m <usedratio>% <used>Mo"
+			  , "-h","#ff5555","-l","#50fa7b","-n","#ffb86c"
+			  , "-H", "10000"
+			  , "-L", "5000"] 10
+		     , Run Wireless "wlp82s0" [ "-t", "<fc=#bd93f9><fn=1></fn> <essid></fc> <quality>", "-h", "#abebc6", "-l", "#fad7a0", "-n", "#ec7063"] 10
+		     , Run Volume "default" "Master" [
+        		      "-t", "<status> <volume>",
+			      "-l", "#fad7a0",
+			      "-n", "#ec7063",
+			      "-h", "#abebc6",
+        		      "--",
+        		      "-o", "<fn=1>\xf026</fn>",
+        		      "-O", "<fn=1>\xf028</fn>",
+        		      "-c", "#ff5733",
+        		      "-C", "#fff"
+			  ] 10
+	             , Run Network "enp0s31f6"
+                          [ "-t", "r:<rx> t:<tx>",
+			    "-S", "True",
+			    "-h", "#50fa7b",
+			    "-l", "#ff5555",
+			    "-n", "#ffb86c"
+                          ] 10
+		     , Run Network "wlp82s0"
+                          [ "-t", "r:<rx> t:<tx>",
+			    "-S", "True",
+			    "-h", "#50fa7b",
+			    "-l", "#ff5555",
+			    "-n", "#ffb86c"
+                          ] 10
+                     , Run Date "<fn=1> </fn><fc=#d7bde2>%d/%m/%Y</fc> <fc=#af7ac5>%H:%M:%S</fc>" "date" 10
+		     , Run Mail [("<fn=1></fn> ", "~/.mail/gmail/Inbox") ] "mail"
+      		     , Run Battery [
+        	       	   "--template"			, "<acstatus> <timeleft>",
+        	       	   "--Low"			, "10",       -- units: %
+        	       	   "--High"			, "50",       -- units: %
+			   "-l"				, "#ec7063",
+			   "-n"				, "#fad7a0",
+			   "-h"				, "#abebc6",
+        	       	   "--"				, -- battery specific options
+        	       	   -- discharging status
+        	       	   "-o"				, "<leftipat> <left>",
+        	       	   -- AC "on" status
+        	       	   "-O"				, "<leftipat> <left>",
+        	       	   "-i"				, "<leftipat> <left>",
+        	       	   -- charged status
+        	       	   --"-i"			, "<fn=1>\xf240</fn>",
+        	       	   "--off-icon-pattern"		, "<fn=1>\xf240</fn>",
+        	       	   "--on-icon-pattern"		, "<fn=1>\xf0e7</fn>",
+        	       	   "--idle-icon-pattern"	, "<fn=1>\xf0e7</fn>"
+		       ] 50
+                     , Run StdinReader
+                 ]
+        , sepChar = "%"
+        , alignSep = "}{"
+        -- , template = " %StdinReader%} { %mail% <fn=1></fn> %wlp82s0wi% <fn=1></fn> %battery% <fn=1></fn> %default:Master% <fn=1></fn> %sync_status% <fn=1></fn> %date% "
+	, template = " %StdinReader%} { %mail% <fn=1></fn> %enp0s31f6% %wlp82s0wi% <fn=1></fn> %battery% <fn=1></fn> %default:Master% <fn=1></fn><fn=1></fn> %date% "
+        -- , template = " %StdinReader%} { %date% "
+}
