@@ -36,6 +36,8 @@ in {
   ];
 
   home.file.".xmobarrc".source = ../dotfiles/xmobarrc-p53;
+  home.file.".Xresources".source = ../dotfiles/Xresources-p53;
+  home.file.".config/kitty/kitty.conf".source = ../dotfiles/kitty.conf;
 
   home.packages = [
     # criptext
