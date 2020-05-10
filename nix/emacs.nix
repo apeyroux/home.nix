@@ -122,7 +122,7 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
 
   aspellWithDictFR = aspellWithDicts (ps: with ps; [ en fr ]);
 
-  myemacs = emacs.overrideDerivation (old: rec {
+  myemacs = (import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {}).emacs.overrideDerivation (old: rec {
     postInstall = with python37Packages; (old.postInstall + ''
       # bin
       wrapProgram $out/bin/emacs --prefix PATH : "${lib.makeBinPath apps}"
@@ -177,7 +177,7 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
       install flycheck-grammalecte.py $out/share/emacs/site-lisp
     '';
   };
-
+  
   ghcid-el = emacsPackages.trivialBuild {
     pname = "ghcid";
     src = fetchurl {
@@ -241,17 +241,14 @@ in {
       # notmuch
       # smex
     ]) ++ (with epkgs.melpaPackages; [
-      magit
-      magit-todos
-      magit-lfs
-
+      wgrep
       # all-the-icons-ibuffer
       ace-window
       ag
-      amx
       all-the-icons
       all-the-icons-dired
       all-the-icons-ivy
+      amx
       ansible
       async
       backup-walker
@@ -297,6 +294,7 @@ in {
       erlang
       esh-autosuggest
       eshell-git-prompt
+      eshell-prompt-extras
       f
       flycheck
       flycheck-haskell
@@ -316,7 +314,6 @@ in {
       ht
       impatient-mode
       importmagic
-      eshell-prompt-extras
       intero
       ivy-erlang-complete
       ivy-explorer
@@ -327,6 +324,9 @@ in {
       lsp-haskell
       lsp-mode
       lsp-ui
+      magit
+      magit-lfs
+      magit-todos
       markdown-mode
       mu4e-alert
       multi-term
@@ -365,7 +365,6 @@ in {
       tide
       treemacs
       treemacs-icons-dired
-          wgrep
       treemacs-magit
       treemacs-persp
       treemacs-projectile

@@ -643,44 +643,44 @@ ivy-posframe-parameters '((internal-border-width . 10)))
 https://github.com/emacs-lsp/dap-mode (vscode debug)
 
 #+begin_src emacs-lisp :tangle yes
-  (dap-mode 1)
-  (dap-ui-mode 1)
-  ;; enables mouse hover support
-  (dap-tooltip-mode 1)
-  ;; use tooltips for mouse hover
-  ;; if it is not enabled `dap-mode' will use the minibuffer.
-  (tooltip-mode 1)
+    (dap-mode 1)
+    (dap-ui-mode 1)
+    ;; enables mouse hover support
+    (dap-tooltip-mode 1)
+    ;; use tooltips for mouse hover
+    ;; if it is not enabled `dap-mode' will use the minibuffer.
+    (tooltip-mode 1)
 
-  (require 'dap-python)
+    (require 'dap-python)
+    (require 'dap-php)
+
+  ;; (custom-set-variables
+  ;;  '(dap-python-executable "~/.nix-profile/bin/python3.7"))
+  ;;   (dap-register-debug-template "AIOmda"
+  ;;     (list :type "python"
+  ;;           :args "~/src/aiomda/src/cyrus01.conf"
+  ;;           :target-module "~/src/aiomda/src/aiomda.py"
+  ;;           :request "launch"
+  ;;           :name "AIOmda"))
+
   (require 'dap-php)
+  (dap-php-setup)
 
-(custom-set-variables
- '(dap-python-executable "~/.nix-profile/bin/python3.7"))
-  (dap-register-debug-template "AIOmda"
-    (list :type "python"
-          :args "~/src/aiomda/src/cyrus01.conf"
-          :target-module "~/src/aiomda/src/aiomda.py"
+  (dap-register-debug-template "MCE-WebMail"
+    (list :type "php"
+          :cwd nil
           :request "launch"
-          :name "AIOmda"))
+          :name "MCE-WebMail"
+          :port "9001"
+          :sourceMaps t
+          :pathMappings (ht ("/usr/src/myapp" "/home/alex/src/MCE/mce-dev/webmail/src"))))
 
-(require 'dap-php)
-(dap-php-setup)
-
-(dap-register-debug-template "MCE-WebMail"
-  (list :type "php"
-        :cwd nil
-        :request "launch"
-        :name "MCE-WebMail"
-        :port "9001"
-	:sourceMaps t
-	:pathMappings (ht ("/usr/src/myapp" "/home/alex/src/MCE/mce-dev/webmail/src"))))
-
-(dap-register-debug-template "AIOmda V2"
-  (list :type "python"
-        :args "~/src/MCE/mce-dev/aiomda/src/settings/aiomda.conf"
-        :target-module "~/src/MCE/mce-dev/aiomda/src/aiomda-multi.py"
-        :request "launch"
-        :name "AIOmda V2"))
+   (dap-register-debug-template "AIOmda V2"
+    (list :type "python"
+          :args (expand-file-name "~/src/MCE/mce-dev/aiomda/src/settings/aiomda-debug.conf")
+          :target-module (expand-file-name "~/src/MCE/mce-dev/aiomda/src/aiomda.py")
+          :request "launch"
+          :name "AIOmda V2"))
 #+end_src
 
 * Hook
