@@ -58,6 +58,7 @@ in {
     molotov
     mtr
     mutt 
+    nvtop
     pcmanfm
     scrot
     wireshark

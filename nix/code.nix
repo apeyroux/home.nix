@@ -66,6 +66,7 @@ in {
     ag
     ansible
     cabal-install
+    ctop
     docker-compose
     emacs-all-the-icons-fonts
     gdb
