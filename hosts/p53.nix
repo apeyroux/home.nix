@@ -27,6 +27,7 @@ in {
   imports = [ 
     ../nix/common.nix 
     ../nix/xmonad.nix
+    ../nix/gnome.nix
     ../nix/code.nix
     ../nix/irssi.nix
     ../nix/emacs.nix

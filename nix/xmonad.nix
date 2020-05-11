@@ -15,7 +15,7 @@ with import <nixpkgs> {};
   ];
 
   home.file.".config/alacritty/alacritty.yml".source = ../dotfiles/alacritty.yml;
-  
+
   programs.termite = {
     enable = true;
     backgroundColor = "#282c34";
