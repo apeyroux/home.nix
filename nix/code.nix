@@ -71,6 +71,7 @@ in {
     emacs-all-the-icons-fonts
     gdb
     ghc
+    gist
     gnumake
     godef
     gotools
