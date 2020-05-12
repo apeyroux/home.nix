@@ -554,18 +554,18 @@ ivy-posframe-parameters '((internal-border-width . 10)))
   ;; (add-to-list 'company-backends 'company-ghci)
 
   (add-hook 'haskell-mode-hook
-            '(lambda ()
-               (require 'dante-mode)
-               (company-mode t)
-               (make-local-variable 'company-backends)
-               (add-to-list 'company-backends 'dante-company)
-               (add-to-list 'company-backends 'etags-company)
-               (add-to-list 'company-backends 'company-cabal)))
+	    '(lambda ()
+	       (require 'dante-mode)
+	       (company-mode t)
+	       (make-local-variable 'company-backends)
+	       (add-to-list 'company-backends 'dante-company)
+	       (add-to-list 'company-backends 'etags-company)
+	       (add-to-list 'company-backends 'company-cabal)))
 
   (setq-default flycheck-disabled-checkers '(haskell-stack-ghc))
   (setq flycheck-haskell-ghc-executable "nix-ghc")
   (setq haskell-process-wrapper-function
-        (lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))
+	(lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))
 
   (custom-set-variables
    '(haskell-tags-on-save t))
@@ -637,6 +637,14 @@ ivy-posframe-parameters '((internal-border-width . 10)))
         (lambda (command) (apply 'nix-shell-command (nix-current-sandbox) command))
         flycheck-executable-find
         (lambda (cmd) (nix-executable-find (nix-current-sandbox) cmd)))
+
+(add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
+(lsp-register-client
+ (make-lsp-client :new-connection (lsp-stdio-connection '("rnix-lsp"))
+		  :major-modes '(nix-mode)
+		  :server-id 'nix))
+
+
 #+END_SRC
 ** DAP (debug)
 
@@ -682,7 +690,6 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
           :request "launch"
           :name "AIOmda V2"))
 #+end_src
-
 * Hook
 
 #+BEGIN_SRC emacs-lisp :tangle yes

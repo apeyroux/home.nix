@@ -93,7 +93,7 @@ in {
       sha256 = "0l1n79cbzvl0c767v6nanbibfc44f6spwpmfj4fi4mfxmvr2mfwx";
     }) {})
   ];
-  
+
   programs = {
     git = {
       enable = true;

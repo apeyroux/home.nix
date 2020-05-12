@@ -323,6 +323,7 @@ in {
       lorem-ipsum
       lsp-haskell
       lsp-mode
+      rnix-lsp
       lsp-ui
       magit
       magit-lfs
