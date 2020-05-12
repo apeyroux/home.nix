@@ -71,6 +71,6 @@ Config { font = "xft:Noto Sans:pixelsize=13,M+ 1c:pixelsize=13"
         , sepChar = "%"
         , alignSep = "}{"
         -- , template = " %StdinReader%} { %mail% <fn=1></fn> %wlp82s0wi% <fn=1></fn> %battery% <fn=1></fn> %default:Master% <fn=1></fn> %sync_status% <fn=1></fn> %date% "
-	, template = " %StdinReader%} { %mail% <fn=1></fn>%sync_status% %enp0s31f6% %wlp82s0wi% <fn=1></fn> %battery% <fn=1></fn> %default:Master% <fn=1></fn><fn=1></fn> %date% "
+	, template = " %StdinReader%} { %mail% <fn=1></fn> %sync_status% <fn=1></fn> %enp0s31f6% %wlp82s0wi% <fn=1></fn> %battery% <fn=1></fn> %default:Master% <fn=1></fn> %date% "
         -- , template = " %StdinReader%} { %date% "
 }
