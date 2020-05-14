@@ -240,6 +240,7 @@ in {
       # multi-term
       # notmuch
       # smex
+      org-jira
     ]) ++ (with epkgs.melpaPackages; [
       # all-the-icons-ibuffer
       ace-window
@@ -337,7 +338,6 @@ in {
       ob-http
       org-bullets
       org-gcal
-      org-jira
       org-mime
       org-rich-yank
       ox-reveal
