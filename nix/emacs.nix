@@ -241,7 +241,6 @@ in {
       # notmuch
       # smex
     ]) ++ (with epkgs.melpaPackages; [
-      wgrep
       # all-the-icons-ibuffer
       ace-window
       ag
@@ -323,7 +322,6 @@ in {
       lorem-ipsum
       lsp-haskell
       lsp-mode
-      rnix-lsp
       lsp-ui
       magit
       magit-lfs
@@ -339,6 +337,7 @@ in {
       ob-http
       org-bullets
       org-gcal
+      org-jira
       org-mime
       org-rich-yank
       ox-reveal
@@ -356,6 +355,7 @@ in {
       realgud
       restclient
       rjsx-mode
+      rnix-lsp
       rust-mode
       s
       shx
@@ -372,6 +372,7 @@ in {
       unicode-fonts
       virtualenvwrapper
       web-mode
+      wgrep
       which-key
       yaml-mode
       yasnippet

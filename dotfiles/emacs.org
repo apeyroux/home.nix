@@ -270,6 +270,10 @@ ivy-posframe-parameters '((internal-border-width . 10)))
 #+BEGIN_SRC emacs-lisp :tangle yes
 (global-set-key "\C-cd" 'zeal-at-point)
 #+END_SRC
+** Jira
+#+begin_src emacs-lisp :tangle yes
+(setq jiralib-url "https://sollantec.atlassian.net")
+#+end_src
 ** Emanux
 
 [[https://github.com/syohex/emacs-emamux][tmux manipulation from Emacs]]
