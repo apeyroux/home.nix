@@ -139,7 +139,7 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
       '');
   });
 
-  emacsPackages = (emacsPackagesNgGen (myemacs.override { withXwidgets = false; }));
+  # emacsPackages = (emacsPackagesNgGen (myemacs.override { withXwidgets = false; }));
   # emacsPackages = (emacsPackagesNgGen (emacsWithMu.override { withXwidgets = false; })).overrideScope (self: super: {
   #   nix-sandbox = emacsPackages.melpaPackages.nix-sandbox.overrideDerivation(oldAttrs: {
   #     src = fetchurl {
@@ -194,6 +194,32 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
     }; 
   };
 
+  org = stdenv.mkDerivation rec {
+    name = "emacs-org-${version}";
+    version = "20160421";
+    src = fetchFromGitHub {
+      owner  = "jwiegley";
+      repo   = "org-mode";
+      rev    = "db5257389231bd49e92e2bc66713ac71b0435eec";
+      sha256 = "073cmwgxga14r4ykbgp8w0gjp1wqajmlk6qv9qfnrafgpxic366m";
+    };
+    preBuild = ''
+        rm -f contrib/lisp/org-jira.el
+        makeFlagsArray=(
+          prefix="$out/share"
+          ORG_ADD_CONTRIB="org* ox*"
+                                                 );
+      '';
+    preInstall = ''
+        perl -i -pe "s%/usr/share%$out%;" local.mk
+      '';
+    buildInputs = [ myemacs ] ++ (with pkgs; [ texinfo perl which ]);
+    meta = {
+      homepage = "https://elpa.gnu.org/packages/org.html";
+      license = lib.licenses.free;
+    };
+  };
+  
   base-el = stdenv.mkDerivation {
     name = "base-el";
     src = ../dotfiles;
@@ -240,7 +266,7 @@ in {
       # multi-term
       # notmuch
       # smex
-      org-jira
+      # org-jira
     ]) ++ (with epkgs.melpaPackages; [
       # all-the-icons-ibuffer
       ace-window
@@ -336,6 +362,7 @@ in {
       nix-sandbox
       nixos-options
       ob-http
+      org-jira
       org-bullets
       org-gcal
       org-mime
@@ -390,7 +417,7 @@ in {
       undo-tree
       xclip
     ]) ++ [
-      flycheck-grammalecte
+      org
     ]);
   };
 }
