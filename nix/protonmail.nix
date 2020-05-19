@@ -32,9 +32,6 @@ with import <nixpkgs> {};
         useStartTls = true;
       };
     };
-    # msmtp = {
-    #   enable = true;
-    # };
     mbsync = {
       enable = true;
       create = "both";

@@ -1,11 +1,11 @@
 import           Control.Monad
-import qualified Data.Map                            as M
+import qualified Data.Map as M
 import           Graphics.X11.ExtraTypes.XF86
 import           System.IO
 -- import           System.Taffybar.Support.PagerHints  (pagerHints)
 import           XMonad
-import           XMonad.Actions.Search               as S
-import           XMonad.Actions.Submap               as SM
+import           XMonad.Actions.Search as S
+import           XMonad.Actions.Submap as SM
 import           XMonad.Actions.Volume
 import           XMonad.Config.Azerty
 import           XMonad.Hooks.DynamicLog
@@ -13,19 +13,21 @@ import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
 import           XMonad.Hooks.SetWMName
+import           XMonad.Layout.ThreeColumns
 import           XMonad.Layout.MultiToggle
 import           XMonad.Layout.MultiToggle.Instances
+import           XMonad.Layout.ResizableTile
 import           XMonad.Layout.NoBorders
 import           XMonad.Layout.Tabbed
 import           XMonad.Prompt
 import           XMonad.Prompt.Shell
 import           XMonad.Prompt.Workspace
-import qualified XMonad.StackSet                     as W
+import qualified XMonad.StackSet as W
 -- https://hackage.haskell.org/package/xmonad-extras-0.15.1/docs/XMonad-Util-Brightness.html
-import           XMonad.Util.Brightness              as Brightness
+import           XMonad.Util.Brightness as Brightness
 import           XMonad.Util.EZConfig
 import           XMonad.Util.Loggers
-import           XMonad.Util.Run                     (safeSpawn, spawnPipe)
+import           XMonad.Util.Run (safeSpawn, spawnPipe)
 import           XMonad.Util.Spotify
 
 {--
@@ -67,17 +69,18 @@ multiEngine = namedEngine "multifr" $ foldr1 (!>) [wikifr
                                                   , photos
                                                   , google]
 
-myLayout = tiled
-  ||| Mirror tiled
+myLayout = tiled ||| threecolm ||| simpleTabbed
   where
      -- default tiling algorithm partitions the screen into two panes
-     tiled   = Tall nmaster delta ratio
+     tiled = ResizableTall nmaster delta ratio []
+     threecol = ThreeCol nmaster delta ratio
+     threecolm = ThreeColMid nmaster delta ratio
      -- The default number of windows in the master pane
      nmaster = 1
      -- Default proportion of screen occupied by master pane
-     ratio   = 2/3
+     ratio = 2/3
      -- Percent of screen to increment by when resizing panes
-     delta   = 3/100
+     delta = 3/100
 
 myLogHook proc = dynamicLogWithPP $ xmobarPP
   { ppOutput  = hPutStrLn proc
@@ -85,7 +88,7 @@ myLogHook proc = dynamicLogWithPP $ xmobarPP
   , ppVisible = visibleStyle
   , ppTitle   = titleStyle
   -- , ppSep = " <fn=1><fc=#ff1493>\xf101</fc></fn> "
-  , ppSep = " "
+  -- , ppSep = " | "
   -- , ppLayout  = (\layout -> case layout of
   --     "Tall"        -> "[|]"
   --     "Mirror Tall" -> "[-]"
@@ -132,8 +135,10 @@ myKeys conf@XConfig {XMonad.modMask = modMask} = M.fromList $
   , ((noModMask, xF86XK_AudioLowerVolume), void (lowerVolumeChannels ["PulseAudio", "Master"] 3))
   , ((noModMask, xF86XK_AudioRaiseVolume), void (raiseVolumeChannels ["PulseAudio", "Master"] 3))
   , ((noModMask, xF86XK_AudioMute), void (toggleMuteChannels ["PulseAudio", "Master"]))
-  , ((modMask, xK_Left              ), sendMessage Shrink)
-  , ((modMask, xK_Right             ), sendMessage Expand)
+  , ((modMask, xK_Left), sendMessage Shrink)
+  , ((modMask, xK_Right), sendMessage Expand)
+  , ((modMask, xK_a), sendMessage MirrorShrink)
+  , ((modMask, xK_z), sendMessage MirrorExpand)
   , ((noModMask, xF86XK_MonBrightnessUp             ), Brightness.increase)
   , ((noModMask, xF86XK_MonBrightnessDown             ), Brightness.decrease)
   -- , ((noModMask, xF86XK_MonBrightnessUp             ), spawn "hbrightness -m eDP-1 -a Up")
