@@ -69,7 +69,7 @@ multiEngine = namedEngine "multifr" $ foldr1 (!>) [wikifr
                                                   , photos
                                                   , google]
 
-myLayout = tiled ||| threecolm ||| simpleTabbed
+myLayout = tiled ||| simpleTabbed
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled = ResizableTall nmaster delta ratio []
