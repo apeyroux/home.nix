@@ -170,7 +170,7 @@ initx = do
   -- spawn "pasystray"
   -- spawn "taffybar"
   -- spawn "dunst"
-  -- spawn "insync start"
+  spawn "insync start"
   -- spawn "tresorit-cli-impure start"
   -- spawn "protonmail-bridge -c --no-window -l info"
   -- spawn "protonmail-bridge -l debug --noninteractive --no-window"
