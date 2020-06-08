@@ -15,6 +15,7 @@ in {
     # git-bug
     # libressl
     mailutils
+    bat
     mosh
     # icons-in-terminal
     mtr
