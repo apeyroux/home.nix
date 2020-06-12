@@ -417,7 +417,7 @@ in {
       undo-tree
       xclip
     ]) ++ [
-      org
+      # org
     ]);
   };
 }
