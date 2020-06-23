@@ -36,7 +36,7 @@ http://xmonad.org/xmonad-docs/xmonad/src/XMonad-Core.html#XConfig
 --}
 
 term :: String
-term = "kitty"
+term = "termite"
 
 browser :: String
 browser = "google-chrome"
@@ -114,7 +114,7 @@ myKeys conf@XConfig {XMonad.modMask = modMask} = M.fromList $
   , ((modMask, xK_b                 ), sendMessage ToggleStruts)
   -- , ((modMask, xK_q                 ), spawn "pkill pasystray; pkill stalonetray; pkill udiskie; pkill volumeicon; pkill xfce4-power-man; pkill nm-applet; xmonad --recompile; xmonad --restart")
   , ((modMask, xK_d                 ), shellPrompt def)
-  , ((modMask, xK_x                 ), spawn "slimlock")
+  , ((modMask, xK_x                 ), spawn "i3lock")
   , ((modMask, xK_f                 ), sendMessage $ Toggle FULL)
   -- , ((modMask, xK_x              ), spawn "zeal")
   , ((0, xF86XK_AudioPlay ),
