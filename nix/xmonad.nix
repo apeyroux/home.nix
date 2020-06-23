@@ -3,6 +3,7 @@ with import <nixpkgs> {};
 {
   home.packages = [
     alacritty
+    i3lock
     emacs-all-the-icons-fonts # font pour le status bar
     feh
     gnome3.defaultIconTheme
