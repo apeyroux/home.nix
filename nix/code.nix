@@ -62,6 +62,7 @@ in {
 
   nixpkgs.overlays = [ (import ../overlays/vscode.nix) ];
 
+  services.lorri.enable = true;
   home.packages = [
     ag
     ansible
