@@ -36,7 +36,7 @@ http://xmonad.org/xmonad-docs/xmonad/src/XMonad-Core.html#XConfig
 --}
 
 term :: String
-term = "kitty"
+term = "alacritty"
 
 browser :: String
 browser = "google-chrome"

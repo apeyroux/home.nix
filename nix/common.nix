@@ -64,7 +64,7 @@ in {
       enable = true;
       baseIndex = 0;
       clock24 = true;
-      terminal = "tmux-256color";
+      terminal = "screen-256color";
       # extraConfig = ''
       #   set-option -g status-style "fg=default,bg=#7E3C90"
       # '';
