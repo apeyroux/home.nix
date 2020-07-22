@@ -679,11 +679,12 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
   (dap-php-setup)
 
 (dap-register-debug-template "mce-admin"
-			     (list :type "python"
-				   :target-module (expand-file-name "/home/alex/src/cyradm-python-mce/mce-admin/")
-				   :request "launch"
-				   :cwd nil
-				   :name "mce-admin"))
+  (list :type "python"
+        :target-module "/home/alex/src/cyradm-python-mce/debug.py"
+        :request "launch"
+	    :args "-c dev --start"
+        :cwd nil
+        :name "mce-admin"))
 
   (dap-register-debug-template "MCE-WebMail"
     (list :type "php"

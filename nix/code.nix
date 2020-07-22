@@ -67,6 +67,7 @@ in {
     ag
     ansible
     cabal-install
+    binutils-unwrapped
     ctop
     docker-compose
     emacs-all-the-icons-fonts
