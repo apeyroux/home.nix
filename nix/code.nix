@@ -1,7 +1,7 @@
 with import <nixpkgs> {};
 
 let
-
+  
   vscode-ext-language-haskell = vscode-utils.buildVscodeMarketplaceExtension {
     mktplcRef = {
       name = "language-haskell";

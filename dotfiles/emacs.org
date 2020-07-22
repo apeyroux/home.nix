@@ -551,32 +551,37 @@ ivy-posframe-parameters '((internal-border-width . 10)))
   (require 'haskell-interactive-mode)
   (require 'haskell-process)
 
+
+  (require 'lsp)
+  (require 'lsp-haskell)
+  (add-hook 'haskell-mode-hook #'lsp)
+
   ;; (require 'lsp)
   ;; (require 'lsp-haskell)
   ;; (add-hook 'haskell-mode-hook #'lsp)
 
   ;; (add-to-list 'company-backends 'company-ghci)
 
-  (add-hook 'haskell-mode-hook
-	    '(lambda ()
-	       (require 'dante-mode)
-	       (company-mode t)
-	       (make-local-variable 'company-backends)
-	       (add-to-list 'company-backends 'dante-company)
-	       (add-to-list 'company-backends 'etags-company)
-	       (add-to-list 'company-backends 'company-cabal)))
+  ;; (add-hook 'haskell-mode-hook
+  ;; 	  '(lambda ()
+  ;; 	     (require 'dante-mode)
+  ;; 	     (company-mode t)
+  ;; 	     (make-local-variable 'company-backends)
+  ;; 	     (add-to-list 'company-backends 'dante-company)
+  ;; 	     (add-to-list 'company-backends 'etags-company)
+  ;; 	     (add-to-list 'company-backends 'company-cabal)))
 
   (setq-default flycheck-disabled-checkers '(haskell-stack-ghc))
   (setq flycheck-haskell-ghc-executable "nix-ghc")
   (setq haskell-process-wrapper-function
-	(lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))
+        (lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))
 
   (custom-set-variables
    '(haskell-tags-on-save t))
 
   ;; (add-hook 'haskell-mode-hook 'dante-mode)
   (add-hook 'haskell-mode-hook 'flycheck-mode)
-  (add-hook 'haskell-mode-hook 'dante-mode)
+  ;; (add-hook 'haskell-mode-hook 'dante-mode)
   (add-hook 'haskell-mode-hook 'flyspell-prog-mode)
   (add-hook 'haskell-mode-hook 'rainbow-delimiters-mode)
   ;; (add-hook 'haskell-mode-hook
