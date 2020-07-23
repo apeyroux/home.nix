@@ -5,7 +5,7 @@ let
 
 in {
 
-  home.sessionVariables = { EDITOR = "vim"; };
+  home.sessionVariables = { EDITOR = "emacsclient -c"; VISUAL = "emacsclient -c"; };
   home.packages = [
     # pass
     # passExtensions.pass-import

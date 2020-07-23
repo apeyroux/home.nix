@@ -62,6 +62,8 @@ in {
 
   nixpkgs.overlays = [ (import ../overlays/vscode.nix) ];
 
+  home.file.".ngrok2/ngrok.yml".source = ../secrets/ngrok.yml;
+
   services.lorri.enable = true;
   home.packages = [
     ag
