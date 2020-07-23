@@ -46,7 +46,7 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
     erlang
     gcc
     gdb
-    ghc
+    haskell.compiler.ghc883
     gvfs
     git
     git-crypt
@@ -252,7 +252,7 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
 in {
   home.file.".mail.el".source = ../dotfiles/mail.el;
   home.packages = [
-    (all-hies.selection { selector = p: { inherit (p) ghc882; }; })
+    (all-hies.selection { selector = p: { inherit (p) ghc881 ghc882 ghc883; }; })
     git-crypt
     mu
   ];
