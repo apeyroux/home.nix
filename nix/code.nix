@@ -56,7 +56,7 @@ let
     };
   };
 
-  ghcide = (import (builtins.fetchTarball "https://github.com/hercules-ci/ghcide-nix/tarball/master") {}).ghcide-ghc865;
+  ghcide = (import (builtins.fetchTarball "https://github.com/hercules-ci/ghcide-nix/tarball/master") {}).ghcide-ghc882;
   
 in {
 
@@ -74,7 +74,7 @@ in {
     docker-compose
     emacs-all-the-icons-fonts
     gdb
-    haskell.compiler.ghc883
+    haskell.compiler.ghc882
     ghcid
     gist
     gnumake
