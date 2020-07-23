@@ -75,6 +75,7 @@ in {
     emacs-all-the-icons-fonts
     gdb
     ghc
+    ghcid
     gist
     gnumake
     godef
