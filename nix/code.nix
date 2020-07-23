@@ -74,7 +74,7 @@ in {
     docker-compose
     emacs-all-the-icons-fonts
     gdb
-    ghc
+    haskell.compiler.ghc882
     ghcid
     gist
     gnumake

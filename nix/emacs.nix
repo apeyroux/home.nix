@@ -252,7 +252,7 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
 in {
   home.file.".mail.el".source = ../dotfiles/mail.el;
   home.packages = [
-    (all-hies.selection { selector = p: { inherit (p) ghc865; }; })
+    (all-hies.selection { selector = p: { inherit (p) ghc882; }; })
     git-crypt
     mu
   ];
