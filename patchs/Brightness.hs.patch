@@ -1,0 +1,20 @@
+--- a/XMonad/Util/Brightness.hs	2020-07-29 10:31:45.722737865 +0200
++++ b/XMonad/Util/Brightness.hs	2020-07-29 10:32:06.595537371 +0200
+@@ -86,13 +86,13 @@
+ currentfile :: FilePath
+ currentfile = "/sys/class/backlight/intel_backlight/brightness"
+ 
+--- | Update brightness by +100
++-- | Update brightness by +1000
+ increase :: X ()
+-increase = liftIO $ change (+100) *> (pure ())
++increase = liftIO $ change (+1000) *> (pure ())
+ 
+--- | Update brightness by -100
++-- | Update brightness by -1000
+ decrease :: X ()
+-decrease = liftIO $ change (+ (-100)) *> (pure ())
++decrease = liftIO $ change (+ (-1000)) *> (pure ())
+ 
+ -- | Change brightness to a particular level
+ --

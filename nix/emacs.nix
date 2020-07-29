@@ -5,7 +5,7 @@ let
   # pypi2nix -r emacs-requirements.txt -V python37 --basename emacs-requirements
   python = import ./emacs-requirements/requirements.nix { inherit (import <nixpkgs> {}); };
 
-  all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/4b6aab017cdf96a90641dc287437685675d598da") {};
+  # all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/4b6aab017cdf96a90641dc287437685675d598da") {};
   
   bintools = binutils.bintools;
   # rust-src = fetchFromGitHub {
@@ -245,7 +245,7 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
 in {
   home.file.".mail.el".source = ../dotfiles/mail.el;
   home.packages = [
-    (all-hies.selection { selector = p: { inherit (p) ghc882 ghc881; }; })
+    # (all-hies.selection { selector = p: { inherit (p) ghc882 ghc881; }; })
     git-crypt
     mu
   ];
