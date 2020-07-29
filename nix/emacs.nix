@@ -5,7 +5,7 @@ let
   # pypi2nix -r emacs-requirements.txt -V python37 --basename emacs-requirements
   python = import ./emacs-requirements/requirements.nix { inherit (import <nixpkgs> {}); };
 
-  all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/master") {};
+  all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/4b6aab017cdf96a90641dc287437685675d598da") {};
   
   bintools = binutils.bintools;
   # rust-src = fetchFromGitHub {
@@ -24,13 +24,6 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
   '';
 
   apps = with import "/home/alex/.config/nixpkgs/overlays/rust-overlay.nix" pkgs pkgs; [
-    # (import ./hie.nix { inherit pkgs; })
-    # (import (fetchFromGitHub {
-    #          owner="domenkozar";
-    #          repo="hie-nix";
-    #          rev="master";
-    #          sha256="0hilxgmh5aaxg37cbdwixwnnripvjqxbvi8cjzqrk7rpfafv352q";
-    # }) {}).hies
     ag
     aspellWithDictFR
     autoconf
