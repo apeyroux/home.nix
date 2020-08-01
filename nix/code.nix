@@ -66,19 +66,20 @@ in {
   home.packages = [
     ag
     ansible
-    cabal-install
     binutils-unwrapped
+    cabal-install
     ctop
     docker-compose
     emacs-all-the-icons-fonts
     gdb
-    haskell.compiler.ghc882
     ghcid
     gist
     gnumake
     godef
     gotools
     gsasl
+    haskell.compiler.ghc882
+    haskellPackages.ghcide
     ngrok
     nix-prefetch-scripts
     nixpkgs-review
@@ -134,7 +135,6 @@ in {
     go.enable = true;
     vscode = {
       enable = true;
-      haskell.enable = true;
       userSettings = {
         "update.channel" = "none";
         "workbench.statusBar.visible" = false;

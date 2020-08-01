@@ -8,7 +8,6 @@ let
 in {
 
   nixpkgs.overlays = [
-    (self: super: { hie-nix = (all-hies.selection { selector = p: { inherit (p) ghc882 ghc881; }; }); })
     (import ../overlays/vscode.nix)
     (self: super: {
       haskellPackages = super.haskellPackages.override (oldArgs: {
