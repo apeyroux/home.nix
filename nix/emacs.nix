@@ -262,6 +262,7 @@ in {
       # multi-term
       # notmuch
       # smex
+      # multi-vterm
       # org-jira
     ]) ++ (with epkgs.melpaPackages; [
       # all-the-icons-ibuffer
@@ -394,6 +395,7 @@ in {
       treemacs-projectile
       unicode-fonts
       virtualenvwrapper
+      vterm
       web-mode
       wgrep
       which-key
