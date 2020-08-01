@@ -3,8 +3,24 @@ with import <nixpkgs> {};
 
 let
 
+  all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/4b6aab017cdf96a90641dc287437685675d598da") {};
+  
 in {
 
+  nixpkgs.overlays = [
+    (self: super: { hie-nix = (all-hies.selection { selector = p: { inherit (p) ghc882 ghc881; }; }); })
+    (import ../overlays/vscode.nix)
+    (self: super: {
+      haskellPackages = super.haskellPackages.override (oldArgs: {
+        overrides =
+          self.lib.composeExtensions (oldArgs.overrides or (_: _: {}))
+            (hself: hsuper: {
+              xmonad-extras = haskell.lib.appendPatch super.haskellPackages.xmonad-extras ../patchs/Brightness.hs.patch;
+            });
+      });
+    })
+  ];
+  
   home.sessionVariables = { EDITOR = "emacsclient -c"; VISUAL = "emacsclient -c"; };
   home.packages = [
     # pass
@@ -137,6 +153,7 @@ in {
       enableAutojump = true;
       shellAliases = {
         git-crypt-users = "pushd .git-crypt/keys/default/0; for file in *.gpg; do echo \"$\{file\} : \" && git log -- $\{file\} | sed -n 9p; done; popd";
+        ec = "emacsclient";
       };
     };
 

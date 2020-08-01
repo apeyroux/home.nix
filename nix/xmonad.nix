@@ -17,17 +17,6 @@ with import <nixpkgs> {};
 
   home.file.".config/alacritty/alacritty.yml".source = ../dotfiles/alacritty.yml;
 
-  nixpkgs.overlays = [
-    (self: super: {
-      haskellPackages = super.haskellPackages.override (oldArgs: {
-        overrides =
-          self.lib.composeExtensions (oldArgs.overrides or (_: _: {}))
-            (hself: hsuper: {
-              xmonad-extras = haskell.lib.appendPatch super.haskellPackages.xmonad-extras ../patchs/Brightness.hs.patch;
-            });
-      });
-    })];
-
   programs.termite = {
     enable = true;
     backgroundColor = "#282c34";
