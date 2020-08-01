@@ -136,6 +136,7 @@ in {
     go.enable = true;
     vscode = {
       enable = true;
+      haskell.enable = true;
       userSettings = {
         "update.channel" = "none";
         "workbench.statusBar.visible" = false;

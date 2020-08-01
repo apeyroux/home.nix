@@ -58,7 +58,7 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
     haskellPackages.hoogle
     haskellPackages.hpack
     haskellPackages.structured-haskell-mode
-    # haskellPackages.stylish-haskell
+    haskellPackages.stylish-haskell
     htmlTidy
     imagemagick
     isync
@@ -181,6 +181,14 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
     }; 
   };
 
+  hs-lint = emacsPackages.trivialBuild {
+    pname = "hs-lint";
+    src = fetchurl {
+      url = "https://raw.githubusercontent.com/ndmitchell/hlint/master/data/hs-lint.el";
+      sha256 = "0l3ldl5msy1pgjsw16r281ah4szxwmyplh7dhnfp5wj3zly6vgv1";
+    };
+  };
+  
   all-the-icons-ibuffer-el = emacsPackages.trivialBuild {
     pname = "all-the-icons-ibuffer";
     src = fetchurl {
@@ -334,6 +342,7 @@ in {
       haskell-mode
       hasky-stack
       hl-todo
+      hs-lint
       ht
       impatient-mode
       importmagic

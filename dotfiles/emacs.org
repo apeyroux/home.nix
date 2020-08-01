@@ -549,44 +549,44 @@ ivy-posframe-parameters '((internal-border-width . 10)))
   (require 'haskell-interactive-mode)
   (require 'haskell-process)
 
-  (require 'lsp)
-  (require 'lsp-haskell)
-  (add-hook 'haskell-mode-hook #'lsp)
-
   ;; (require 'lsp)
   ;; (require 'lsp-haskell)
   ;; (add-hook 'haskell-mode-hook #'lsp)
 
   ;; (add-to-list 'company-backends 'company-ghci)
 
-  ;; (add-hook 'haskell-mode-hook
-  ;; 	  '(lambda ()
-  ;; 	     (require 'dante-mode)
-  ;; 	     (company-mode t)
-  ;; 	     (make-local-variable 'company-backends)
-  ;; 	     (add-to-list 'company-backends 'dante-company)
-  ;; 	     (add-to-list 'company-backends 'etags-company)
-  ;; 	     (add-to-list 'company-backends 'company-cabal)))
+  (add-hook 'haskell-mode-hook #'flycheck-haskell-setup)
 
-  ;; (setq-default flycheck-disabled-checkers '(haskell-stack-ghc))
-  ;; (setq flycheck-haskell-ghc-executable "nix-ghc")
-  ;; (setq haskell-process-wrapper-function
-  ;;       (lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))
+  (add-hook 'haskell-mode-hook
+            '(lambda ()
+               (require 'dante-mode)
+               (company-mode t)
+               (make-local-variable 'company-backends)
+               (add-to-list 'company-backends 'dante-company)
+               (add-to-list 'company-backends 'etags-company)
+               (add-to-list 'company-backends 'company-cabal)))
+
+
+               (setq dante-repl-command-line '("nix-shell" "--run" "cabal repl"))
+
+  (setq-default flycheck-disabled-checkers '(haskell-stack-ghc))
+  (setq flycheck-haskell-ghc-executable "nix-ghc")
+  (setq haskell-process-wrapper-function
+        (lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))
 
   ;; (custom-set-variables
   ;;  '(haskell-tags-on-save t))
 
-  ;; (add-hook 'haskell-mode-hook 'dante-mode)
-  ;; (add-hook 'haskell-mode-hook 'flycheck-mode)
-  ;; (add-hook 'haskell-mode-hook 'dante-mode)
-  ;; (add-hook 'haskell-mode-hook 'flyspell-prog-mode)
+  (add-hook 'haskell-mode-hook 'dante-mode)
+  (add-hook 'haskell-mode-hook 'flycheck-mode)
+  (add-hook 'haskell-mode-hook 'flyspell-prog-mode)
   (add-hook 'haskell-mode-hook 'rainbow-delimiters-mode)
-  ;; (add-hook 'haskell-mode-hook
-  ;;           (lambda ()
-  ;;             (set (make-local-variable 'company-backends)
-  ;;                  (append '((company-capf company-dabbrev-code))
-  ;;                          company-backends))))
-  ;; (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+  (add-hook 'haskell-mode-hook
+            (lambda ()
+              (set (make-local-variable 'company-backends)
+                   (append '((company-capf company-dabbrev-code))
+                           company-backends))))
+  (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 
   (custom-set-variables
    '(haskell-process-suggest-remove-import-lines t)
@@ -595,11 +595,13 @@ ivy-posframe-parameters '((internal-border-width . 10)))
 
   ;; dante
   ;; (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
-  ;; (setq flymake-no-changes-timeout nil)
-  ;; (setq flymake-start-syntax-check-on-newline nil)
-  ;; (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  ;; (
+  (setq flymake-no-changes-timeout nil)
+  (setq flymake-start-syntax-check-on-newline nil)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
   (auto-save-visited-mode 1)
   (setq auto-save-visited-interval 1)
+  ;; (flycheck-add-next-checker 'haskell-dante '(info . haskell-hlint))
   ;; (flycheck-add-next-checker 'haskell-dante '(warning . haskell-hlint))
 #+END_SRC
 ** TypeScript
