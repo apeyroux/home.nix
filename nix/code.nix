@@ -56,7 +56,7 @@ let
     };
   };
 
-  ghcide = (import (builtins.fetchTarball "https://github.com/hercules-ci/ghcide-nix/tarball/master") {}).ghcide-ghc882;
+  # ghcide = (import (builtins.fetchTarball "https://github.com/hercules-ci/ghcide-nix/tarball/master") {}).ghcide-ghc882;
   
 in {
 
@@ -148,12 +148,12 @@ in {
         # "hic.executablePath" = "${ghcide}/bin/ghcide";
       };
       extensions = [
-        vscode-ext-docker
-        vscode-ext-ghcide
-        vscode-ext-language-haskell
-        vscode-ext-python
-        vscode-ext-remote-containers
-        vscode-ext-php-debug
+        # vscode-ext-docker
+        # vscode-ext-ghcide
+        # vscode-ext-language-haskell
+        # vscode-ext-python
+        # vscode-ext-remote-containers
+        # vscode-ext-php-debug
       ];
     };
   };

@@ -280,6 +280,7 @@ in {
       all-the-icons-dired
       all-the-icons-ivy
       amx
+      attrap
       ansible
       async
       backup-walker
@@ -340,6 +341,7 @@ in {
       gocode
       google-translate
       haskell-mode
+      nix-haskell-mode
       hasky-stack
       hl-todo
       hs-lint
