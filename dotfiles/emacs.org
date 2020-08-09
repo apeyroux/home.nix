@@ -552,6 +552,7 @@ ivy-posframe-parameters '((internal-border-width . 10)))
   (require 'lsp)
   (require 'lsp-haskell)
   (add-hook 'haskell-mode-hook #'lsp)
+
   (setq lsp-prefer-flymake nil)
 
   (add-hook 'haskell-mode-hook #'flycheck-haskell-setup)
@@ -569,11 +570,6 @@ ivy-posframe-parameters '((internal-border-width . 10)))
 
   (setq-default flycheck-disabled-checkers '(haskell-stack-ghc))
   (setq flycheck-haskell-ghc-executable "nix-ghc")
-  (setq haskell-process-wrapper-function
-        (lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))
-
-  ;; (custom-set-variables
-  ;;  '(haskell-tags-on-save t))
 
   ;; (add-hook 'haskell-mode-hook 'dante-mode)
   (add-hook 'haskell-mode-hook 'flycheck-mode)
