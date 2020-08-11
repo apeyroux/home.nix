@@ -68,6 +68,7 @@ in {
     ansible
     binutils-unwrapped
     cabal-install
+    cabal2nix
     cachix
     ctop
     docker-compose
