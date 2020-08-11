@@ -43,7 +43,7 @@ in {
   home.packages = [
     # criptext
     # docker-compose
-    # spotify
+    spotify
     # tresorit-impure
     # uplink-tardigrade
     evince

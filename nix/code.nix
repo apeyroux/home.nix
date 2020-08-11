@@ -68,6 +68,7 @@ in {
     ansible
     binutils-unwrapped
     cabal-install
+    cachix
     ctop
     docker-compose
     emacs-all-the-icons-fonts
