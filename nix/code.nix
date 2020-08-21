@@ -67,21 +67,21 @@ in {
     ag
     ansible
     binutils-unwrapped
-    cabal-install
-    cabal2nix
+    # cabal-install
+    # cabal2nix
     cachix
     ctop
     docker-compose
     emacs-all-the-icons-fonts
     gdb
-    ghcid
+    # ghcid
     gist
     gnumake
     godef
     gotools
     gsasl
-    haskell.compiler.ghc882
-    haskellPackages.ghcide
+    # haskell.compiler.ghc882
+    # haskellPackages.ghcide
     ngrok
     nix-prefetch-scripts
     nixpkgs-review
