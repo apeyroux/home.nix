@@ -117,7 +117,8 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
 
   aspellWithDictFR = aspellWithDicts (ps: with ps; [ en fr ]);
 
-  myemacs = (import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {}).emacs.overrideDerivation (old: rec {
+  myemacs = emacs.overrideDerivation (old: rec {
+  # myemacs = (import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {}).emacs.overrideDerivation (old: rec {
     postInstall = with python37Packages; (old.postInstall + ''
       # bin
       wrapProgram $out/bin/emacs --prefix PATH : "${lib.makeBinPath apps}"
