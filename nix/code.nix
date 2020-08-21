@@ -137,6 +137,13 @@ in {
     go.enable = true;
     vscode = {
       enable = true;
+      # haskell = {
+      #   enable = true;
+      #   hie = {
+      #     enable = true;
+      #     executablePath = "${haskellPackages.hie}/bin/hie-wrapper";
+      #   };
+      # };
       userSettings = {
         "update.channel" = "none";
         "workbench.statusBar.visible" = false;

@@ -2,12 +2,13 @@
 with import <nixpkgs> {};
 
 let
-
-  all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/4b6aab017cdf96a90641dc287437685675d598da") {};
+  
+  all-hies = fetchTarball "https://github.com/infinisil/all-hies/archive/master.tar.gz";
   
 in {
 
   nixpkgs.overlays = [
+    (import all-hies {}).overlay
     (import ../overlays/vscode.nix)
     (self: super: {
       haskellPackages = super.haskellPackages.override (oldArgs: {
