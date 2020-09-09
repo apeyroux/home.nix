@@ -1,4 +1,5 @@
 with import <nixpkgs> {};
+# with import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {};
 
 let
 
@@ -118,7 +119,8 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
   aspellWithDictFR = aspellWithDicts (ps: with ps; [ en fr ]);
 
   myemacs = emacs.overrideDerivation (old: rec {
-  # myemacs = (import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {}).emacs.overrideDerivation (old: rec {
+    # myemacs = (import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {}).emacs.overrideDerivation (old: rec {
+    withXwidgets = true;
     postInstall = with python37Packages; (old.postInstall + ''
       # bin
       wrapProgram $out/bin/emacs --prefix PATH : "${lib.makeBinPath apps}"
@@ -275,6 +277,9 @@ in {
       # org-jira
     ]) ++ (with epkgs.melpaPackages; [
       # all-the-icons-ibuffer
+      # xwwp
+      # xwwp-ace-toggle
+      # ace-jump
       ace-window
       ag
       all-the-icons
