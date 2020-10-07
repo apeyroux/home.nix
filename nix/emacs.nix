@@ -291,11 +291,11 @@ in {
       async
       backup-walker
       bash-completion
-      calfw
-      calfw-ical
-      calfw-org
-      cargo
-      centaur-tabs
+      # calfw
+      # calfw-ical
+      # calfw-org
+      # cargo
+      # centaur-tabs
       clipetty
       company
       company-box
@@ -311,7 +311,7 @@ in {
       counsel
       counsel-projectile
       counsel-tramp
-      dante
+      # dante
       dap-mode
       dash
       default-el
@@ -321,15 +321,15 @@ in {
       docker-compose-mode
       docker-tramp
       dockerfile-mode
-      doom-modeline
-      doom-themes
-      dracula-theme
-      edit-server
+      # doom-modeline
+      # doom-themes
+      # dracula-theme
+      # edit-server
       editorconfig
       eglot
       elm-mode
-      emamux
-      erlang
+      # emamux
+      # erlang
       esh-autosuggest
       eshell-git-prompt
       eshell-prompt-extras
@@ -342,19 +342,18 @@ in {
       gist
       git-auto-commit-mode
       git-gutter
-      git-gutter
       go-mode
       gocode
       google-translate
       haskell-mode
       nix-haskell-mode
-      hasky-stack
+      # hasky-stack
       hl-todo
       hs-lint
       ht
       impatient-mode
       importmagic
-      intero
+      # intero
       ivy-erlang-complete
       ivy-explorer
       ivy-posframe
@@ -385,17 +384,17 @@ in {
       pcap-mode
       pcre2el
       pdf-tools
-      perspective
+      # perspective
       php-mode
       powerline
       projectile
       py-autopep8
       pyvenv
-      racer
+      # racer
       rainbow-delimiters
-      realgud
+      # realgud
       restclient
-      rjsx-mode
+      # rjsx-mode
       rnix-lsp
       rust-mode
       s
