@@ -923,17 +923,18 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
 
   ;; (require 'all-the-icons)
 
+  ;; (load-theme 'adwaita t)
   ;; (load-theme 'zenburn t)
   ;; (load-theme 'dracula t)
   ;; (load-theme 'solarized-light)
   ;; (load-theme 'atom-dark t)
-  (load-theme 'leuven)
+  ;; (load-theme 'leuven)
   ;; (require 'color-theme-sanityinc-tomorrow)
 
   ;; (setq org-fontify-whole-heading-line t)
   ;; (load-theme 'spacemacs-dark t)
   ;; (load-theme ${theme} t)
-  ;; (load-theme 'zerodark t)
+  (load-theme 'zerodark t)
   ;; (zerodark-setup-modeline-format)
 
   ;; (defun load-zerodark-theme (frame)
