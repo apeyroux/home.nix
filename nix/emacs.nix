@@ -75,6 +75,7 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
     fzf
     # nodejs-11_x
     nodejs
+    nodePackages.typescript-language-server
     # ((import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {}).php73.withExtensions (e: with e; [ xdebug ]))
     php
     poppler # confusion avec poppler haskell
@@ -403,7 +404,7 @@ in {
       spaceline-all-the-icons
       swiper
       terraform-mode
-      tide
+      # tide ## typescript
       treemacs
       treemacs-icons-dired
       treemacs-magit
