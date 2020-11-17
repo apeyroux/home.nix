@@ -395,7 +395,7 @@ in {
       rainbow-delimiters
       # realgud
       restclient
-      # rjsx-mode
+      rjsx-mode
       rnix-lsp
       rust-mode
       s
@@ -404,7 +404,7 @@ in {
       spaceline-all-the-icons
       swiper
       terraform-mode
-      # tide ## typescript
+      tide ## typescript
       treemacs
       treemacs-icons-dired
       treemacs-magit

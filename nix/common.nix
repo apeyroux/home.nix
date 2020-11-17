@@ -61,6 +61,8 @@ in {
   accounts.email.maildirBasePath = ".mail";
 
   programs = {
+      
+    autojump.enable = true;
 
     zsh = {
       enable = true;
@@ -150,7 +152,6 @@ in {
 
     bash = {
       enable = true;
-      enableAutojump = true;
       shellAliases = {
         git-crypt-users = "pushd .git-crypt/keys/default/0; for file in *.gpg; do echo \"$\{file\} : \" && git log -- $\{file\} | sed -n 9p; done; popd";
         ec = "emacsclient";
