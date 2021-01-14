@@ -81,7 +81,7 @@ in {
     godef
     gotools
     gsasl
-    # haskell.compiler.ghc882
+    # haskell.compiler.ghc882pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
     # haskellPackages.ghcide
     ngrok
     nix-prefetch-scripts
@@ -141,10 +141,10 @@ in {
       enable = false;
       # haskell = {
       #   enable = true;
-      #   hie = {
-      #     enable = true;
-      #     executablePath = "${haskellPackages.hie}/bin/hie-wrapper";
-      #   };
+      #   # hie = {
+      #   #   enable = true;
+      #   #   executablePath = "${haskellPackages.hie}/bin/hie-wrapper";
+      #   # };
       # };
       userSettings = {
         "update.channel" = "none";
