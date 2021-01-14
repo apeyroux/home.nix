@@ -74,6 +74,7 @@ in {
     docker-compose
     emacs-all-the-icons-fonts
     gdb
+    vscode
     # ghcid
     gist
     gnumake
@@ -91,13 +92,21 @@ in {
     swaks
     pypi2nix
     # (python3.withPackages(p: [p.django p.ipython p.xhtml2pdf p.weasyprint ]))
-    (import ./emacs-requirements/requirements.nix { inherit (import <nixpkgs> {}); }).interpreter
+    # (import ./emacs-requirements/requirements.nix { inherit (import <nixpkgs> {}); }).interpreter
     # ghcide
+<<<<<<< HEAD
     #(import (fetchFromGitHub {
     #  owner = "nix-community";
     #  repo = "pypi2nix";
     #  rev = "73322bc61dfcace6c22d1ae5c043b2b72ad94c3e";
     #  sha256 = "0l1n79cbzvl0c767v6nanbibfc44f6spwpmfj4fi4mfxmvr2mfwx";
+=======
+    # (import (fetchFromGitHub {
+    #   owner = "nix-community";
+    #   repo = "pypi2nix";
+    #   rev = "73322bc61dfcace6c22d1ae5c043b2b72ad94c3e";
+    #   sha256 = "0l1n79cbzvl0c767v6nanbibfc44f6spwpmfj4fi4mfxmvr2mfwx";
+>>>>>>> ebc3f50fad5b67052300cdce34d2acb4febd641e
     # }) {})
   ];
   

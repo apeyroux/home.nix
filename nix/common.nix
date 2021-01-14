@@ -61,6 +61,8 @@ in {
   accounts.email.maildirBasePath = ".mail";
 
   programs = {
+      
+    autojump.enable = true;
 
     zsh = {
       enable = true;
