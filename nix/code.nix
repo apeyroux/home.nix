@@ -89,15 +89,16 @@ in {
     nodejs
     openssl
     swaks
+    pypi2nix
     # (python3.withPackages(p: [p.django p.ipython p.xhtml2pdf p.weasyprint ]))
     (import ./emacs-requirements/requirements.nix { inherit (import <nixpkgs> {}); }).interpreter
     # ghcide
-    (import (fetchFromGitHub {
-      owner = "nix-community";
-      repo = "pypi2nix";
-      rev = "73322bc61dfcace6c22d1ae5c043b2b72ad94c3e";
-      sha256 = "0l1n79cbzvl0c767v6nanbibfc44f6spwpmfj4fi4mfxmvr2mfwx";
-    }) {})
+    #(import (fetchFromGitHub {
+    #  owner = "nix-community";
+    #  repo = "pypi2nix";
+    #  rev = "73322bc61dfcace6c22d1ae5c043b2b72ad94c3e";
+    #  sha256 = "0l1n79cbzvl0c767v6nanbibfc44f6spwpmfj4fi4mfxmvr2mfwx";
+    # }) {})
   ];
   
   programs = {
@@ -136,7 +137,7 @@ in {
     };
     go.enable = true;
     vscode = {
-      enable = true;
+      enable = false;
       # haskell = {
       #   enable = true;
       #   hie = {
