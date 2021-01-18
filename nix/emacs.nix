@@ -25,6 +25,27 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
   '';
 
   apps = with import "/home/alex/.config/nixpkgs/overlays/rust-overlay.nix" pkgs pkgs; [
+    # ((import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {}).php73.withExtensions (e: with e; [ xdebug ]))
+    # haskellPackages.ghc-mod
+    # haskellPackages.hindent
+    # nodejs-11_x
+    # python.packages."autopep8"
+    # python.packages."epc"
+    # python.packages."importmagic"
+    # python.packages."ipython"
+    # python.packages."jedi"
+    # python.packages."virtualenv"
+    # python27Packages.rope
+    # python37Packages.autopep8
+    # python37Packages.epc
+    # python37Packages.importmagic
+    # python37Packages.ipython
+    # python37Packages.jedi
+    # python37Packages.virtualenv
+    # rustChannels.stable.cargo
+    # rustfmt
+    # rustracer
+    # rustracerd
     ag
     aspellWithDictFR
     autoconf
@@ -33,29 +54,29 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
     binutils
     cabal-install
     cabal2nix
+    carnix
     diffstat
     docker-machine
-    emacs-all-the-icons-fonts
     elmPackages.elm
+    emacs-all-the-icons-fonts
     erlang
+    fzf
     gcc
     gdb
-    haskell.compiler.ghc882
-    gvfs
+    ghostscript
     git
     git-crypt
     gnumake
-    ghostscript
     go
     godef
     gotools
+    gvfs
+    haskell.compiler.ghc882
     haskellPackages.fast-tags
     haskellPackages.ghcid
     haskellPackages.happy
     haskellPackages.hasktags
-    # haskellPackages.hindent
     haskellPackages.hlint
-    # haskellPackages.ghc-mod
     haskellPackages.hoogle
     haskellPackages.hpack
     haskellPackages.structured-haskell-mode
@@ -63,7 +84,6 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
     htmlTidy
     imagemagick
     isync
-    openldap
     libnotify
     libpng
     libxml2
@@ -71,46 +91,27 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
     mercurial
     multimarkdown
     ncurses
+    nixfmt
     nixghc
-    fzf
-    # nodejs-11_x
-    nodejs
     nodePackages.typescript-language-server
-    # ((import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {}).php73.withExtensions (e: with e; [ xdebug ]))
+    nodejs
+    openldap
     php
     poppler # confusion avec poppler haskell
     poppler_utils
-    # python27Packages.rope
     python.interpreter
-    # python37Packages.epc
-    # python37Packages.autopep8
-    # python37Packages.importmagic
-    # python37Packages.ipython
-    # python37Packages.jedi
-    # python37Packages.virtualenv
-    # python.packages."epc"
-    # python.packages."autopep8"
-    # python.packages."importmagic"
-    # python.packages."ipython"
-    # python.packages."jedi"
-    # python.packages."virtualenv"
-    # rustChannels.stable.cargo
-    carnix
-    rustracer
+    ripgrep
+    rustChannels.stable.rls-preview
     rustChannels.stable.rust
+    rustChannels.stable.rust-docs
     rustChannels.stable.rust-src
     rustChannels.stable.rustfmt-preview
-    rustChannels.stable.rls-preview
-    rustChannels.stable.rust-docs
-    # rustfmt
-    # rustracer
-    # rustracerd
+    rustracer
     siji
     stack
-    tshark
     tetex
+    tshark
     w3m
-    ripgrep
     xclip
     xz
     zip

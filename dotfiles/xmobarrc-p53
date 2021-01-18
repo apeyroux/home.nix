@@ -47,31 +47,25 @@ Config { font = "xft:Noto Sans:pixelsize=13,M+ 1c:pixelsize=13"
                           ] 10
                      , Run Date "<fn=1> </fn><fc=#d7bde2>%d/%m/%Y</fc> <fc=#af7ac5>%H:%M:%S</fc>" "date" 10
 		     , Run Mail [("<fn=1></fn> ", "~/.mail/gmail/Inbox") ] "mail"
-      		     , Run Battery [
-        	       	   "--template"			, "<acstatus> <timeleft>",
-        	       	   "--Low"			, "10",       -- units: %
-        	       	   "--High"			, "50",       -- units: %
-			   "-l"				, "#ec7063",
-			   "-n"				, "#fad7a0",
-			   "-h"				, "#abebc6",
-        	       	   "--"				, -- battery specific options
-        	       	   -- discharging status
-        	       	   "-o"				, "<leftipat> <left>",
-        	       	   -- AC "on" status
-        	       	   "-O"				, "<leftipat> <left>",
-        	       	   "-i"				, "<leftipat> <left>",
-        	       	   -- charged status
-        	       	   --"-i"			, "<fn=1>\xf240</fn>",
-        	       	   "--off-icon-pattern"		, "<fn=1>\xf240</fn>",
-        	       	   "--on-icon-pattern"		, "<fn=1>\xf0e7</fn>",
-        	       	   "--idle-icon-pattern"	, "<fn=1>\xf0e7</fn>"
-		       ] 50
+		     , Run BatteryN ["BAT0"]
+		          ["-t", "<acstatus>",
+         		   "-S", "Off", "-d", "0", "-m", "3",
+         		   "-L", "10", "-H", "90", "-p", "3",
+         		   "-W", "0",
+         		   "-f", "\xf244\xf243\xf243\xf243\xf242\xf242\xf242\xf241\xf241\xf240",
+         		   "--",
+         		   "-P",
+         		   "-a", "notify-send -u critical 'Battery running out !'",
+         		   "-A", "5",
+         		   "-i", "<fn=1>\xf1e6</fn>",
+         		   "-O", "<fn=1><leftbar>  \xf1e6</fn> <timeleft>",
+         		   "-o", "<fn=1><leftbar></fn> <timeleft>",
+         		   "-H", "10", "-L", "7"
+         		  ] 50 "batt0"
                      , Run StdinReader
                  ]
         , sepChar = "%"
         , alignSep = "}{"
-        -- , template = " %StdinReader%} { %mail% <fn=1></fn> %wlp82s0wi% <fn=1></fn> %battery% <fn=1></fn> %default:Master% <fn=1></fn> %sync_status% <fn=1></fn> %date% "
-	-- , template = " %StdinReader%} { %mail% <fn=1></fn> %sync_status% <fn=1></fn> %enp0s31f6% %wlp82s0wi% <fn=1></fn> %battery% <fn=1></fn> %default:Master% <fn=1></fn> %date% "
-	 , template = " %StdinReader%} { %sync_status% <fn=1></fn> %enp0s31f6% %wlp82s0wi% <fn=1></fn> %battery% <fn=1></fn> %default:Master% <fn=1></fn> %date% "
-        -- , template = " %StdinReader%} { %date% "
+	, template = " %StdinReader%} { %sync_status% <fn=1></fn> %enp0s31f6% %wlp82s0wi% <fn=1></fn> %batt0% <fn=1></fn> %default:Master% <fn=1></fn> %date% "
+
 }

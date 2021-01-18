@@ -77,6 +77,7 @@ in {
     vscode
     # ghcid
     gist
+    nixfmt
     gnumake
     godef
     gotools
@@ -86,6 +87,7 @@ in {
     ngrok
     nix-prefetch-scripts
     nixpkgs-review
+    niv
     nmap
     nodejs
     openssl
