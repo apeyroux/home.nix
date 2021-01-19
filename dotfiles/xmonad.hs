@@ -200,6 +200,7 @@ main = do
                <+> (className =? "Nautilus" --> doCenterFloat)
                <+> (className =? "Zeal" --> doFloat)
                <+> (className =? "Tresorit" --> doFloat)
+               <+> (className =? "Signal" --> doFloat)
                <+> (className =? "gnome-calendar" --> doFloat)
                <+> (className =? "vlc" --> doFloat)
                <+> (className =? "Criptext" <||> className =? "criptext" --> doFloat)
