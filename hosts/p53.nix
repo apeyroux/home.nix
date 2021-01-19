@@ -46,6 +46,7 @@ in {
     spotify
     # tresorit-impure
     # uplink-tardigrade
+    signal-desktop
     evince
     firefox
     git-crypt
