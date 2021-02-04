@@ -16,7 +16,7 @@ with import <nixpkgs> {};
       enable = true;
       boxes = ["Inbox" "Famille"];
       onNotifyPost = {
-        mail = "${libnotify}/bin/notify-send 'Nouveau mail!'";
+        mail = "${libnotify}/bin/notify-send 'Nouveau mail alex@px.io !'";
       };
       onNotify = "${isync}/bin/mbsync -a";
     };
