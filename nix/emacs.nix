@@ -297,7 +297,7 @@ in {
       # calfw-ical
       # calfw-org
       # cargo
-      # centaur-tabs
+      centaur-tabs
       clipetty
       company
       company-box

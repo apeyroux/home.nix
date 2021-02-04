@@ -113,13 +113,12 @@ ivy-posframe-parameters '((internal-border-width . 10)))
 ** centaur-tabs
 #+begin_src emacs-lisp :tangle no
    (require 'centaur-tabs)
-   ;; (centaur-tabs-mode t)
+   (centaur-tabs-mode t)
    ;; (global-set-key (kbd "C-<prior>")  'centaur-tabs-backward)
    ;; (global-set-key (kbd "C-<next>") 'centaur-tabs-forward)
-   ;; (centaur-tabs-group-by-projectile-project)
-   ;; (global-set-key (kbd "C-c t") 'centaur-tabs-counsel-switch-group)
-   ;; (setq centaur-tabs-cycle-scope 'groups)
-
+   (centaur-tabs-group-by-projectile-project)
+   (global-set-key (kbd "C-c t") 'centaur-tabs-counsel-switch-group)
+   (setq centaur-tabs-cycle-scope 'groups)
 
    (setq centaur-tabs-style "bar"
    centaur-tabs-height 32
@@ -934,14 +933,14 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
 #+END_SRC
 * Theme
 #+BEGIN_SRC emacs-lisp :tangle yes
-  ;; (package-install 'spaceline-all-the-icons)
-  ;; (require 'spaceline-all-the-icons)
-  ;; (require 'spaceline-config)
-  ;; (setq inhibit-compacting-font-caches t)
+  (package-install 'spaceline-all-the-icons)
+  (require 'spaceline-all-the-icons)
+  (require 'spaceline-config)
+  (setq inhibit-compacting-font-caches t)
 
-  ;; (spaceline-all-the-icons-theme)
-  ;; (setq spaceline-all-the-icons-separator-type 'none)
-  ;; (spaceline-all-the-icons--setup-git-ahead)
+  (spaceline-all-the-icons-theme)
+  (setq spaceline-all-the-icons-separator-type 'none)
+  (spaceline-all-the-icons--setup-git-ahead)
 
   ;; DOOM
   ;; ;; Global settings (defaults)
@@ -981,7 +980,7 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
   ;; (load-theme 'spacemacs-dark t)
   ;; (load-theme ${theme} t)
   (load-theme 'zerodark t)
-  ;; (zerodark-setup-modeline-format)
+  (zerodark-setup-modeline-format)
 
   ;; (defun load-zerodark-theme (frame)
   ;; (select-frame frame)

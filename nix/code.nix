@@ -80,6 +80,7 @@ in {
     nixfmt
     gnumake
     godef
+    teams
     gotools
     gsasl
     # haskell.compiler.ghc882pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
