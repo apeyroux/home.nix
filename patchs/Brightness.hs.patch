@@ -5,16 +5,16 @@
  currentfile = "/sys/class/backlight/intel_backlight/brightness"
  
 --- | Update brightness by +100
-+-- | Update brightness by +1000
++-- | Update brightness by +250
  increase :: X ()
 -increase = liftIO $ change (+100) *> (pure ())
-+increase = liftIO $ change (+1000) *> (pure ())
++increase = liftIO $ change (+250) *> (pure ())
  
 --- | Update brightness by -100
-+-- | Update brightness by -1000
++-- | Update brightness by -250
  decrease :: X ()
 -decrease = liftIO $ change (+ (-100)) *> (pure ())
-+decrease = liftIO $ change (+ (-1000)) *> (pure ())
++decrease = liftIO $ change (+ (-250)) *> (pure ())
  
  -- | Change brightness to a particular level
  --
