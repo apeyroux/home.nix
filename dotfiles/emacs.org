@@ -94,7 +94,7 @@
   ;; (treemacs-set-scope-type 'Perspectives)
 #+end_src
 ** ivy-postframe
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle no
 (require 'ivy-posframe)
 (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center))
 ivy-posframe-height-alist '((t . 20))
@@ -933,14 +933,20 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
 #+END_SRC
 * Theme
 #+BEGIN_SRC emacs-lisp :tangle yes
-  (package-install 'spaceline-all-the-icons)
-  (require 'spaceline-all-the-icons)
-  (require 'spaceline-config)
+  ;; (package-install 'spaceline-all-the-icons)
+  ;; (require 'spaceline-all-the-icons)
+  ;; (require 'spaceline-config)
   (setq inhibit-compacting-font-caches t)
+  ;; (require 'sanity)
+  ;; (require 'elegance)
+  ;; (require 'elegant)
+  ;; (load-theme 'elegant-light t)
+  (load-theme 'nord t)
+  (set-face-font 'default "Roboto Mono Light 10")
 
-  (spaceline-all-the-icons-theme)
-  (setq spaceline-all-the-icons-separator-type 'none)
-  (spaceline-all-the-icons--setup-git-ahead)
+  ;; (spaceline-all-the-icons-theme)
+  ;; (setq spaceline-all-the-icons-separator-type 'none)
+  ;; (spaceline-all-the-icons--setup-git-ahead)
 
   ;; DOOM
   ;; ;; Global settings (defaults)
@@ -979,8 +985,8 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
   ;; (setq org-fontify-whole-heading-line t)
   ;; (load-theme 'spacemacs-dark t)
   ;; (load-theme ${theme} t)
-  (load-theme 'zerodark t)
-  (zerodark-setup-modeline-format)
+  ;; (load-theme 'zerodark t)
+  ;; (zerodark-setup-modeline-format)
 
   ;; (defun load-zerodark-theme (frame)
   ;; (select-frame frame)
@@ -1132,6 +1138,10 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
   (require 'magit-lfs)
 #+END_SRC
 * Mail
+
+#+begin_src elisp
+#+end_src
+
 #+BEGIN_SRC elisp
 (load-file "~/.mail.el")
 #+END_SRC

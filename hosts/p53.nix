@@ -39,6 +39,9 @@ in {
   home.file.".xmobarrc".source = ../dotfiles/xmobarrc-p53;
   home.file.".Xresources".source = ../dotfiles/Xresources-p53;
   home.file.".config/kitty/kitty.conf".source = ../dotfiles/kitty.conf;
+  home.file.".config/autorandr/desk/postswitch".source = ../dotfiles/autorandr/desk/postswitch;
+  home.file.".config/autorandr/mobile/preswitch".source = ../dotfiles/autorandr/desk/preswitch;
+  home.file.".config/autorandr/mobile/postswitch".source = ../dotfiles/autorandr/mobile/postswitch;
 
   home.packages = [
     # criptext

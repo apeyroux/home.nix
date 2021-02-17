@@ -37,6 +37,8 @@ in {
     mtr
     pigz
     restic
+    roboto
+    roboto-mono
     traceroute
     unzip
     whois
@@ -80,9 +82,9 @@ in {
       baseIndex = 0;
       clock24 = true;
       # terminal = "screen-256color";
-      # extraConfig = ''
-      #   set-option -g status-style "fg=default,bg=#7E3C90"
-      # '';
+      extraConfig = ''
+      run-shell "~/src/nord-tmux/nord.tmux"
+      '';
       plugins = with pkgs; [
         # tmuxPlugins.battery
         # {

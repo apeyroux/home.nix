@@ -101,6 +101,8 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
     poppler_utils
     python.interpreter
     ripgrep
+    roboto
+    roboto-mono
     rustChannels.stable.rls-preview
     rustChannels.stable.rust
     rustChannels.stable.rust-docs
@@ -177,6 +179,46 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
       install flycheck-grammalecte.py $out/share/emacs/site-lisp
     '';
   };
+
+  mu4e = emacsPackages.trivialBuild {
+    pname = "mu4e";
+    src = "${mu}/share/emacs/site-lisp/mu4e/";
+    packageRequires = [ mu ];
+  };
+  
+  mu4e-thread-folding = emacsPackages.trivialBuild {
+    pname = "mu4e-thread-folding";
+        src = fetchFromGitHub {
+      owner  = "rougier";
+      repo   = "mu4e-thread-folding";
+      rev    = "f125b5eda75ca1e7675dbbd774a8a2f551f52874";
+      sha256 = "000vda9xcw4901r05mkwkb7qlq8vzsq3r4wi9687ivmjwb2d141l";
+    };
+    packageRequires = [ mu4e ];
+  };
+
+  nano-emacs = emacsPackages.trivialBuild {
+    pname = "nano-emacs";
+    src = fetchFromGitHub {
+      owner  = "rougier";
+      repo   = "nano-emacs";
+      rev    = "0a75f78e78fd9f91da77a496344689e3781185c9";
+      sha256 = "1i8hwd0dz208kxpijxhbx40m8rdc2xzrp34jxnwmimr1r2q86nxp";
+    };
+    patches = [ ../patchs/nano-el.patch ];
+    packageRequires = [ roboto-mono org ];
+  };
+  
+  elegant-emacs = emacsPackages.trivialBuild {
+    pname = "elegant-emacs";
+    src = fetchFromGitHub {
+      owner  = "rougier";
+      repo   = "elegant-emacs";
+      rev    = "4dc47a804213ace171dea357268cb3fa111db17a";
+      sha256 = "1a0yalq3sz69fn105m75vlcx4qrhlgvn4l9g3lb3wmn1isfam0yz";
+    };
+    packageRequires = [ roboto-mono ];
+  };
   
   ghcid-el = emacsPackages.trivialBuild {
     pname = "ghcid";
@@ -251,6 +293,7 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
                                   # + (lib.readFile ../dotfiles/mail.el)
                                   + ''(load "~/.mail.el")''
                                   + ''(setq mu4e-mu-binary "${mu}/bin/mu")''
+                                  # + ''(load "~/src/nano-emacs/nano.el")''
     );
     dontBuild = true;
   };
@@ -282,6 +325,7 @@ in {
       # xwwp
       # xwwp-ace-toggle
       # ace-jump
+      nord-theme
       ace-window
       ag
       all-the-icons
@@ -317,6 +361,8 @@ in {
       dap-mode
       dash
       default-el
+      mu4e-thread-folding
+      elegant-emacs
       direnv
       docker
       docker-api
