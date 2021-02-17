@@ -1,0 +1,31 @@
+diff --git a/nano-layout.el b/nano-layout.el
+index 47fe9a3..91938c7 100644
+--- a/nano-layout.el
++++ b/nano-layout.el
+@@ -18,7 +18,7 @@
+ 
+ (setq default-frame-alist
+       (append (list
+-	       '(font . "Roboto Mono:style=Light:size=14")
++	       '(font . "Roboto Mono:style=Light:size=10")
+ 	       ;; '(font . "Roboto Mono Emacs Regular:size=14")
+ 	       '(min-height . 1)  '(height     . 45)
+ 	       '(min-width  . 1) '(width      . 81)
+diff --git a/nano.el b/nano.el
+index f46be95..c043344 100644
+--- a/nano.el
++++ b/nano.el
+@@ -19,11 +19,11 @@
+ 
+ 
+ ;; Path to nano emacs modules (mandatory)
+-(add-to-list 'load-path "/Users/rougier/Documents/GitHub/nano-emacs")
++(add-to-list 'load-path "/home/alex/tmp/nano-emacs")
+ (add-to-list 'load-path ".")
+ 
+ ;; Default layout (optional)
+-(require 'nano-layout)
++;; (require 'nano-layout)
+ 
+ ;; Theming Command line options (this will cancel warning messages)
+ (add-to-list 'command-switch-alist '("-dark"   . (lambda (args))))

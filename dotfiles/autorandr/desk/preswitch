@@ -1,0 +1,4 @@
+#!/bin/sh
+
+notify-send -i display "preswitch desk"
+sudo systemctl stop systemd-logind.service

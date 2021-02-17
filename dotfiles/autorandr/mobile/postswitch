@@ -1,0 +1,4 @@
+#!/bin/sh
+
+notify-send -i display "postswitch mobile"
+sudo systemctl start systemd-logind.service
