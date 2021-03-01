@@ -74,6 +74,7 @@ in {
     docker-compose
     emacs-all-the-icons-fonts
     gdb
+    miniserve
     vscode
     # ghcid
     gist

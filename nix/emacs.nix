@@ -474,7 +474,7 @@ in {
       # company-box
       # ivy-explorer
       # tramp
-      csv-mode
+      # csv-mode
       rainbow-mode
       undo-tree
       xclip
