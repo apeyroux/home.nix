@@ -1,60 +1,9 @@
 with import <nixpkgs> {};
 
 let
-  
-  vscode-ext-language-haskell = vscode-utils.buildVscodeMarketplaceExtension {
-    mktplcRef = {
-      name = "language-haskell";
-      publisher = "justusadam";
-      version = "2.6.0";
-      sha256 = "1891pg4x5qkh151pylvn93c4plqw6vgasa4g40jbma5xzq8pygr4";
-    };
-  };
 
-  vscode-ext-python = vscode-utils.buildVscodeMarketplaceExtension {
-    mktplcRef = {
-      name = "python";
-      publisher = "ms-python";
-      version = "2019.11.50794";
-      sha256 = "1imc4gc3aq5x6prb8fxz70v4l838h22hfq2f8an4mldyragdz7ka";
-    };
-  };
-
-  vscode-ext-php-debug = vscode-utils.buildVscodeMarketplaceExtension {
-    mktplcRef = {
-      name = "php-debug";
-      publisher = "felixfbecker";
-      version = "1.13.0";
-      sha256 = "0h0md2w1zjjf87313ydknld85i118r7lqghmi11hfgi2f496qxj6";
-    };
-  };
-  
-  vscode-ext-docker = vscode-utils.buildVscodeMarketplaceExtension {
-    mktplcRef = {
-      name = "vscode-docker";
-      publisher = "ms-azuretools";
-      version = "0.9.0";
-      sha256 = "0wka4sgq5xjgqq2dc3zimrdcbl9166lavscz7zm6v4n6f9s2pfj0";
-    };
-  };
-
-  vscode-ext-ghcide = vscode-utils.buildVscodeMarketplaceExtension {
-    mktplcRef = {
-      name = "ghcide";
-      publisher = "DigitalAssetHoldingsLLC";
-      version = "0.0.2";
-      sha256 = "02gla0g11qcgd6sjvkiazzk3fq104b38skqrs6hvxcv2fzvm9zwf";
-    };
-  };
-  
-  vscode-ext-remote-containers = vscode-utils.buildVscodeMarketplaceExtension {
-    mktplcRef = {
-      name = "remote-containers";
-      publisher = "ms-vscode-remote";
-      version = "0.96.0";
-      sha256 = "1yyalywcqxhlmsv80ykmizzha5sj95068v73h1khv3nza4rrbf0c";
-    };
-  };
+  # ./pkgs/misc/vscode-extensions/update_installed_exts.sh > /tmp/vscode-exts.nix
+  vscode-exts = vscode-utils.extensionsFromVscodeMarketplace (import ./vscode-exts.nix).extensions;
 
   # ghcide = (import (builtins.fetchTarball "https://github.com/hercules-ci/ghcide-nix/tarball/master") {}).ghcide-ghc882;
   
@@ -75,7 +24,7 @@ in {
     emacs-all-the-icons-fonts
     gdb
     miniserve
-    vscode
+    # vscode
     # ghcid
     gist
     nixfmt
@@ -142,34 +91,30 @@ in {
     };
     go.enable = true;
     vscode = {
-      enable = false;
-      # haskell = {
-      #   enable = true;
-      #   # hie = {
-      #   #   enable = true;
-      #   #   executablePath = "${haskellPackages.hie}/bin/hie-wrapper";
-      #   # };
-      # };
+      enable = true;
+      haskell = {
+        enable = true;
+        hie = {
+          enable = false;
+          executablePath = "${haskellPackages.hie}/bin/hie-wrapper";
+        };
+      };
       userSettings = {
-        "update.channel" = "none";
-        "workbench.statusBar.visible" = false;
+        # "update.channel" = "none";
+        # "workbench.statusBar.visible" = false;
         "python.formatting.autopep8Path" = "${python3Packages.autopep8}/bin/autopep8";
         "python.jediPath" = "${python3Packages.jedi}/bin/jedi";
         "python.linting.flake8Path" = "${python3Packages.flake8}/bin/flake8";
         "python.linting.mypyPath" = "${python3Packages.mypy}/bin/mypy";
         "python.linting.pycodestylePath" = "${python3Packages.pycodestyle}/bin/pycodestyle";
         "python.linting.pylintPath" = "${python3Packages.pylint}/bin/pylint";
+        "workbench.statusBar.visible" = false;
+        "workbench.colorTheme" = "GitHub Light";
+        "git.autofetch" = true;
         # "php.validate.executablePath" = "${((import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {}).php.withExtensions (e: with e; [ xdebug ]))}/bin/php";
         # "hic.executablePath" = "${ghcide}/bin/ghcide";
       };
-      extensions = [
-        # vscode-ext-docker
-        # vscode-ext-ghcide
-        # vscode-ext-language-haskell
-        # vscode-ext-python
-        # vscode-ext-remote-containers
-        # vscode-ext-php-debug
-      ];
+      extensions = vscode-exts;
     };
   };
 }
