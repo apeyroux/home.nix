@@ -12,6 +12,7 @@ with import <nixpkgs> {};
     address = "peyroux@gmail.com";
     flavor = "gmail.com";
     passwordCommand = "${gnupg}/bin/gpg2 -q --for-your-eyes-only --no-tty -d ~/.mailpass-gmail.gpg";
+    mu.enable = true;
     imapnotify = {
       enable = true;
       boxes = ["Inbox" "Famille"];

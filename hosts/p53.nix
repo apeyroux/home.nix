@@ -25,15 +25,16 @@ let
 in {
 
   imports = [ 
-    ../nix/common.nix 
-    ../nix/xmonad.nix
-    ../nix/gnome.nix
-    ../nix/code.nix
-    ../nix/irssi.nix
-    ../nix/emacs.nix
-    ../nix/gmail.nix
     # ../nix/protonmail.nix
+    ../nix/code.nix
+    ../nix/common.nix 
+    ../nix/emacs.nix
+    ../nix/fastmail.nix
+    ../nix/gmail.nix
+    ../nix/gnome.nix
+    ../nix/irssi.nix
     ../nix/rclone.nix
+    ../nix/xmonad.nix
   ];
 
   home.file.".xmobarrc".source = ../dotfiles/xmobarrc-p53;
