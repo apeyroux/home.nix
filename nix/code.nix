@@ -71,7 +71,7 @@ in {
     # cabal2nix
     cachix
     ctop
-    docker_compose
+    docker-compose
     emacs-all-the-icons-fonts
     gdb
     vscode
