@@ -44,7 +44,7 @@ in {
   home.file.".config/autorandr/mobile/preswitch".source = ../dotfiles/autorandr/desk/preswitch;
   home.file.".config/autorandr/mobile/postswitch".source = ../dotfiles/autorandr/mobile/postswitch;
   # w_scan -c FR -X > tv.conf
-  home.file.".config/tv-paris.m3u".source = ../dotfiles/tv-paris.m3u;
+  home.file.".config/tv-paris.conf".source = ../dotfiles/tv-paris.conf;
 
   home.packages = [
     # criptext
