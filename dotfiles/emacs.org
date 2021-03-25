@@ -942,7 +942,7 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
   ;; (require 'elegant)
   ;; (load-theme 'elegant-light t)
   (load-theme 'nord t)
-  (set-face-font 'default "Roboto Mono Light 12")
+  (set-face-font 'default "Roboto Mono Light 11")
 
   ;; (spaceline-all-the-icons-theme)
   ;; (setq spaceline-all-the-icons-separator-type 'none)
