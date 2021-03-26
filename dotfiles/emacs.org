@@ -3,80 +3,83 @@
 * Init
 
 #+BEGIN_SRC emacs-lisp :tangle yes
-  (if (not (file-exists-p "~/.ebkp"))
-      (make-directory "~/.ebkp" t))
+    (if (not (file-exists-p "~/.ebkp"))
+        (make-directory "~/.ebkp" t))
 
-  ;; (desktop-save-mode 1)
-(require 'ht)
-(add-to-list 'auto-mode-alist '("\\.log\\'" . auto-revert-mode))
+    ;; (desktop-save-mode 1)
+  (require 'ht)
+  (add-to-list 'auto-mode-alist '("\\.log\\'" . auto-revert-mode))
 
-  (display-battery-mode)
-  (when (fboundp 'winner-mode)
-      (winner-mode 1))
+    (display-battery-mode)
+    (when (fboundp 'winner-mode)
+        (winner-mode 1))
 
-      ;; (global-set-key (kbd "C-c u") 'winner-undo)
-      ;; (global-set-key (kbd "C-c r") 'winner-redo)
+        ;; (global-set-key (kbd "C-c u") 'winner-undo)
+        ;; (global-set-key (kbd "C-c r") 'winner-redo)
 
-      (recentf-mode 1)
+        (recentf-mode 1)
 
-  (setq inhibit-splash-screen t
-        inhibit-startup-screen t
-        tramp-default-method "ssh"
-        inhibit-startup-message t
-        ispell-program-name "aspell"
-        ispell-dictionary "french"
-        browse-url-browser-function 'browse-url-generic
-        browse-url-generic-program "xdg-open"
-        auto-save-interval 20
-        make-backup-files t                         ; backup of a file the first time it is saved.
-        backup-directory-alist '(("." . "~/.ebkp"))	; don't litter my fs tree
-        backup-by-copying t                         ; don't clobber symlinks
-        version-control t                           ; version numbers for backup files
-        delete-old-versions t                       ; delete excess backup files silently
-        delete-by-moving-to-trash t
-        kept-old-versions 20                        ; oldest versions to keep when a new numbered backup is made (default: 2)
-        kept-new-versions 20                        ; newest versions to keep when a new numbered backup is made (default: 2)
-        auto-save-default t                         ; auto-save every buffer that visits a file
-        auto-save-timeout 20                        ; number of seconds idle time before auto-save (default: 30)
-        auto-save-interval 20                       ; number of keystrokes between auto-saves (default: 300)
-        vc-make-backup-files t                      ; backup version controlled files
-        delete-old-versions t
-        kept-new-versions 20
-        kept-old-versions 40
-        version-control t
-        tab-width 2
-        vc-follow-symlinks 1                        ; pas de prompte yes/no lors d'un lien symbo
-        fill-column 80)
+    (setq inhibit-splash-screen t
+          inhibit-startup-screen t
+          tramp-default-method "ssh"
+          inhibit-startup-message t
+          ispell-program-name "aspell"
+          ispell-dictionary "french"
+          browse-url-browser-function 'browse-url-generic
+          browse-url-generic-program "xdg-open"
+          auto-save-interval 20
+          make-backup-files t                         ; backup of a file the first time it is saved.
+          backup-directory-alist '(("." . "~/.ebkp"))	; don't litter my fs tree
+          backup-by-copying t                         ; don't clobber symlinks
+          version-control t                           ; version numbers for backup files
+          delete-old-versions t                       ; delete excess backup files silently
+          delete-by-moving-to-trash t
+          kept-old-versions 20                        ; oldest versions to keep when a new numbered backup is made (default: 2)
+          kept-new-versions 20                        ; newest versions to keep when a new numbered backup is made (default: 2)
+          auto-save-default t                         ; auto-save every buffer that visits a file
+          auto-save-timeout 20                        ; number of seconds idle time before auto-save (default: 30)
+          auto-save-interval 20                       ; number of keystrokes between auto-saves (default: 300)
+          vc-make-backup-files t                      ; backup version controlled files
+          delete-old-versions t
+          kept-new-versions 20
+          kept-old-versions 40
+          version-control t
+          tab-width 2
+          vc-follow-symlinks 1                        ; pas de prompte yes/no lors d'un lien symbo
+          fill-column 80)
 
-  (put 'erase-buffer 'disabled nil) ;; pas de message lors erase buff
-  (add-to-list 'auto-mode-alist '("\\.log\\'" . auto-revert-mode)) ;; tail -f sur les .log
+    (put 'erase-buffer 'disabled nil) ;; pas de message lors erase buff
+    (add-to-list 'auto-mode-alist '("\\.log\\'" . auto-revert-mode)) ;; tail -f sur les .log
 
-  ;; (set-default-font "-fsdf-PragmataPro-normal-normal-normal-*-18-*-*-*-*-0-iso10646-1")
+    ;; (set-default-font "-fsdf-PragmataPro-normal-normal-normal-*-18-*-*-*-*-0-iso10646-1")
 
-  (package-initialize)
-  ;; (setq visible-bell 1)
-  (menu-bar-mode -1)
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1)
-  (savehist-mode 1)
-  (fset 'yes-or-no-p 'y-or-n-p)
+    (package-initialize)
+    ;; (setq visible-bell 1)
+    (menu-bar-mode -1)
+    (tool-bar-mode -1)
+    (scroll-bar-mode -1)
+    (savehist-mode 1)
+    (fset 'yes-or-no-p 'y-or-n-p)
 
-  ;; (all-the-icons-ibuffer-mode 1)
-  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
-  (add-hook 'after-init-hook 'all-the-icons-ivy-setup)
+    ;; (all-the-icons-ibuffer-mode 1)
+    (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+    (add-hook 'after-init-hook 'all-the-icons-ivy-setup)
 
-  ;; epa
-  (require 'epa-file)
-  ;; (epa-file-enable)
-  (require 'epa-mail)
-  (setq epa-pinentry-mode 'loopback)
-  (setq epa-file-select-keys nil)
+    ;; epa
+    (require 'epa-file)
+    ;; (epa-file-enable)
+    (require 'epa-mail)
+    (setq epa-pinentry-mode 'loopback)
+    ;; (setq epa-file-select-keys nil)
 
-  (defadvice split-window (after move-point-to-new-window activate)
-    "Moves the point to the newly created window after splitting."
-    (other-window 1))
+    (setq epa-file-encrypt-to '("alexandre@peyroux.io"))
+    (setq epa-file-select-keys 1)
 
-    (global-set-key (kbd "M-p") 'treemacs-select-window)
+    (defadvice split-window (after move-point-to-new-window activate)
+      "Moves the point to the newly created window after splitting."
+      (other-window 1))
+
+      (global-set-key (kbd "M-p") 'treemacs-select-window)
 #+END_SRC
 
 * Addons
