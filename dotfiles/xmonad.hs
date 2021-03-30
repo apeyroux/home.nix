@@ -135,6 +135,7 @@ myKeys conf@XConfig {XMonad.modMask = modMask} = M.fromList $
   , ((noModMask, xF86XK_AudioLowerVolume), void (lowerVolumeChannels ["PulseAudio", "Master"] 3))
   , ((noModMask, xF86XK_AudioRaiseVolume), void (raiseVolumeChannels ["PulseAudio", "Master"] 3))
   , ((noModMask, xF86XK_AudioMute), void (toggleMuteChannels ["PulseAudio", "Master"]))
+  , ((noModMask, xF86XK_AudioMicMute), spawn "amixer set Capture toggle")
   , ((modMask, xK_Left), sendMessage Shrink)
   , ((modMask, xK_Right), sendMessage Expand)
   , ((modMask, xK_a), sendMessage MirrorShrink)
