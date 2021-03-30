@@ -20,6 +20,17 @@ Config { font = "xft:Noto Sans:pixelsize=13,M+ 1c:pixelsize=13"
 			  , "-H", "10000"
 			  , "-L", "5000"] 10
 		     , Run Wireless "wlp2s0" [ "-t", "<fc=#bd93f9><fn=1></fn> <essid></fc> <quality>", "-h", "#abebc6", "-l", "#fad7a0", "-n", "#ec7063"] 10
+		     , Run Volume "default" "Capture" [
+        		      "-t", "<status> <volume>",
+			      "-l", "#fad7a0",
+			      "-n", "#ec7063",
+			      "-h", "#abebc6",
+        		      "--",
+        		      "-o", "<fn=1>\xf026</fn>",
+        		      "-O", "<fn=1>\xf028</fn>",
+        		      "-c", "#ff5733",
+        		      "-C", "#fff"
+			  ] 10
 		     , Run Volume "default" "Master" [
         		      "-t", "<status> <volume>",
 			      "-l", "#fad7a0",
@@ -64,6 +75,6 @@ Config { font = "xft:Noto Sans:pixelsize=13,M+ 1c:pixelsize=13"
         , sepChar = "%"
         , alignSep = "}{"
         -- , template = " %StdinReader%} { %mail% <fn=1></fn> %wlp2s0wi% <fn=1></fn> %battery% <fn=1></fn> %default:Master% <fn=1></fn> %sync_status% <fn=1></fn> %date% "
-	, template = " %StdinReader%} { %mail% <fn=1></fn> %wlp2s0wi% <fn=1></fn> %battery% <fn=1></fn> %default:Master% <fn=1></fn><fn=1></fn> %date% "
+	, template = " %StdinReader%} { %mail% <fn=1></fn> %wlp2s0wi% <fn=1></fn> %battery% <fn=1></fn> %default:Master% %default:Capture<fn=1></fn><fn=1></fn> %date% "
         -- , template = " %StdinReader%} { %date% "
 }
