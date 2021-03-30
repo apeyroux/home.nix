@@ -98,7 +98,7 @@ myLogHook proc = dynamicLogWithPP $ xmobarPP
   --     )
   }
   where
-    currentStyle = xmobarColor "#fff" "" . wrap "<fc=#ff1493><fn=1>\xf105</fn></fc> " " <fc=#ff1493><fn=1>\xf104</fn></fc> "
+    currentStyle = xmobarColor "#fff" "" . wrap "<box type=Bottom width=2 color=green>" "</box>"
     visibleStyle = wrap "(" ")"
     titleStyle   = xmobarColor "#fff" "" . shorten 200 . filterCurly
     filterCurly  = filter (not . isCurly)
@@ -245,10 +245,9 @@ main = do
     borderWidth = 1,
     normalBorderColor  = "#44475a",
     focusedBorderColor = "#F333FF",
-    -- workspaces = ["<fn=1><fc=#5dade2>\xf108</fc></fn>",
-    --               "<fn=1><fc=#f5b041>\xf269</fc></fn>",
-    --               "<fn=1><fc=#27ae60>\xf1bc</fc></fn>",
-    --               "<fn=1><fc=#5dade2>\xf121</fc></fn>"] <+> map show [5..10],
+    workspaces = ["<fn=1><fc=#5dade2>\xf121</fc></fn>",
+                  "<fn=1><fc=#f5b041>\xf269</fc></fn>",
+                  "<fn=1><fc=#27ae60>\xf1bc</fc></fn>"] <+> map show [4..10],
     handleEventHook = fullscreenEventHook,
     modMask = mod4Mask
     }

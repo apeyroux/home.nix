@@ -27,8 +27,19 @@ Config { font = "xft:Noto Sans:pixelsize=13,M+ 1c:pixelsize=13"
 			      "-n", "#fad7a0",
 			      "-h", "#ec7063",
         		      "--",
-        		      "-o", "<fn=1>\xf026</fn> MUTE",
+        		      "-o", "<fn=1></fn>",
         		      "-O", "<fn=1>\xf028</fn>",
+        		      "-c", "#ff5733",
+        		      "-C", "#fff"
+			  ] 10
+	             , Run Volume "default" "Capture" [
+        		      "-t", "<status>",
+			      "-l", "#abebc6",
+			      "-n", "#fad7a0",
+			      "-h", "#ec7063",
+        		      "--",
+        		      "-o", "<fn=1></fn>",
+        		      "-O", "<fn=1><fc=#00FF00></fc></fn>",
         		      "-c", "#ff5733",
         		      "-C", "#fff"
 			  ] 10
@@ -71,5 +82,5 @@ Config { font = "xft:Noto Sans:pixelsize=13,M+ 1c:pixelsize=13"
                  ]
         , sepChar = "%"
         , alignSep = "}{"
-	, template = " %StdinReader%} %date% { %sync_status% <fn=1></fn> %enp0s31f6% %wlp82s0wi% <fn=1></fn> %batt0% <fn=1></fn> %bright% <fn=1></fn> <action=pavucontrol>%default:Master%</action>"
+	, template = " %StdinReader%} %date% %mail% { %sync_status% %enp0s31f6% %wlp82s0wi% <box type=Bottom width=2 color=red>%batt0%</box> <box type=Bottom width=2 color=red>%bright%</box> <box type=Bottom width=2 color=red><action=`pavucontrol` button=1>%default:Capture% %default:Master%</action></box> "
 }

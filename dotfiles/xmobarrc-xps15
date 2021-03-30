@@ -20,14 +20,14 @@ Config { font = "xft:Noto Sans:pixelsize=13,M+ 1c:pixelsize=13"
 			  , "-H", "10000"
 			  , "-L", "5000"] 10
 		     , Run Wireless "wlp2s0" [ "-t", "<fc=#bd93f9><fn=1></fn> <essid></fc> <quality>", "-h", "#abebc6", "-l", "#fad7a0", "-n", "#ec7063"] 10
-		     , Run Volume "default" "Capture" [
-        		      "-t", "<status> <volume>",
-			      "-l", "#fad7a0",
-			      "-n", "#ec7063",
-			      "-h", "#abebc6",
+	             , Run Volume "default" "Capture" [
+        		      "-t", "<status>",
+			      "-l", "#abebc6",
+			      "-n", "#fad7a0",
+			      "-h", "#ec7063",
         		      "--",
-        		      "-o", "<fn=1>\xf026</fn>",
-        		      "-O", "<fn=1>\xf028</fn>",
+        		      "-o", "<fn=1></fn>",
+        		      "-O", "<fn=1></fn>",
         		      "-c", "#ff5733",
         		      "-C", "#fff"
 			  ] 10
