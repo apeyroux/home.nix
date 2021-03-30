@@ -39,7 +39,7 @@ term :: String
 term = "alacritty"
 
 browser :: String
-browser = "google-chrome"
+browser = "google-chrome-stable"
 
 amazonfr :: SearchEngine
 amazonfr = searchEngine "amazonfr" "http://www.amazon.fr/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords="
