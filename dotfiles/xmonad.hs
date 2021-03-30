@@ -22,6 +22,7 @@ import           XMonad.Layout.Tabbed
 import           XMonad.Prompt
 import           XMonad.Prompt.Shell
 import           XMonad.Prompt.Workspace
+import           XMonad.Actions.WorkspaceNames
 import qualified XMonad.StackSet as W
 -- https://hackage.haskell.org/package/xmonad-extras-0.15.1/docs/XMonad-Util-Brightness.html
 import           XMonad.Util.Brightness as Brightness
@@ -147,9 +148,10 @@ myKeys conf@XConfig {XMonad.modMask = modMask} = M.fromList $
   -- , ((modMask .|. controlMask, xK_h ), spawn "xrandr --output HDMI1 --auto --output eDP1 --off")
   -- , ((modMask .|. shiftMask, xK_h   ), spawn "xrandr --output eDP1 --auto --output HDMI1 --off")
   -- , ((modMask .|. shiftMask, xK_h   ), spawn "hsdmi")
-  , ((modMask, xK_e                 ), safeSpawn "pcmanfm" [])
+  , ((modMask, xK_e                 ), safeSpawn "nautilus" [])
   , ((modMask, xK_s                 ), promptSearchBrowser def browser multiEngine)
   , ((modMask .|. shiftMask, xK_s   ), selectSearchBrowser browser google)
+  , ((modMask .|. shiftMask, xK_n   ), renameWorkspace def)
   ]
   ++
   -- mod-{w,e,r} %! Switch to physical/Xinerama screens 1, 2, or 3
