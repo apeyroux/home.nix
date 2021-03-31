@@ -248,8 +248,7 @@ main = do
     normalBorderColor  = "#44475a",
     focusedBorderColor = "#F333FF",
     workspaces = ["<fn=1><fc=#5dade2>\xf121</fc></fn>",
-                  "<fn=1><fc=#f5b041>\xf269</fc></fn>",
-                  "<fn=1><fc=#27ae60>\xf1bc</fc></fn>"] <+> map show [4..10],
+                  "<fn=1><fc=#f5b041>\xf269</fc></fn>"] <+> map show [3..10],
     handleEventHook = fullscreenEventHook,
     modMask = mod4Mask
     }
