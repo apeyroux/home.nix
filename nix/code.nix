@@ -99,6 +99,7 @@ in {
           executablePath = "${haskellPackages.hie}/bin/hie-wrapper";
         };
       };
+      package = (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/refs/heads/master.tar.gz) {}).vscode;
       userSettings = {
         # "update.channel" = "none";
         # "workbench.statusBar.visible" = false;
@@ -114,7 +115,7 @@ in {
         # "php.validate.executablePath" = "${((import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {}).php.withExtensions (e: with e; [ xdebug ]))}/bin/php";
         # "hic.executablePath" = "${ghcide}/bin/ghcide";
       };
-      extensions = vscode-exts;
+      extensions = vscode-exts ++ [ (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/refs/heads/master.tar.gz) {}).vscode-extensions.ms-vsliveshare.vsliveshare ];
     };
   };
 }

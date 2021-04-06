@@ -817,12 +817,12 @@ https://github.com/emacs-lsp/dap-mode (vscode debug)
   (add-hook 'org-mode-hook 'org-indent-mode)
 
   (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")
-  (sequence "REUNION(r)")
-  (sequence "RIL(l)" "|" "DONE(d)")
+  (sequence "REUNION(r@)")
+  (sequence "RIL(l!)" "|" "DONE(d)")
   (sequence "ITOP(i)" "|" "DONE(d)")
-  (sequence "MANTIS(m)" "|" "DONE(d)")
-  (sequence "APPEL(a)")
-  (sequence "IDEE(e)")))
+  (sequence "MANTIS(m@/!)" "|" "DONE(d)")
+  (sequence "APPEL(a@)")
+  (sequence "IDEE(e@/!)")))
 
   (setq org-todo-keyword-faces
   '(("TODO" . (:foreground "#ff39a3" :weight bold))
