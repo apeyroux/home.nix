@@ -9,7 +9,7 @@ with import <nixpkgs> {};
     gnome3.defaultIconTheme
     kitty
     libnotify # pour le test
-    masterpdfeditor
+    # masterpdfeditor
     pavucontrol
     vlc
     xmobar

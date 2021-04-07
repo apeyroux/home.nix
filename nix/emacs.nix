@@ -24,7 +24,8 @@ let
 nix-shell -I . --command "${ghc}/bin/ghc $*"
   '';
 
-  apps = with import "/home/alex/.config/nixpkgs/overlays/rust-overlay.nix" pkgs pkgs; [
+  # apps = with import "/home/alex/.config/nixpkgs/overlays/rust-overlay.nix" pkgs pkgs; [
+  apps = [
     # ((import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {}).php73.withExtensions (e: with e; [ xdebug ]))
     # haskellPackages.ghc-mod
     # haskellPackages.hindent
@@ -71,7 +72,7 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
     godef
     gotools
     gvfs
-    haskell.compiler.ghc882
+    # haskell.compiler.ghc882
     haskellPackages.fast-tags
     haskellPackages.ghcid
     haskellPackages.happy
@@ -103,12 +104,12 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
     ripgrep
     roboto
     roboto-mono
-    rustChannels.stable.rls-preview
-    rustChannels.stable.rust
-    rustChannels.stable.rust-docs
-    rustChannels.stable.rust-src
-    rustChannels.stable.rustfmt-preview
-    rustracer
+    # rustChannels.stable.rls-preview
+    # rustChannels.stable.rust
+    # rustChannels.stable.rust-docs
+    # rustChannels.stable.rust-src
+    # rustChannels.stable.rustfmt-preview
+    # rustracer
     siji
     stack
     tetex
@@ -156,29 +157,6 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
   #   });
   
   # });
-
-  flycheck-grammalecte = stdenv.mkDerivation {
-    name = "flycheck-grammalecte";
-    src = fetchgit {
-      url = "https://gitlab.com/geeklhem/flycheck-grammalecte.git";
-      rev = "6fa0d0cefa9c324831c7bf97d6cc360dcdaa85e0";
-      sha256 = "1s66py788f2vvmjsnka2lcjkravvdliznbvmfi5z7kpcq62jiccw";
-      fetchSubmodules = true;
-    };
-
-    buildInputs = [ (emacsWithPackages (ps: with ps; with emacsPackagesNg; [ flycheck org ])) ];
-
-    buildPhase = ''
-      emacs --batch -f batch-byte-compile flycheck-grammalecte.el
-    '';
-
-    installPhase = ''
-      install -d $out/share/emacs/site-lisp
-      install flycheck-grammalecte.el $out/share/emacs/site-lisp
-      install flycheck-grammalecte.elc $out/share/emacs/site-lisp
-      install flycheck-grammalecte.py $out/share/emacs/site-lisp
-    '';
-  };
 
   mu4e = emacsPackages.trivialBuild {
     pname = "mu4e";
@@ -228,13 +206,13 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
     }; 
   };
 
-  hs-lint = emacsPackages.trivialBuild {
-    pname = "hs-lint";
-    src = fetchurl {
-      url = "https://raw.githubusercontent.com/ndmitchell/hlint/master/data/hs-lint.el";
-      sha256 = "0l3ldl5msy1pgjsw16r281ah4szxwmyplh7dhnfp5wj3zly6vgv1";
-    };
-  };
+  # hs-lint = emacsPackages.trivialBuild {
+  #   pname = "hs-lint";
+  #   src = fetchurl {
+  #     url = "https://raw.githubusercontent.com/ndmitchell/hlint/master/data/hs-lint.el";
+  #     sha256 = "0l3ldl5msy1pgjsw16r281ah4szxwmyplh7dhnfp5wj3zly6vgv1";
+  #   };
+  # };
   
   all-the-icons-ibuffer-el = emacsPackages.trivialBuild {
     pname = "all-the-icons-ibuffer";
@@ -347,10 +325,10 @@ in {
       company-box
       company-box
       company-cabal
-      company-ghc
+      # company-ghc
       company-ghci
       company-go
-      company-lsp
+      # company-lsp
       company-nixos-options
       company-php
       company-quickhelp
@@ -397,7 +375,7 @@ in {
       nix-haskell-mode
       # hasky-stack
       hl-todo
-      hs-lint
+      # hs-lint
       ht
       impatient-mode
       importmagic

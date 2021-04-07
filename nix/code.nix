@@ -84,6 +84,10 @@ in {
           username = "apeyroux";
           password = builtins.readFile ../secrets/github.password;
         };
+        credential."https://code.minsi.fr" = {
+          username = "apx";
+          password = builtins.readFile ../secrets/code.minsi.fr.password;
+        };
         url."https://" = {
           instedOf = "git://";
         };
