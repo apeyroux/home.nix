@@ -82,5 +82,5 @@ Config { font = "xft:Noto Sans:pixelsize=13,M+ 1c:pixelsize=13"
                  ]
         , sepChar = "%"
         , alignSep = "}{"
-	, template = " %StdinReader%} %date% %mail% { %sync_status% %enp0s31f6% %wlp82s0wi% <box type=Bottom width=2 color=red>%batt0%</box> <box type=Bottom width=2 color=red>%bright%</box> <box type=Bottom width=2 color=red><action=`pavucontrol` button=1>%default:Capture% %default:Master%</action></box> "
+	, template = " %StdinReader%} %date% { %sync_status% %enp0s31f6% %wlp82s0wi% <box type=Bottom width=2 color=red>%batt0%</box> <box type=Bottom width=2 color=red>%bright%</box> <box type=Bottom width=2 color=red><action=`pavucontrol` button=1>%default:Capture% %default:Master%</action></box> "
 }
