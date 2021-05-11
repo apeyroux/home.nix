@@ -37,6 +37,7 @@ in {
     ../nix/xmonad.nix
   ];
 
+  home.file.".ssh/config".source = ../secrets/ssh_config_p53;
   home.file.".xmobarrc".source = ../dotfiles/xmobarrc-p53;
   home.file.".Xresources".source = ../dotfiles/Xresources-p53;
   home.file.".config/kitty/kitty.conf".source = ../dotfiles/kitty.conf;
