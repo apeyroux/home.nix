@@ -60,7 +60,7 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
     docker-machine
     elmPackages.elm
     emacs-all-the-icons-fonts
-    erlang
+    # erlang
     fzf
     gcc
     gdb
@@ -380,7 +380,7 @@ in {
       impatient-mode
       importmagic
       # intero
-      ivy-erlang-complete
+      # ivy-erlang-complete
       ivy-explorer
       ivy-posframe
       ivy-yasnippet

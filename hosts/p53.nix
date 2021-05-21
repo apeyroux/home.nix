@@ -29,7 +29,7 @@ in {
     ../nix/code.nix
     ../nix/common.nix 
     ../nix/emacs.nix
-    ../nix/fastmail.nix
+    # ../nix/fastmail.nix
     ../nix/gmail.nix
     ../nix/gnome.nix
     ../nix/irssi.nix
