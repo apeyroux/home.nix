@@ -6,10 +6,11 @@ with import <nixpkgs> {};
   };
 
   services.imapnotify.enable = true;
+  home.file.".mailpass-gmail.gpg".source = ../secrets/mailpass-gmail.gpg;
 
   accounts.email.accounts.gmail = {
     primary = true;
-    address = "peyroux@gmail.com";
+    address = "alex@px.io";
     flavor = "gmail.com";
     passwordCommand = "${gnupg}/bin/gpg2 -q --for-your-eyes-only --no-tty -d ~/.mailpass-gmail.gpg";
     mu.enable = true;
