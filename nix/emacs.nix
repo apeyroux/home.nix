@@ -4,7 +4,7 @@ with import <nixpkgs> {};
 let
 
   # pypi2nix -r emacs-requirements.txt -V python37 --basename emacs-requirements
-  python = import ./emacs-requirements/requirements.nix { inherit (import <nixpkgs> {}); };
+  # python = import ./emacs-requirements/requirements.nix { inherit (import <nixpkgs> {}); };
 
   # all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/archive/master.tar.gz") {};
   
@@ -135,7 +135,6 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
       wrapProgram $out/bin/emacs --prefix PYTHONPATH : "$(toPythonPath ${jedi})"
       wrapProgram $out/bin/emacs --prefix PYTHONPATH : "$(toPythonPath ${autopep8})"
       wrapProgram $out/bin/emacs --prefix PYTHONPATH : "$(toPythonPath ${flake8})"
-      wrapProgram $out/bin/emacs --prefix PYTHONPATH : "$(toPythonPath ${rope})"
       # mu4e
       wrapProgram $out/bin/emacs --prefix PATH : ${lib.makeBinPath [mu]}
       wrapProgram $out/bin/emacs --set MU4E ${mu}
