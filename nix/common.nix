@@ -17,7 +17,7 @@ in {
         overrides =
           self.lib.composeExtensions (oldArgs.overrides or (_: _: {}))
             (hself: hsuper: {
-              xmonad-extras = haskell.lib.appendPatch super.haskellPackages.xmonad-extras ../patchs/Brightness.hs.patch;
+              # xmonad-extras = haskell.lib.appendPatch super.haskellPackages.xmonad-extras ../patchs/Brightness.hs.patch;
             });
       });
     })
