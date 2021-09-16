@@ -10,6 +10,7 @@ with import <nixpkgs> {};
     kitty
     libnotify # pour le test
     # masterpdfeditor
+    light
     pavucontrol
     vlc
     xmobar
