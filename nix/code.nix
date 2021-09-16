@@ -96,7 +96,7 @@ in {
     go.enable = true;
     vscode = {
       enable = true;
-      package = (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/refs/heads/master.tar.gz) {}).vscode-fhsWithPackages (ps: with ps; [ rustup zlib git python ]);
+      package = (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/refs/heads/master.tar.gz) {}).vscode-fhsWithPackages (ps: with ps; [ rustup zlib git python python3 ]);
     };
   };
 }
