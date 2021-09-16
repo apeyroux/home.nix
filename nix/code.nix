@@ -96,30 +96,7 @@ in {
     go.enable = true;
     vscode = {
       enable = true;
-      haskell = {
-        enable = true;
-        hie = {
-          enable = false;
-          executablePath = "${haskellPackages.hie}/bin/hie-wrapper";
-        };
-      };
-      package = (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/refs/heads/master.tar.gz) {}).vscode;
-      userSettings = {
-        # "update.channel" = "none";
-        # "workbench.statusBar.visible" = false;
-        "python.formatting.autopep8Path" = "${python3Packages.autopep8}/bin/autopep8";
-        "python.jediPath" = "${python3Packages.jedi}/bin/jedi";
-        "python.linting.flake8Path" = "${python3Packages.flake8}/bin/flake8";
-        "python.linting.mypyPath" = "${python3Packages.mypy}/bin/mypy";
-        "python.linting.pycodestylePath" = "${python3Packages.pycodestyle}/bin/pycodestyle";
-        "python.linting.pylintPath" = "${python3Packages.pylint}/bin/pylint";
-        "workbench.statusBar.visible" = false;
-        "workbench.colorTheme" = "GitHub Light";
-        "git.autofetch" = true;
-        # "php.validate.executablePath" = "${((import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {}).php.withExtensions (e: with e; [ xdebug ]))}/bin/php";
-        # "hic.executablePath" = "${ghcide}/bin/ghcide";
-      };
-      extensions = vscode-exts ++ [ (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/refs/heads/master.tar.gz) {}).vscode-extensions.ms-vsliveshare.vsliveshare ];
+      package = (import (fetchTarball https://github.com/NixOS/nixpkgs/archive/refs/heads/master.tar.gz) {}).vscode-fhsWithPackages (ps: with ps; [ rustup zlib git python ]);
     };
   };
 }
