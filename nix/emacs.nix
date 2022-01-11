@@ -3,7 +3,6 @@ with import <nixpkgs> {};
 
 let
 
-  # pypi2nix -r emacs-requirements.txt -V python37 --basename emacs-requirements
   # python = import ./emacs-requirements/requirements.nix { inherit (import <nixpkgs> {}); };
 
   # all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/archive/master.tar.gz") {};
@@ -123,10 +122,10 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
 
   aspellWithDictFR = aspellWithDicts (ps: with ps; [ en fr ]);
 
-  myemacs = emacs.overrideDerivation (old: rec {
-    # myemacs = (import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {}).emacs.overrideDerivation (old: rec {
+  emacs' = emacs.overrideAttrs (old: rec {
+  # emacs' = (import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {}).emacs.overrideDerivation (old: rec {
     withXwidgets = true;
-    postInstall = with python37Packages; (old.postInstall + ''
+    postInstall = with python38Packages; (old.postInstall + ''
       # bin
       wrapProgram $out/bin/emacs --prefix PATH : "${lib.makeBinPath apps}"
       # python
@@ -140,22 +139,6 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
       wrapProgram $out/bin/emacs --set MU4E ${mu}
       '');
   });
-
-  # emacsPackages = (emacsPackagesNgGen (myemacs.override { withXwidgets = false; }));
-  # emacsPackages = (emacsPackagesNgGen (emacsWithMu.override { withXwidgets = false; })).overrideScope (self: super: {
-  #   nix-sandbox = emacsPackages.melpaPackages.nix-sandbox.overrideDerivation(oldAttrs: {
-  #     src = fetchurl {
-  #       url = "https://raw.githubusercontent.com/travisbhartwell/nix-emacs/master/nix-sandbox.el";
-  #       sha256 = "0inx5yvni0ik7pd7l02jpddi0866dg1wj9x16dp7glnrs82yib88";
-  #       name = "nix-sandbox.el";
-  #     };
-  #   });
-
-  #   magithubWithGit = emacsPackages.melpaPackages.magithub.overrideDerivation(oldAttrs: {
-  #     buildInputs = oldAttrs.buildInputs ++ [ git ];
-  #   });
-  
-  # });
 
   mu4e = emacsPackages.trivialBuild {
     pname = "mu4e";
@@ -240,7 +223,7 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
     preInstall = ''
         perl -i -pe "s%/usr/share%$out%;" local.mk
       '';
-    buildInputs = [ myemacs ] ++ (with pkgs; [ texinfo perl which ]);
+    buildInputs = [ emacs' ] ++ (with pkgs; [ texinfo perl which ]);
     meta = {
       homepage = "https://elpa.gnu.org/packages/org.html";
       license = lib.licenses.free;
@@ -250,7 +233,7 @@ nix-shell -I . --command "${ghc}/bin/ghc $*"
   base-el = stdenv.mkDerivation {
     name = "base-el";
     src = ../dotfiles;
-    buildInputs = [ emacs ];
+    buildInputs = [ emacs' ];
     buildPhase = ''
     '';
     installPhase = ''
@@ -284,7 +267,7 @@ in {
   ];
   programs.emacs = {
     enable = true;
-    package = myemacs;
+    package = emacs';
     extraPackages = (epkgs: (with epkgs.melpaStablePackages; [
       # ac-php
       # all-the-icons-ibuffer

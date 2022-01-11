@@ -21,13 +21,14 @@ in {
     cachix
     ctop
     docker-compose
-    emacs-all-the-icons-fonts
+    # emacs-all-the-icons-fonts
     gdb
     miniserve
     # vscode
     # ghcid
     gist
     nixfmt
+    krb5
     gnumake
     godef
     teams
@@ -43,7 +44,7 @@ in {
     nodejs
     openssl
     swaks
-    pypi2nix
+    # pypi2nix
     # (python3.withPackages(p: [p.django p.ipython p.xhtml2pdf p.weasyprint ]))
     # (import ./emacs-requirements/requirements.nix { inherit (import <nixpkgs> {}); }).interpreter
     # ghcide
