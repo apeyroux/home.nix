@@ -35,6 +35,7 @@ with import <nixpkgs> {};
     smtp = {
       host = "smtp.mail.me.com";
       port = 587;
+      tls.useStartTls = true;
     };
     gpg = {
         key = "E29E9DCBB3FD297DCCF9D574A4BD77DD1421E5CF";
