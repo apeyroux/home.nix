@@ -30,7 +30,7 @@ in {
     ../nix/common.nix 
     ../nix/emacs.nix
     # ../nix/fastmail.nix
-    ../nix/gmail.nix
+    ../nix/icloud.nix
     ../nix/gnome.nix
     ../nix/irssi.nix
     ../nix/rclone.nix
@@ -50,7 +50,7 @@ in {
   home.packages = [
     # criptext
     # docker-compose
-    spotify
+    # spotify
     # tresorit-impure
     # uplink-tardigrade
     signal-desktop
@@ -63,14 +63,14 @@ in {
     libreoffice
     lsof
     mitmproxy
-    molotov
+    # molotov
     mtr
     mutt 
     nvtop
     pcmanfm
     scrot
     wireshark
-    xmobar-sync-status
+    # xmobar-sync-status
     yubioath-desktop
   ];
 
