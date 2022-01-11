@@ -473,11 +473,14 @@ ivy-posframe-parameters '((internal-border-width . 10)))
 ** Python
 #+BEGIN_SRC emacs-lisp :tangle yes
   ;; (elpy-enable)
-  ;; (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+  (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
   (add-hook 'python-mode-hook 'importmagic-mode)
-  (setq python-shell-interpreter "ipython"
-        python-shell-interpreter-args "--simple-prompt -i")
+  ;; (setq python-shell-interpreter "ipython"
+  ;;       python-shell-interpreter-args "--simple-prompt -i")
   (require 'pyvenv)
+  (require 'lsp-python-ms)
+  (setq lsp-python-ms-auto-install-server t)
+  (add-hook 'python-mode-hook #'lsp) ; or lsp-deferred
   ;; (elpy-enable)
 #+END_SRC
 ** JavaScript
@@ -704,52 +707,52 @@ ivy-posframe-parameters '((internal-border-width . 10)))
 https://github.com/emacs-lsp/dap-mode (vscode debug)
 
 #+begin_src emacs-lisp :tangle yes
-    (dap-mode 1)
-    (dap-ui-mode 1)
-    ;; enables mouse hover support
-    (dap-tooltip-mode 1)
-    ;; use tooltips for mouse hover
-    ;; if it is not enabled `dap-mode' will use the minibuffer.
-    (tooltip-mode 1)
-
-    (require 'dap-python)
+      (dap-mode 1)
+      (dap-ui-mode 1)
+      ;; enables mouse hover support
+      (dap-tooltip-mode 1)
+      ;; use tooltips for mouse hover
+      ;; if it is not enabled `dap-mode' will use the minibuffer.
+      (tooltip-mode 1)
+  
+      (require 'dap-python)
+      (require 'dap-php)
+  
+    ;; (custom-set-variables
+    ;;  '(dap-python-executable "~/.nix-profile/bin/python3.7"))
+    ;;   (dap-register-debug-template "AIOmda"
+    ;;     (list :type "python"
+    ;;           :args "~/src/aiomda/src/cyrus01.conf"
+    ;;           :target-module "~/src/aiomda/src/aiomda.py"
+    ;;           :request "launch"
+    ;;           :name "AIOmda"))
+  
     (require 'dap-php)
-
-  ;; (custom-set-variables
-  ;;  '(dap-python-executable "~/.nix-profile/bin/python3.7"))
-  ;;   (dap-register-debug-template "AIOmda"
-  ;;     (list :type "python"
-  ;;           :args "~/src/aiomda/src/cyrus01.conf"
-  ;;           :target-module "~/src/aiomda/src/aiomda.py"
-  ;;           :request "launch"
-  ;;           :name "AIOmda"))
-
-  (require 'dap-php)
-  (dap-php-setup)
-
-(dap-register-debug-template "mce-admin"
-  (list :type "python"
-        :target-module "/home/alex/src/cyradm-python-mce/debug.py"
-        :request "launch"
-	    :args "-c dev --start"
-        :cwd nil
-        :name "mce-admin"))
-
-  (dap-register-debug-template "MCE-WebMail"
-    (list :type "php"
-          :cwd nil
-          :request "launch"
-          :name "MCE-WebMail"
-          :port "9001"
-          :sourceMaps t
-          :pathMappings (ht ("/usr/src/myapp" "/home/alex/src/MCE/mce-dev/webmail/src"))))
-
-   (dap-register-debug-template "AIOmda V2"
+    (dap-php-setup)
+  
+  (dap-register-debug-template "mce-admin"
     (list :type "python"
-          :args (expand-file-name "~/src/MCE/mce-dev/aiomda/src/settings/aiomda-debug.conf")
-          :target-module (expand-file-name "~/src/MCE/mce-dev/aiomda/src/aiomda.py")
+          :target-module "/home/alex/src/cyradm-python-mce/debug.py"
           :request "launch"
-          :name "AIOmda V2"))
+              :args "-c dev --start"
+          :cwd nil
+          :name "mce-admin"))
+  
+    (dap-register-debug-template "MCE-WebMail"
+      (list :type "php"
+            :cwd nil
+            :request "launch"
+            :name "MCE-WebMail"
+            :port "9001"
+            :sourceMaps t
+            :pathMappings (ht ("/usr/src/myapp" "/home/alex/src/MCE/mce-dev/webmail/src"))))
+  
+     (dap-register-debug-template "MFC"
+      (list :type "python"
+            :args (expand-file-name "~/src/mce/mce-dev/mce-smtp/config/mfc/mfc.conf")
+            :target-module (expand-file-name "~/src/mce/mce-dev/mce-smtp/mfc/src/mfc.py")
+            :request "launch"
+            :name "MFC"))
 #+end_src
 * Hook
 

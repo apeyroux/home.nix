@@ -1,9 +1,9 @@
 with import <nixpkgs> {};
 
 let
-  
+
   all-hies = fetchTarball "https://github.com/infinisil/all-hies/archive/master.tar.gz";
-  
+
 in {
 
   nixpkgs.overlays = [

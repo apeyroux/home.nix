@@ -4,6 +4,7 @@ let
 
   # ./pkgs/misc/vscode-extensions/update_installed_exts.sh > /tmp/vscode-exts.nix
   vscode-exts = vscode-utils.extensionsFromVscodeMarketplace (import ./vscode-exts.nix).extensions;
+  mach-nix = (callPackage (fetchTarball https://github.com/DavHau/mach-nix/tarball/master) {}).mach-nix;
 
   # ghcide = (import (builtins.fetchTarball "https://github.com/hercules-ci/ghcide-nix/tarball/master") {}).ghcide-ghc882;
   
@@ -29,6 +30,8 @@ in {
     gist
     nixfmt
     krb5
+    python38Packages.ipython
+    mach-nix
     gnumake
     godef
     teams

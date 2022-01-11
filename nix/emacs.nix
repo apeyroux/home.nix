@@ -136,6 +136,14 @@ let
         wrapProgram $out/bin/emacs --prefix PYTHONPATH : "$(toPythonPath ${autopep8})"
         wrapProgram $out/bin/emacs --prefix PYTHONPATH : "$(toPythonPath ${flake8})"
         wrapProgram $out/bin/emacs --prefix PYTHONPATH : "$(toPythonPath ${ipython})"
+
+        wrapProgram $out/bin/emacs --prefix PATH : "$(toPythonPath ${pip})" 
+        wrapProgram $out/bin/emacs --prefix PATH : "$(toPythonPath ${virtualenv})"
+        wrapProgram $out/bin/emacs --prefix PATH : "$(toPythonPath ${jedi})"
+        wrapProgram $out/bin/emacs --prefix PATH : "$(toPythonPath ${autopep8})"
+        wrapProgram $out/bin/emacs --prefix PATH : "$(toPythonPath ${flake8})"
+        wrapProgram $out/bin/emacs --prefix PATH : "$(toPythonPath ${ipython})"
+
         # mu4e
         wrapProgram $out/bin/emacs --prefix PATH : ${lib.makeBinPath [ mu ]}
         wrapProgram $out/bin/emacs --set MU4E ${mu}
