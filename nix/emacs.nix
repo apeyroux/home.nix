@@ -311,6 +311,7 @@ in {
       amx
       attrap
       ansible
+      ansible-vault
       async
       backup-walker
       bash-completion
