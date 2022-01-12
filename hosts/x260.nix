@@ -30,10 +30,10 @@ in {
     ../nix/common.nix 
     ../nix/emacs.nix
     # ../nix/fastmail.nix
-    ../nix/icloud.nix
-    ../nix/gnome.nix
+    # ../nix/gmail.nix
+    # ../nix/gnome.nix
     ../nix/irssi.nix
-    ../nix/rclone.nix
+    # ../nix/rclone.nix
     ../nix/xmonad.nix
   ];
 
@@ -53,20 +53,20 @@ in {
     # spotify
     # tresorit-impure
     # uplink-tardigrade
-    signal-desktop
+    # signal-desktop
     evince
     firefox
     git-crypt
     google-chrome
     inkscape
-    insync
+    # insync
     libreoffice
     lsof
     mitmproxy
     # molotov
     mtr
     mutt 
-    nvtop
+    # nvtop
     pcmanfm
     scrot
     wireshark
@@ -75,26 +75,6 @@ in {
   ];
 
   services = {
-    hound = {
-      enable = false;
-      repositories = {
-        aiomda = {
-          url = "https://code.minsi.fr/mce/aiomda.git";
-          ms-between-poll = 10000;
-          exclude-dot-files = true;
-        };
-        nixpkgs = {
-          url = "https://github.com/NixOS/nixpkgs.git";
-          ms-between-poll = 10000;
-          exclude-dot-files = true;
-        };
-        dev-cyrus-krb = {
-          url = "https://code.minsi.fr/mce/dev-cyrus-kerberos.git";
-          ms-between-poll = 10000;
-          exclude-dot-files = true;
-        };
-      };
-    };
   };
 
 }

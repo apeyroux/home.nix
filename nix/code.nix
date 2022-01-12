@@ -4,6 +4,7 @@ let
 
   # ./pkgs/misc/vscode-extensions/update_installed_exts.sh > /tmp/vscode-exts.nix
   vscode-exts = vscode-utils.extensionsFromVscodeMarketplace (import ./vscode-exts.nix).extensions;
+  mach-nix = (callPackage (fetchTarball https://github.com/DavHau/mach-nix/tarball/master) {}).mach-nix;
 
   # ghcide = (import (builtins.fetchTarball "https://github.com/hercules-ci/ghcide-nix/tarball/master") {}).ghcide-ghc882;
   
@@ -21,13 +22,16 @@ in {
     cachix
     ctop
     docker-compose
-    emacs-all-the-icons-fonts
+    # emacs-all-the-icons-fonts
     gdb
     miniserve
     # vscode
     # ghcid
     gist
     nixfmt
+    krb5
+    python38Packages.ipython
+    mach-nix
     gnumake
     godef
     teams
@@ -43,7 +47,7 @@ in {
     nodejs
     openssl
     swaks
-    pypi2nix
+    # pypi2nix
     # (python3.withPackages(p: [p.django p.ipython p.xhtml2pdf p.weasyprint ]))
     # (import ./emacs-requirements/requirements.nix { inherit (import <nixpkgs> {}); }).interpreter
     # ghcide
